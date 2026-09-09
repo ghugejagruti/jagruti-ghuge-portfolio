@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jagruti Ghuge — UX Design Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#FDFBF8',
+          ink: '#191919',
+        },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #FDFBF8; }
+
+  /* ---- Figma-canvas decorative chrome ---- */
+  .fig-frame {
+    position: relative;
+  }
+  .fig-select {
+    position: absolute;
+    inset: 0;
+    border: 2px solid #0066FF;
+    pointer-events: none;
+  }
+  .fig-handle {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: #fff;
+    border: 2px solid #0066FF;
+    pointer-events: none;
+  }
+  .fig-handle.tl { top: -5.5px; left: -5.5px; }
+  .fig-handle.tr { top: -5.5px; right: -5.5px; }
+  .fig-handle.bl { bottom: -5.5px; left: -5.5px; }
+  .fig-handle.br { bottom: -5.5px; right: -5.5px; }
+
+  .cursor-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 7px 0 0;
+    transform: rotate(-8deg);
+  }
+
+  /* Each of the three figurines is a small, independent, mostly-still character —
+     a tiny idle bob discovered on close attention, not an obvious animation.
+     Disabled entirely under prefers-reduced-motion. */
+  @keyframes idleBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .idle-bob { animation: idleBob 4s ease-in-out infinite; }
+    .idle-bob-delayed { animation: idleBob 4.5s ease-in-out infinite; animation-delay: -1.5s; }
+    .hover-tilt { transition: transform 250ms ease-out; }
+    .hover-tilt:hover { transform: translateY(-3px) rotate(1deg); }
+  }
+
+  .frame-divider-line {
+    background-image: repeating-linear-gradient(to right, #d8d5d1 0, #d8d5d1 6px, transparent 6px, transparent 12px);
+    height: 1px;
+  }
+
+  ::selection { background: #7C3AED; color: #fff; }
+</style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="border-b border-black/10 bg-cream/90 backdrop-blur sticky top-0 z-40">
+  <div class="max-w-[1180px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
+    <a href="#top" class="font-mono font-bold text-lg tracking-tight">Jagruti Ghuge</a>
+    <nav class="hidden md:flex items-center gap-10 font-mono text-[13px] tracking-widest text-gray-600">
+      <a href="work.html" class="hover:text-ink transition-colors">WORK</a>
+      <a href="about.html" class="hover:text-ink transition-colors">ABOUT</a>
+      <a href="#contact" class="hover:text-ink transition-colors">CONTACT</a>
+    </nav>
+    <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download id="resume-link-nav"
+       class="font-mono text-[12px] tracking-widest border border-black/70 px-4 py-2.5 hover:bg-ink hover:text-cream transition-colors whitespace-nowrap">
+      DOWNLOAD RESUME &nbsp;→
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="top" class="max-w-[1180px] mx-auto px-6 md:px-10 pt-14 md:pt-20 pb-20">
+  <div class="grid md:grid-cols-[340px_1fr] gap-12 md:gap-16 items-stretch">
+
+    <!-- Figurine with figma-chrome -->
+    <div class="relative pt-10">
+      <span class="absolute -top-1 left-0 font-mono text-[13px] text-[#0066FF]">figurine_v3 <span class="text-gray-400">·</span> hero</span>
+      <span class="absolute -top-2 right-0 bg-cream border border-amber-300 text-amber-600 font-mono text-[12px] px-3 py-1 rounded-full shadow-sm">280 × 476</span>
+
+      <div class="fig-frame bg-[#EAE8E6] mt-6">
+        <div class="fig-select"></div>
+        <span class="fig-handle tl"></span><span class="fig-handle tr"></span>
+        <span class="fig-handle bl"></span><span class="fig-handle br"></span>
+
+        <span class="absolute -left-3 top-8 -translate-x-full flex items-center gap-1">
+          <span class="cursor-arrow border-t-[#7C3AED]"></span>
+        </span>
+        <span class="absolute left-0 top-12 -translate-x-2 bg-[#7C3AED] text-white font-mono text-[12px] px-2.5 py-1 rounded-r rounded-bl">Jagruti</span>
+
+        <img src="assets/figurine_hero.png" alt="Pixel-art illustration of Jagruti holding a Marathi 'Puneri Pati' style sign that reads: here, assumptions don't design."
+             class="idle-bob relative mx-auto w-[60%] md:w-[62%] pt-6 pb-4 select-none" draggable="false" />
+      </div>
+      <p class="mt-3 font-mono italic text-[12px] text-gray-400">// idle: bob 3s ease-in-out ∞</p>
+    </div>
+
+    <!-- Bio -->
+    <div class="relative flex flex-col md:h-full pt-2 md:pt-16">
+      <!-- subtle figma-style guide line running the height of the column -->
+      <span class="hidden md:block absolute left-0 top-2 bottom-2 w-px bg-black/[0.06]"></span>
+
+      <div class="pl-0 md:pl-8">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="w-8 h-px bg-[#7C3AED]"></span>
+          <span class="font-mono text-[12px] md:text-[13px] tracking-[0.15em] text-[#7C3AED] font-medium">UX DESIGN PORTFOLIO · MIT-ADT PUNE · 2026</span>
+        </div>
+
+        <h1 class="font-serif font-black text-[56px] leading-[0.98] sm:text-[68px] md:text-[76px] mb-10">Jagruti Ghuge</h1>
+
+        <div class="flex flex-wrap gap-3 mb-10">
+          <span class="rounded-full border border-amber-300 bg-amber-50 text-amber-600 font-mono text-[13px] px-4 py-1.5">Fintech</span>
+          <span class="rounded-full border border-pink-300 bg-pink-50 text-pink-500 font-mono text-[13px] px-4 py-1.5">E-commerce</span>
+          <span class="rounded-full border border-blue-300 bg-blue-50 text-[#0066FF] font-mono text-[13px] px-4 py-1.5">Usability testing</span>
+          <span class="rounded-full border border-emerald-300 bg-emerald-50 text-emerald-500 font-mono text-[13px] px-4 py-1.5">Research-first process</span>
+        </div>
+
+        <p class="text-gray-500 text-[17px] md:text-[18px] leading-relaxed max-w-[720px] mb-12">
+          I like <span class="font-semibold text-ink">understanding how things work before I try</span> to improve them,
+          that's shaped how I design. Across fintech, an early-stage startup, and academic research,
+          I've learned to <span class="font-semibold text-ink">work with ambiguity</span>: shifting briefs,
+          unfamiliar domains, half-formed problems. The part I care about most is making something
+          that's genuinely <span class="font-semibold text-ink">hard to build feel simple to use</span>.
+        </p>
+
+        <div class="relative flex flex-wrap items-center gap-4">
+          <a href="#work" class="bg-ink text-cream font-mono text-[13px] tracking-widest px-7 py-3.5 hover:bg-black transition-colors">CASE STUDIES &nbsp;→</a>
+          <a href="#about" class="border border-gray-300 text-gray-600 font-mono text-[13px] tracking-widest px-7 py-3.5 hover:border-ink hover:text-ink transition-colors">WHAT I BRING</a>
+        </div>
+
+        <p class="font-mono italic text-[13px] text-gray-400 mt-8">— designed + built with curiosity</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FRAME DIVIDER: selected work ================= -->
+<div class="max-w-[1180px] mx-auto px-6 md:px-10">
+  <div class="flex items-center gap-4 py-2">
+    <span class="font-mono text-[11px] text-gray-400 whitespace-nowrap">Frame 02</span>
+    <span class="frame-divider-line flex-1"></span>
+    <span class="font-mono italic text-[11px] text-gray-400 whitespace-nowrap">selected work</span>
+  </div>
+</div>
+
+<!-- ================= SELECTED WORK ================= -->
+<section id="work" class="max-w-[1180px] mx-auto px-6 md:px-10 pt-10 pb-24">
+  <div id="workHeader" class="flex items-end justify-between mb-12 flex-wrap gap-6">
+    <h2 class="font-serif font-black text-[44px] sm:text-[52px] leading-none">Selected work<span class="text-[#7C3AED]">.</span></h2>
+    <a href="work.html" class="border border-gray-300 text-gray-600 font-mono text-[12px] tracking-widest px-5 py-2.5 hover:border-ink hover:text-ink transition-colors">VIEW ALL &nbsp;→</a>
+  </div>
+
+  <div class="grid md:grid-cols-[1fr_180px] gap-8 items-start">
+
+  <div class="flex flex-col gap-8">
+
+    <!-- Case 01 -->
+    <a href="propenize.html" class="block border border-black/10 p-6 md:p-8 hover:border-black/25 transition-colors">
+      <div class="grid md:grid-cols-[280px_1fr] gap-8 items-start">
+        <img src="assets/propenize.jpg" alt="Propenize investment dashboard shown on a laptop screen" class="w-full object-cover border border-black/10" />
+        <div>
+          <div class="flex items-start gap-3 mb-3">
+            <span class="font-mono text-gray-400 text-[13px] pt-2">01</span>
+            <h3 class="font-serif font-bold text-[26px] md:text-[30px] leading-tight flex-1">Propenize : Smarter way to invest. <span class="text-gray-400 font-sans font-normal text-xl">→</span></h3>
+          </div>
+          <p class="text-gray-500 leading-relaxed mb-5 md:pr-10">
+            <span class="font-semibold text-ink">Designed the onboarding-to-checkout flow</span> for a blockchain
+            real estate investment platform, KYC, investment browsing, and cart, condensed into four steps that got
+            98% of users through verification instead of dropping off.
+          </p>
+          <div class="flex flex-wrap gap-3 mb-5">
+            <span class="border border-[#7C3AED]/30 text-[#7C3AED] font-mono text-[11px] px-3 py-1.5 tracking-wide">LIVE PRODUCT</span>
+            <span class="border border-[#7C3AED]/30 text-[#7C3AED] font-mono text-[11px] px-3 py-1.5 tracking-wide">INTERNSHIP PROJECT</span>
+          </div>
+          <div class="border-t border-black/10 pt-4">
+            <p class="font-mono text-[12px] text-gray-500">UX Designer · 98% KYC completion · 200 signups · 80 paying customers</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Case 02 -->
+    <a href="plantdiaper.html" class="block border border-black/10 p-6 md:p-8 hover:border-black/25 transition-colors">
+      <div class="grid md:grid-cols-[280px_1fr] gap-8 items-start">
+        <img src="assets/plantdiaper.jpg" alt="Plant Diaper burlap moisture-retention pouch styled with soil, gloves and a succulent" class="w-full object-cover border border-black/10" />
+        <div>
+          <div class="flex items-start gap-3 mb-3">
+            <span class="font-mono text-gray-400 text-[13px] pt-2">02</span>
+            <h3 class="font-serif font-bold text-[26px] md:text-[30px] leading-tight flex-1">Plant Diaper : Save water, Grow better. <span class="text-gray-400 font-sans font-normal text-xl">→</span></h3>
+          </div>
+          <p class="text-gray-500 leading-relaxed mb-5 md:pr-10">
+            Researched a crowded plant-care market through <span class="font-semibold text-ink">competitor analysis</span>,
+            then <span class="font-semibold text-[#7C3AED]">designed an end-to-end e-commerce site</span>, for a
+            sustainable moisture-retention product built to cut watering by 50%.
+          </p>
+          <div class="flex flex-wrap gap-3 mb-5">
+            <span class="border border-[#7C3AED]/30 text-[#7C3AED] font-mono text-[11px] px-3 py-1.5 tracking-wide">THOUGHT-CRAFT INTERNSHIP PROJECT</span>
+            <span class="border border-[#7C3AED]/30 text-[#7C3AED] font-mono text-[11px] px-3 py-1.5 tracking-wide">50% WATER SAVINGS, 30% BETTER PLANT GROWTH</span>
+          </div>
+          <div class="border-t border-black/10 pt-4">
+            <p class="font-mono text-[12px] text-gray-500">UX Designer · 5 competitors analyzed · 3 personas · 8-page site</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Case 03 -->
+    <a href="littlebox.html" class="block border border-black/10 p-6 md:p-8 hover:border-black/25 transition-colors">
+      <div class="grid md:grid-cols-[280px_1fr] gap-8 items-start">
+        <img src="assets/littlebox.jpg" alt="Littlebox e-commerce site mockup shown on an iMac display" class="w-full object-cover border border-black/10" />
+        <div>
+          <div class="flex items-start gap-3 mb-3">
+            <span class="font-mono text-gray-400 text-[13px] pt-2">03</span>
+            <h3 class="font-serif font-bold text-[26px] md:text-[30px] leading-tight flex-1">Little-Box : UX Evaluation &amp; Redesign. <span class="text-gray-400 font-sans font-normal text-xl">→</span></h3>
+          </div>
+          <p class="text-gray-500 leading-relaxed mb-5 md:pr-10">
+            Led a redesign of an e-commerce site's usability, backed by
+            <span class="font-semibold text-[#7C3AED]">heuristic evaluation, SUS scoring, NASA TLX, and eye-tracking</span>,
+            not just instinct, as part of a 4-person team.
+          </p>
+          <div class="flex flex-wrap gap-3 mb-5">
+            <span class="border border-[#7C3AED]/30 text-[#7C3AED] font-mono text-[11px] px-3 py-1.5 tracking-wide">TEAM PROJECT</span>
+            <span class="border border-[#7C3AED]/30 text-[#7C3AED] font-mono text-[11px] px-3 py-1.5 tracking-wide">COLLEGE RESEARCH</span>
+          </div>
+          <div class="border-t border-black/10 pt-4">
+            <p class="font-mono text-[12px] text-gray-500">UX Designer · SUS + NASA TLX scoring · Eye-tracking · Cognitive walkthrough</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div id="selectedWorkFigurine" class="hidden md:block relative self-start w-[180px] pt-8">
+    <span class="absolute -top-1 left-0 font-mono text-[11px] text-[#0066FF] whitespace-nowrap">Frame 02</span>
+    <span class="absolute -top-2 right-0 bg-cream border border-[#0066FF]/40 text-[#0066FF] font-mono text-[10px] px-2.5 py-1 rounded-full shadow-sm whitespace-nowrap">sticky &middot; top 96</span>
+
+    <div class="fig-frame bg-[#EAE8E6] mt-6">
+      <div class="fig-select"></div>
+      <span class="fig-handle tl"></span><span class="fig-handle tr"></span>
+      <span class="fig-handle bl"></span><span class="fig-handle br"></span>
+
+      <span class="hidden lg:flex absolute -top-3 right-2 items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-600 font-mono text-[10px] px-2.5 py-1 rounded-full z-10">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> reviewing...
+      </span>
+
+      <img src="assets/figurine_clasped.png" alt="Pixel-art illustration of Jagruti standing, hands clasped"
+           class="relative w-full select-none" draggable="false" />
+    </div>
+    <p class="mt-2 font-mono italic text-[10px] text-gray-400">// case_studies_section</p>
+  </div>
+
+  </div>
+</section>
+
+<!-- ================= FRAME DIVIDER: capabilities ================= -->
+<div class="max-w-[1180px] mx-auto px-6 md:px-10">
+  <div class="flex items-center gap-4 py-2">
+    <span class="font-mono text-[11px] text-gray-400 whitespace-nowrap">Frame 03</span>
+    <span class="frame-divider-line flex-1"></span>
+    <span class="font-mono italic text-[11px] text-gray-400 whitespace-nowrap">capabilities</span>
+  </div>
+</div>
+
+<!-- ================= WHAT I BRING ================= -->
+<section id="about" class="max-w-[1180px] mx-auto px-6 md:px-10 pt-10 pb-24">
+  <div class="flex items-start justify-between mb-4 flex-wrap gap-6">
+    <h2 class="font-serif font-black text-[38px] sm:text-[46px] leading-none">What I Bring to the Table<span class="text-[#7C3AED]">.</span></h2>
+    <a href="about.html" class="border border-gray-300 text-gray-600 font-mono text-[12px] tracking-widest px-5 py-2.5 hover:border-ink hover:text-ink transition-colors whitespace-nowrap">MORE ABOUT ME &nbsp;→</a>
+  </div>
+
+  <div class="relative mt-10">
+    <!-- decorative dashed lines only, purely ornamental, sit behind the
+         figurine and pills. Not Figma UI — real site decoration. -->
+    <svg class="hidden lg:block absolute inset-0 w-full h-full pointer-events-none" style="z-index:0;" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <line x1="50" y1="50" x2="12" y2="12" stroke="#f9a8d4" stroke-width="0.15" stroke-dasharray="1,1.4" opacity="0.5" />
+      <line x1="50" y1="50" x2="88" y2="12" stroke="#c4b5fd" stroke-width="0.15" stroke-dasharray="1,1.4" opacity="0.5" />
+      <line x1="50" y1="50" x2="12" y2="88" stroke="#93c5fd" stroke-width="0.15" stroke-dasharray="1,1.4" opacity="0.5" />
+      <line x1="50" y1="50" x2="88" y2="88" stroke="#6ee7b7" stroke-width="0.15" stroke-dasharray="1,1.4" opacity="0.5" />
+    </svg>
+
+    <!-- desktop composition: three-column flow layout — left skills, center
+         figurine, right skills. Normal document flow (no absolute overlap
+         risk), generous gaps, staggered indents for an organic scattered
+         feel. Figurine never moves with scroll — only a tiny idle bob. -->
+    <div class="hidden lg:grid relative grid-cols-[1fr_auto_1fr] gap-x-12 xl:gap-x-20 items-center" style="z-index:1;">
+      <div class="flex flex-col gap-8 items-start">
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-blue-300 text-blue-500 bg-cream ml-2">User research</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-pink-300 text-pink-500 bg-cream ml-14">Wireframing</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-orange-300 text-orange-500 bg-cream ml-4">Prototyping</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-violet-300 text-violet-500 bg-cream ml-16">Usability testing</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-pink-300 text-pink-500 bg-cream ml-6">Problem Solving</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-blue-300 text-blue-500 bg-cream ml-10">Stakeholder Management</span>
+      </div>
+
+      <div class="flex flex-col items-center gap-8 px-4">
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-amber-300 text-amber-500 bg-cream whitespace-nowrap">Curiosity</span>
+        <div class="w-[345px]">
+          <img src="assets/figurine_shrug.png" alt="Pixel-art illustration of Jagruti shrugging with a heart above her head"
+               class="idle-bob-delayed relative w-full select-none" draggable="false" />
+        </div>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-emerald-300 text-emerald-500 bg-cream whitespace-nowrap">Continuous Learning</span>
+      </div>
+
+      <div class="flex flex-col gap-8 items-end">
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-violet-300 text-violet-500 bg-cream mr-6">System thinking</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-amber-300 text-amber-500 bg-cream">Business understanding</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-blue-300 text-blue-500 bg-cream mr-12 whitespace-nowrap">Information architecture</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-emerald-300 text-emerald-500 bg-cream mr-4">Competitive analysis</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-gray-300 text-gray-600 bg-cream mr-10">Persona development</span>
+        <span class="font-mono text-[15px] px-4 py-2 rounded-full border border-violet-300 text-violet-500 bg-cream">Heuristic evaluation</span>
+      </div>
+    </div>
+
+    <!-- mobile skill grid fallback -->
+    <div class="lg:hidden flex flex-col items-center">
+      <div class="w-[220px]">
+        <img src="assets/figurine_shrug.png" alt="Pixel-art illustration of Jagruti shrugging with a heart above her head"
+             class="idle-bob-delayed relative w-full select-none" draggable="false" />
+      </div>
+    <div class="flex flex-wrap justify-center gap-3 mt-8">
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-amber-300 text-amber-500">Curiosity</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-blue-300 text-blue-500">User research</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-pink-300 text-pink-500">Wireframing</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-orange-300 text-orange-500">Prototyping</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-violet-300 text-violet-500">Usability testing</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-pink-300 text-pink-500">Problem Solving</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-blue-300 text-blue-500">Stakeholder Management</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-violet-300 text-violet-500">System thinking</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-amber-300 text-amber-500">Business understanding</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-blue-300 text-blue-500">Information architecture</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-emerald-300 text-emerald-500">Competitive analysis</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-gray-300 text-gray-600">Persona development</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-emerald-300 text-emerald-500">Continuous Learning</span>
+      <span class="font-mono text-[13px] px-4 py-2 rounded-full border border-violet-300 text-violet-500">Heuristic evaluation</span>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FRAME DIVIDER: social proof ================= -->
+<div class="max-w-[1180px] mx-auto px-6 md:px-10">
+  <div class="flex items-center gap-4 py-2">
+    <span class="font-mono text-[11px] text-gray-400 whitespace-nowrap">Frame 04</span>
+    <span class="frame-divider-line flex-1"></span>
+    <span class="font-mono italic text-[11px] text-gray-400 whitespace-nowrap">social proof</span>
+  </div>
+</div>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="max-w-[1180px] mx-auto px-6 md:px-10 pt-10 pb-24">
+  <h2 class="font-serif font-black text-[38px] sm:text-[46px] leading-none mb-12">Testimonials<span class="text-[#7C3AED]">.</span></h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <figure class="relative border border-black/10 p-7">
+      <span class="absolute top-6 right-7 font-mono text-[11px] text-gray-300">testimonial_01</span>
+      <span class="block w-8 h-[3px] bg-[#7C3AED] mb-6"></span>
+      <blockquote class="text-gray-600 leading-relaxed mb-8">"Jagruti hadn't worked in fintech before this, but she picked up the domain fast and delivered exactly what we were looking for. She's reliable and takes ownership of her work. Good instincts, even in unfamiliar territory."</blockquote>
+      <figcaption class="flex items-center gap-3 border-t border-black/10 pt-5">
+        <span class="w-9 h-9 rounded-full bg-[#7C3AED] text-white font-mono text-[12px] flex items-center justify-center font-semibold">YS</span>
+        <span>
+          <span class="block font-semibold text-[15px]">Yash Shah</span>
+          <span class="block text-gray-500 text-[13px]">Co-Founder · Propenize, Mumbai</span>
+        </span>
+      </figcaption>
+    </figure>
+
+    <figure class="relative border border-black/10 p-7">
+      <span class="absolute top-6 right-7 font-mono text-[11px] text-gray-300">testimonial_02</span>
+      <span class="block w-8 h-[3px] bg-[#0066FF] mb-6"></span>
+      <blockquote class="text-gray-600 leading-relaxed mb-8">"Throughout the internship, her contribution was valuable, and she also showed great communication skills, while presenting to the customers. Apart from creative thinking, she showed good understanding of the customer business."</blockquote>
+      <figcaption class="flex items-center gap-3 border-t border-black/10 pt-5">
+        <span class="w-9 h-9 rounded-full bg-[#0066FF] text-white font-mono text-[12px] flex items-center justify-center font-semibold">AM</span>
+        <span>
+          <span class="block font-semibold text-[15px]">Atul Manohar</span>
+          <span class="block text-gray-500 text-[13px]">Co-Founder · Thought-Craft, Pune</span>
+        </span>
+      </figcaption>
+    </figure>
+
+    <figure class="relative border border-black/10 p-7">
+      <span class="absolute top-6 right-7 font-mono text-[11px] text-gray-300">testimonial_03</span>
+      <span class="block w-8 h-[3px] bg-emerald-500 mb-6"></span>
+      <blockquote class="text-gray-600 leading-relaxed mb-8">"During this period, she was actively involved in post-project reports and related work for the NGO, with the objective of enhancing transparency. She demonstrated commendable dedication, responsibility, and skill throughout her internship."</blockquote>
+      <figcaption class="flex items-center gap-3 border-t border-black/10 pt-5">
+        <span class="w-9 h-9 rounded-full bg-emerald-500 text-white font-mono text-[12px] flex items-center justify-center font-semibold">AJ</span>
+        <span>
+          <span class="block font-semibold text-[15px]">Amey Joshi</span>
+          <span class="block text-gray-500 text-[13px]">Founder · Deepastambha Trust, Pune</span>
+        </span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= FRAME DIVIDER: get in touch ================= -->
+<div class="max-w-[1180px] mx-auto px-6 md:px-10">
+  <div class="flex items-center gap-4 py-2">
+    <span class="font-mono text-[11px] text-gray-400 whitespace-nowrap">Frame 05</span>
+    <span class="frame-divider-line flex-1"></span>
+    <span class="font-mono italic text-[11px] text-gray-400 whitespace-nowrap">get in touch</span>
+  </div>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="max-w-[1180px] mx-auto px-6 md:px-10 pt-10 pb-16">
+  <h2 class="font-serif font-black text-[44px] sm:text-[54px] leading-[1.05] mb-2">Building something?<br class="hidden sm:block"> I'm in.</h2>
+  <h3 class="font-serif italic font-semibold text-[36px] sm:text-[44px] text-gray-400 mb-14">Let's Connect<span class="text-[#7C3AED]">.</span></h3>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10 border border-black/10">
+    <a href="mailto:jagrutig2005@gmail.com" class="relative bg-cream p-6 hover:bg-white transition-colors group">
+      <span class="absolute top-5 right-5 w-2 h-2 rounded-full bg-[#7C3AED]"></span>
+      <span class="block font-mono text-[11px] tracking-widest text-gray-400 mb-2">EMAIL</span>
+      <span class="block font-medium underline decoration-gray-300 group-hover:decoration-ink break-all">jagrutig2005@gmail.com</span>
+    </a>
+    <a href="https://www.linkedin.com/in/jagrutighuge/" target="_blank" rel="noopener" class="relative bg-cream p-6 hover:bg-white transition-colors group">
+      <span class="absolute top-5 right-5 w-2 h-2 rounded-full bg-[#0066FF]"></span>
+      <span class="block font-mono text-[11px] tracking-widest text-gray-400 mb-2">LINKEDIN</span>
+      <span class="block font-medium underline decoration-gray-300 group-hover:decoration-ink">jagrutighuge/</span>
+    </a>
+    <a href="https://www.behance.net/f17855bf" target="_blank" rel="noopener" class="relative bg-cream p-6 hover:bg-white transition-colors group">
+      <span class="absolute top-5 right-5 w-2 h-2 rounded-full bg-ink"></span>
+      <span class="block font-mono text-[11px] tracking-widest text-gray-400 mb-2">BEHANCE</span>
+      <span class="block font-medium underline decoration-gray-300 group-hover:decoration-ink">View my Behance &nbsp;→</span>
+    </a>
+    <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download id="resume-link-card" class="relative bg-cream p-6 hover:bg-white transition-colors group">
+      <span class="absolute top-5 right-5 w-2 h-2 rounded-full bg-emerald-500"></span>
+      <span class="block font-mono text-[11px] tracking-widest text-gray-400 mb-2">RESUME</span>
+      <span class="block font-medium underline decoration-gray-300 group-hover:decoration-ink">Download PDF &nbsp;→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-black/10">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8 flex items-center justify-between flex-wrap gap-4">
+    <p class="font-mono text-[12px] text-gray-400">Jagruti Ghuge · Pune, India · 2026</p>
+    <div class="flex items-center gap-2">
+      <img src="assets/figurine_footer.png" alt="" class="h-9 w-auto select-none" draggable="false" />
+      <span class="font-mono italic text-[12px] text-gray-400">designed with curiosity</span>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body>
+</html>

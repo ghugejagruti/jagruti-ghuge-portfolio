@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Jagruti Ghuge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { cream: '#FDFBF8', ink: '#191919' },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #FDFBF8; }
+  ::selection { background: #7C3AED; color: #fff; }
+
+  .fig-select { position: absolute; inset: 0; border: 2px solid #0066FF; pointer-events: none; }
+  .fig-handle { position: absolute; width: 9px; height: 9px; background: #fff; border: 2px solid #0066FF; }
+  .fig-handle.tl { top: -5.5px; left: -5.5px; }
+  .fig-handle.tr { top: -5.5px; right: -5.5px; }
+  .fig-handle.bl { bottom: -5.5px; left: -5.5px; }
+  .fig-handle.br { bottom: -5.5px; right: -5.5px; }
+  .frame-divider-line { background-image: repeating-linear-gradient(to right, #d8d5d1 0, #d8d5d1 6px, transparent 6px, transparent 12px); height: 1px; }
+
+  .map-pin { position: absolute; width: 18px; height: 18px; }
+</style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="border-b border-black/10 bg-cream/90 backdrop-blur sticky top-0 z-40">
+  <div class="max-w-[1180px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
+    <a href="index.html" class="font-mono font-bold text-lg tracking-tight">Jagruti Ghuge</a>
+    <nav class="hidden md:flex items-center gap-10 font-mono text-[13px] tracking-widest text-gray-600">
+      <a href="work.html" class="hover:text-ink transition-colors">WORK</a>
+      <a href="#top" class="text-ink">ABOUT</a>
+      <a href="index.html#contact" class="hover:text-ink transition-colors">CONTACT</a>
+    </nav>
+    <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download class="font-mono text-[12px] tracking-widest border border-black/70 px-4 py-2.5 hover:bg-ink hover:text-cream transition-colors whitespace-nowrap">
+      DOWNLOAD RESUME &nbsp;→
+    </a>
+  </div>
+</header>
+
+<!-- ================= HEADER ================= -->
+<section id="top" class="max-w-[1180px] mx-auto px-6 md:px-10 pt-16 md:pt-20 pb-10">
+  <h1 class="font-serif font-black text-[56px] sm:text-[68px] md:text-[76px] leading-none">About<span class="text-[#7C3AED]">.</span></h1>
+</section>
+
+<!-- ================= MAIN GRID ================= -->
+<section class="max-w-[1180px] mx-auto px-6 md:px-10 pb-24">
+  <div class="grid lg:grid-cols-[1fr_2fr_1fr] gap-10 xl:gap-14">
+
+    <!-- COLUMN 1: PROFILE PHOTO -->
+    <div class="lg:pt-[2px]">
+      <div class="max-w-[280px]">
+        <span class="block font-mono text-[12px] text-[#0066FF] mb-2">jagruti_ghuge <span class="text-gray-400">·</span> portrait</span>
+        <div class="relative">
+          <div class="fig-select"></div>
+          <span class="fig-handle tl"></span><span class="fig-handle tr"></span>
+          <span class="fig-handle bl"></span><span class="fig-handle br"></span>
+          <img src="assets/portrait.jpg" alt="Portrait of Jagruti standing in a college corridor, wearing glasses and a light blue shirt" class="w-full object-cover" />
+        </div>
+        <p class="mt-3 font-mono italic text-[12px] text-gray-400">// Layer: profile_photo</p>
+      </div>
+    </div>
+
+    <!-- COLUMN 2: MAIN ABOUT CONTENT -->
+    <div class="min-w-0">
+
+      <!-- frame divider -->
+      <div class="flex items-center gap-4 py-2 mb-8 lg:mt-[2px]">
+        <span class="font-mono text-[11px] text-gray-400 whitespace-nowrap">Frame 01</span>
+        <span class="frame-divider-line flex-1"></span>
+        <span class="font-mono italic text-[11px] text-gray-400 whitespace-nowrap">way of interest</span>
+      </div>
+
+      <h2 class="font-serif font-black text-[34px] sm:text-[40px] leading-none mb-6">Who I am<span class="text-[#7C3AED]">.</span></h2>
+      <p class="text-gray-500 text-[17px] leading-relaxed mb-5 max-w-[620px]">
+        I'm Jagruti, a UX design student based in Pune. As an ISTP, I'm naturally analytical, independent, and
+        hands-on, I'd rather test something myself than take someone's word for it, and I default to practical,
+        logical decision-making over going with a gut feeling alone.
+      </p>
+      <p class="text-gray-500 text-[17px] leading-relaxed mb-14 max-w-[620px]">
+        I'm comfortable in ambiguity, whether that's a startup brief that shifts weekly or a technical domain I have
+        to learn from scratch. The work I care most about sits where complexity meets clarity: things that are
+        genuinely hard to build but feel simple to use.
+      </p>
+
+      <!-- frame divider -->
+      <div class="flex items-center gap-4 py-2 mb-8">
+        <span class="font-mono text-[11px] text-gray-400 whitespace-nowrap">Frame 02</span>
+        <span class="frame-divider-line flex-1"></span>
+      </div>
+
+      <h2 class="font-serif font-black text-[34px] sm:text-[40px] leading-none mb-8">How I work<span class="text-[#7C3AED]">.</span></h2>
+
+      <div class="flex flex-col gap-8 mb-16 max-w-[640px]">
+        <div class="flex gap-5">
+          <span class="font-serif text-gray-300 text-[30px] leading-none">01</span>
+          <div>
+            <h3 class="font-semibold text-[18px] mb-1.5">Context before craft</h3>
+            <p class="text-gray-500 leading-relaxed">I spend more time understanding why a problem exists than jumping into wireframes. The right screen for the wrong problem is just expensive polish.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <span class="font-serif text-gray-300 text-[30px] leading-none">02</span>
+          <div>
+            <h3 class="font-semibold text-[18px] mb-1.5">Clarity over cleverness</h3>
+            <p class="text-gray-500 leading-relaxed">A flow that everyone understands beats a clever one that only I can explain. If a user hesitates, that's a design problem, not a user problem.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <span class="font-serif text-gray-300 text-[30px] leading-none">03</span>
+          <div>
+            <h3 class="font-semibold text-[18px] mb-1.5">Test, learn, redesign</h3>
+            <p class="text-gray-500 leading-relaxed">A rough prototype in front of real users today beats a polished one in six months. The feedback is the most valuable thing I get from any project.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- frame divider -->
+      <div class="flex items-center gap-4 py-2 mb-8">
+        <span class="font-mono text-[11px] text-gray-400 whitespace-nowrap">Frame 03</span>
+        <span class="frame-divider-line flex-1"></span>
+      </div>
+
+      <h2 class="font-serif font-black text-[34px] sm:text-[40px] leading-none mb-8">When I'm not building<span class="text-[#7C3AED]">.</span></h2>
+
+      <div class="flex flex-wrap gap-3 mb-10">
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-violet-300 text-violet-500">Learning ukulele</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-blue-300 text-blue-500">Acrylic painting</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-emerald-300 text-emerald-500">Product Thinking</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-pink-300 text-pink-500">Building lego</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-amber-300 text-amber-500">Journaling</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-violet-300 text-violet-500">Jugaad Solutions</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-blue-300 text-blue-500">Trying new cafés</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-emerald-300 text-emerald-500">Overthinking</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-blue-300 text-blue-500">Annoying my cat</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-pink-300 text-pink-500">Indie music</span>
+        <span class="font-mono text-[14px] px-4 py-2 rounded-full border border-amber-300 text-amber-500">Sunday Sudoku</span>
+      </div>
+
+      <div class="relative overflow-hidden max-w-[620px]">
+        <img src="assets/corporate_crowd.jpg" alt="Illustration of a small cartoon figure in an oversized suit standing amid a crowd of tall, uniform office workers" class="w-full object-cover" />
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent pt-10 pb-4 px-5">
+          <p class="text-white font-semibold text-[18px]">Me trying to fit in corporate</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COLUMN 3: CONTACT DETAILS -->
+    <aside class="lg:pt-[2px]">
+      <div class="flex items-center gap-3 py-2 mb-5">
+        <span class="font-mono text-[11px] text-gray-400 whitespace-nowrap">contact details</span>
+        <span class="frame-divider-line flex-1"></span>
+      </div>
+
+      <div class="flex items-center gap-2 border border-emerald-200 bg-emerald-50 text-emerald-600 font-mono text-[12px] px-4 py-3 mb-5 tracking-wide">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> OPEN TO OPPORTUNITIES
+      </div>
+
+      <div class="border border-black/10 p-4 mb-3">
+        <span class="block font-mono text-[11px] tracking-widest text-gray-400 mb-2">EMAIL</span>
+        <div class="flex items-center justify-between gap-2">
+          <a href="mailto:jagrutig2005@gmail.com" class="text-[#7C3AED] font-medium text-[14px] break-all">jagrutig2005@gmail.com</a>
+          <button onclick="navigator.clipboard.writeText('jagrutig2005@gmail.com').then(()=>{this.textContent='COPIED';setTimeout(()=>this.textContent='COPY',1500)})"
+                  class="shrink-0 font-mono text-[10px] border border-gray-300 px-2 py-1 hover:border-ink transition-colors">COPY</button>
+        </div>
+      </div>
+
+      <div class="border border-black/10 p-4 mb-3">
+        <span class="block font-mono text-[11px] tracking-widest text-gray-400 mb-2">LINKEDIN</span>
+        <a href="https://www.linkedin.com/in/jagrutighuge/" target="_blank" rel="noopener" class="text-[#0066FF] font-medium text-[14px] break-all">https://www.linkedin.com/in/jagrutighuge/</a>
+      </div>
+
+      <div class="border border-black/10 p-4 mb-3">
+        <span class="block font-mono text-[11px] tracking-widest text-gray-400 mb-2">BEHANCE</span>
+        <a href="https://www.behance.net/f17855bf" target="_blank" rel="noopener" class="text-ink font-medium text-[14px] break-all">https://www.behance.net/f17855bf</a>
+      </div>
+
+      <div class="border border-black/10 p-4 mb-8">
+        <span class="block font-mono text-[11px] tracking-widest text-gray-400 mb-2">RESUME</span>
+        <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download class="text-emerald-500 font-medium text-[14px]">Download PDF</a>
+      </div>
+
+      <span class="block font-mono text-[11px] text-[#0066FF] mb-2">current_location</span>
+      <div class="relative border border-black/10 overflow-hidden">
+        <img src="assets/map_final.jpg" alt="Map of western India centered on Pune, Maharashtra" class="w-full object-cover" />
+        <svg class="map-pin" style="left:52%; top:46%;" viewBox="0 0 24 24" fill="#7C3AED"><path d="M12 0C7.6 0 4 3.6 4 8c0 5.4 7.1 15 7.4 15.4a.7.7 0 0 0 1.1 0C12.9 23 20 13.4 20 8c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+      </div>
+      <p class="mt-2 font-mono text-[11px] text-gray-400">18.5204° N, 73.8567° E</p>
+      <p class="font-mono italic text-[11px] text-gray-400 mb-8">// base: Pune, MH</p>
+
+      <a href="index.html#contact" class="flex items-center justify-between border border-gray-300 text-gray-600 font-mono text-[13px] tracking-widest px-5 py-3 hover:border-ink hover:text-ink transition-colors">
+        CONTACT <span>→</span>
+      </a>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-black/10">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8 flex items-center justify-between flex-wrap gap-4">
+    <p class="font-mono text-[12px] text-gray-400">Jagruti Ghuge · Pune, India · 2026</p>
+    <span class="font-mono italic text-[12px] text-gray-400">designed with curiosity</span>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

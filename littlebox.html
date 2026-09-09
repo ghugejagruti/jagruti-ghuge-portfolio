@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Little-Box Case Study — Jagruti Ghuge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { cream: '#FDFBF8', ink: '#191919', navy: '#2b5282' },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #FDFBF8; }
+  ::selection { background: #2b5282; color: #fff; }
+  .bg-alt { background: #F2EFE9; }
+  .num-watermark { color: #191919; opacity: 0.08; }
+  .diag-panel { overflow: hidden; transform: skewX(-8deg); margin-left: -18px; }
+  .diag-panel:first-child { margin-left: 0; }
+  .diag-panel img { transform: skewX(8deg) scale(1.25); width: 100%; height: 100%; object-fit: cover; }
+</style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="border-b border-black/10 bg-cream/90 backdrop-blur sticky top-0 z-40">
+  <div class="max-w-[1180px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
+    <a href="index.html" class="font-mono font-bold text-lg tracking-tight">Jagruti Ghuge</a>
+    <nav class="hidden md:flex items-center gap-10 font-mono text-[13px] tracking-widest text-gray-600">
+      <a href="work.html" class="hover:text-ink transition-colors">WORK</a>
+      <a href="about.html" class="hover:text-ink transition-colors">ABOUT</a>
+      <a href="index.html#contact" class="hover:text-ink transition-colors">CONTACT</a>
+    </nav>
+    <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download class="font-mono text-[12px] tracking-widest border border-black/70 px-4 py-2.5 hover:bg-ink hover:text-cream transition-colors whitespace-nowrap">
+      DOWNLOAD RESUME &nbsp;→
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="relative">
+  <div class="absolute inset-0 flex">
+    <div class="diag-panel flex-1"><img src="assets/lb_hero1.jpg" alt="" /></div>
+    <div class="diag-panel flex-1"><img src="assets/lb_hero2.jpg" alt="" /></div>
+    <div class="diag-panel flex-1"><img src="assets/lb_hero3.jpg" alt="Fashion model portraits used in the LittleBox site redesign" /></div>
+    <div class="absolute inset-0 bg-navy/80"></div>
+  </div>
+  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 pt-16 pb-14 md:pt-24 md:pb-16">
+    <div class="flex items-center gap-4 mb-8 font-mono text-[13px] tracking-widest">
+      <span class="border border-white/40 text-white/90 rounded-full px-4 py-1.5">PROJECT 03</span>
+      <span class="text-white/60">2025 &nbsp;·&nbsp; UX Researcher &amp; Designer</span>
+    </div>
+    <h1 class="font-serif font-black text-white text-[48px] sm:text-[68px] md:text-[80px] leading-none mb-6">LittleBox UX Evaluation</h1>
+    <p class="font-mono italic text-white/80 text-[16px] md:text-[18px] mb-8">"Users could complete tasks. Just not efficiently."</p>
+    <div class="flex flex-wrap gap-3 mb-14">
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">HEURISTIC EVALUATION</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">SUS</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">NASA TLX</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">COGNITIVE WALKTHROUGH</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">FITTS' LAW</span>
+    </div>
+    <div class="flex flex-wrap gap-16">
+      <div>
+        <p class="font-serif text-white text-[44px] leading-none mb-2">36.79</p>
+        <p class="font-mono text-[12px] tracking-widest text-white/60">SUS SCORE — NEEDS IMPROVEMENT</p>
+      </div>
+      <div>
+        <p class="font-serif text-white text-[44px] leading-none mb-2">4</p>
+        <p class="font-mono text-[12px] tracking-widest text-white/60">USERS TESTED, FULL METHOD SET</p>
+      </div>
+      <div>
+        <p class="font-serif text-white text-[44px] leading-none mb-2">1.89s</p>
+        <p class="font-mono text-[12px] tracking-widest text-white/60">PEAK DECISION TIME (HICK'S LAW)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 OBJECTIVE ================= -->
+<section class="bg-alt">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">01</span>
+      <div>
+        <span class="block w-8 h-[3px] bg-navy mb-3"></span>
+        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Objective</h2>
+      </div>
+    </div>
+    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[820px]">
+      Evaluate LittleBox's existing site using a full usability method set — not just instinct — and then redesign
+      the landing page so every change traces directly back to a specific finding. No hunches. Every decision
+      accountable to data.
+    </p>
+  </div>
+</section>
+
+<!-- ================= 02 WHO IT'S FOR ================= -->
+<section class="bg-cream">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">02</span>
+      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Who It's For</h2>
+    </div>
+
+    <div class="border border-black/10 p-8">
+      <div class="grid md:grid-cols-[280px_1fr] gap-8 items-start">
+        <div class="w-full aspect-[2/3] overflow-hidden">
+          <img src="assets/persona_ananya.jpg" alt="Portrait of Ananya, a regular shopper persona, frowning at her laptop" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <h3 class="font-serif font-bold text-[26px] mb-1">Regular shopper</h3>
+          <p class="text-gray-500 mb-5">Name: Ananya &nbsp;I&nbsp; Age: 19 yrs</p>
+          <div class="grid sm:grid-cols-3 gap-6 mb-5">
+            <div>
+              <p class="text-gray-700 leading-relaxed mb-2">Explores multiple styles and products before deciding what feels right for her.</p>
+              <p class="font-mono text-[13px] text-gray-400">behavior</p>
+            </div>
+            <div>
+              <p class="text-gray-700 leading-relaxed mb-2">Wants to discover fashionable pieces quickly and confidently without compromising on style or budget.</p>
+              <p class="font-mono text-[13px] text-gray-400">goal</p>
+            </div>
+            <div>
+              <p class="text-gray-700 leading-relaxed mb-2">Struggles when filters, sizing information, and navigation make it difficult to narrow down and compare products.</p>
+              <p class="font-mono text-[13px] text-gray-400">difficulty</p>
+            </div>
+          </div>
+          <div class="border-t border-black/10 pt-5">
+            <p class="font-serif italic text-[19px] text-gray-700">"I love exploring new styles, I just want finding the right one to feel easier."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 THE RESEARCH ================= -->
+<section class="bg-alt">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">03</span>
+      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Research</h2>
+    </div>
+
+    <div class="flex flex-wrap gap-4 mb-12">
+      <span class="border border-navy/40 text-navy font-mono text-[13px] tracking-wide px-4 py-2">HEURISTIC EVALUATION</span>
+      <span class="border border-navy/40 text-navy font-mono text-[13px] tracking-wide px-4 py-2">SUS (SYSTEM USABILITY SCALE)</span>
+      <span class="border border-navy/40 text-navy font-mono text-[13px] tracking-wide px-4 py-2">NASA TLX</span>
+      <span class="border border-navy/40 text-navy font-mono text-[13px] tracking-wide px-4 py-2">COGNITIVE WALKTHROUGH</span>
+      <span class="border border-navy/40 text-navy font-mono text-[13px] tracking-wide px-4 py-2">HICK'S LAW TIMING</span>
+      <span class="border border-navy/40 text-navy font-mono text-[13px] tracking-wide px-4 py-2">FITTS' LAW TIMING</span>
+    </div>
+
+    <div class="flex flex-col mb-14">
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">SUS score of 36.79 — structurally broken, not surface-level</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Average SUS of 36.79 (range 12.5–62). No user rated it above "marginal". That range isn't noise — it reflects consistent structural failure across different users, not individual preference.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">Experts spiked too — NASA TLX confirmed friction is built in</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Both novice and expert users scored high on cognitive load. When experts struggle as much as novices, the problem isn't onboarding. It's the site's architecture.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">Hick's Law: Task 2 peaked at 1.89s decision time</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Too many ungrouped choices dumped into one navigation dropdown. Every additional option added to the decision time. Users weren't slower — the interface made them slower.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-b border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">04</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">Fitts' Law: Task 4 jumped to 4.2s (others under 1.1s)</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">One specific CTA was either too small or positioned too far from the user's natural scan path. The 4× time spike on a single task pointed directly to a repositioning fix.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-6 h-px bg-navy"></span>
+      <span class="font-mono text-[13px] tracking-widest text-gray-400">RESEARCH OUTPUT · METRIC SUMMARY</span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse min-w-[640px]">
+        <thead>
+          <tr class="bg-navy/10">
+            <th class="border border-navy/40 text-left font-serif font-bold text-[18px] p-4 w-[140px]">Metric</th>
+            <th class="border border-navy/40 text-left font-serif font-bold text-[18px] p-4 w-[260px]">Result</th>
+            <th class="border border-navy/40 text-left font-serif font-bold text-[18px] p-4">What it means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-navy/10">
+            <td class="border border-navy/40 p-4 align-top">SUS Score</td>
+            <td class="border border-navy/40 p-4 align-top">36.79 avg (range 12.5–62)</td>
+            <td class="border border-navy/40 p-4 align-top">Needs Improvement, no user rated it above marginal</td>
+          </tr>
+          <tr class="bg-navy/10">
+            <td class="border border-navy/40 p-4 align-top">NASA TLX</td>
+            <td class="border border-navy/40 p-4 align-top">Novice &amp; expert scores both spike high</td>
+            <td class="border border-navy/40 p-4 align-top">Friction is structural, not a beginner problem</td>
+          </tr>
+          <tr class="bg-navy/10">
+            <td class="border border-navy/40 p-4 align-top">Hick's Law</td>
+            <td class="border border-navy/40 p-4 align-top">Task 2 peaked at 1.89s decision time</td>
+            <td class="border border-navy/40 p-4 align-top">Too many ungrouped choices slow everyone down</td>
+          </tr>
+          <tr class="bg-navy/10">
+            <td class="border border-navy/40 p-4 align-top">Fitts' Law</td>
+            <td class="border border-navy/40 p-4 align-top">Task 4 jumped to 4.2s (others under 1.1s)</td>
+            <td class="border border-navy/40 p-4 align-top">A specific target was too small or too far</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 THE SOLUTION ================= -->
+<section class="bg-cream">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">04</span>
+      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Solution</h2>
+    </div>
+
+    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[860px] mb-12">
+      Every change in the redesign traced back to a specific finding. The heuristic evaluation and eye-tracking
+      data told us exactly where the load was concentrated — not guesses, not preferences. The team split by
+      users (4 users per person), ran the full method set independently, then regrouped to identify shared
+      patterns. I owned my 4 users end-to-end and then redesigned the landing page solo. The principle throughout:
+      the redesign added nothing new. It removed everything that was in the way.
+    </p>
+
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-6 h-px bg-navy"></span>
+      <span class="font-mono text-[13px] tracking-widest text-gray-400">WHAT IT DOES</span>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-navy mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Hick's Law → nav restructured: fewer simultaneous tabs, items revealed progressively on hover</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-navy mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Fitts' Law → CTAs enlarged, repositioned into primary scan path</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-navy mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Recognition over recall → 'Raise a Ticket' relabelled to 'Cancel Order'</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-navy mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Eye-tracking data → color + delivery-date filters added exactly where users abandoned the filter panel</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-navy mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Visual hierarchy corrected → key CTAs no longer blend into the background</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-navy mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Cognitive walkthrough findings → task flows reduced to minimum necessary steps</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 HIGHLIGHT (navy band) ================= -->
+<section class="relative bg-navy overflow-hidden">
+  <span class="absolute -top-4 right-6 md:right-10 font-serif text-white/10 text-[180px] md:text-[220px] leading-none select-none">05</span>
+  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-center gap-3 mb-8">
+      <span class="w-6 h-px bg-white/40"></span>
+      <span class="font-mono text-[13px] tracking-widest text-white/50">HIGHLIGHT OF THE PROJECT</span>
+    </div>
+    <h2 class="font-serif font-bold text-white text-[32px] sm:text-[42px] md:text-[48px] leading-tight max-w-[900px] mb-8">"The redesign added nothing new. It removed everything that was in the way."</h2>
+    <p class="text-white/70 text-[17px] leading-relaxed max-w-[780px]">
+      Navigation got lighter — fewer tabs, but each one earned its place. Visuals replaced long text in dropdowns
+      so recognition happened before reading did. Filters became visible instead of buried. A SUS score of 36.79
+      doesn't just say 'this is bad.' It tells you the problem is structural — and structural problems tell you
+      exactly where to look. That specificity is what makes evaluation frameworks worth using.
+    </p>
+  </div>
+</section>
+
+<!-- ================= 06 THE DESIGNS (prototype link) ================= -->
+<section class="bg-cream">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-14">
+      <span class="font-serif num-watermark text-[80px] leading-none">06</span>
+      <div>
+        <span class="block w-8 h-[3px] bg-navy mb-3"></span>
+        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Designs</h2>
+      </div>
+    </div>
+
+    <div class="max-w-[900px] mx-auto">
+      <a href="https://www.figma.com/proto/YTXKSJRGxnNnnHTqRnFG3A/Little-Box-webiste?node-id=1-724&viewport=695%2C121%2C0.09&scaling=min-zoom&starting-point-node-id=1%3A724"
+         target="_blank" rel="noopener" class="relative block group">
+        <img src="assets/lb_laptop_frame.jpg" alt="Laptop mockup framing the interactive prototype" class="w-full select-none" draggable="false" />
+        <div class="absolute flex items-center justify-center bg-navy/5 group-hover:bg-navy/10 transition-colors" style="left:24.3%; right:24%; top:28.4%; bottom:22.2%;">
+          <span class="flex items-center gap-2 bg-navy text-white font-mono text-[12px] sm:text-[13px] tracking-widest px-4 py-2.5 sm:px-5 sm:py-3 shadow-lg group-hover:bg-navy/90 transition-colors">
+            ▶ &nbsp;LAUNCH PROTOTYPE
+          </span>
+        </div>
+      </a>
+      <p class="text-center font-mono text-[12px] text-gray-400 mt-4">Interactive Figma prototype — opens in a new tab.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 WHAT I LEARNED ================= -->
+<section class="bg-alt">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">07</span>
+      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">What I Learned</h2>
+    </div>
+
+    <div class="flex flex-col">
+      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
+        <h3 class="font-serif font-bold text-[22px] leading-snug">Evaluation frameworks are not academic exercises</h3>
+        <p class="text-gray-600 leading-relaxed">A SUS score of 36.79 doesn't just say 'this is bad.' It tells you the problem is structural and structural problems tell you exactly where to look. The data collapses ambiguity. That's what makes it worth the effort.</p>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
+        <h3 class="font-serif font-bold text-[22px] leading-snug">Accessibility is a design decision, not a checklist</h3>
+        <p class="text-gray-600 leading-relaxed">Building for a wide range of people meant simplifying flows and clarifying content before adding anything new. The most accessible version of LittleBox wasn't a version with more features — it was one with fewer obstacles.</p>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-b border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
+        <h3 class="font-serif font-bold text-[22px] leading-snug">Interaction design is behaviour design</h3>
+        <p class="text-gray-600 leading-relaxed">Feedback, affordances, and clear navigation didn't just look better — they changed what users were confident enough to try. Good interaction design expands the set of actions a person believes is available to them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL STATS BAR ================= -->
+<section class="bg-alt border-t border-black/10">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-16">
+    <div class="flex flex-wrap justify-around gap-10 text-center">
+      <div>
+        <p class="font-serif text-navy text-[48px] leading-none mb-2">36.79</p>
+        <p class="font-mono text-[12px] tracking-widest text-gray-400">SUS SCORE — NEEDS IMPROVEMENT</p>
+      </div>
+      <div>
+        <p class="font-serif text-navy text-[48px] leading-none mb-2">4</p>
+        <p class="font-mono text-[12px] tracking-widest text-gray-400">USERS TESTED, FULL METHOD SET</p>
+      </div>
+      <div>
+        <p class="font-serif text-navy text-[48px] leading-none mb-2">1.89s</p>
+        <p class="font-mono text-[12px] tracking-widest text-gray-400">PEAK DECISION TIME (HICK'S LAW)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8">
+  <a href="work.html" class="inline-flex items-center gap-2 font-mono text-[13px] tracking-widest text-gray-500 hover:text-ink transition-colors">
+    <span>←</span> PREVIOUS
+  </a>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-black/10">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8 flex items-center justify-between flex-wrap gap-4">
+    <p class="font-mono text-[12px] text-gray-400">Jagruti Ghuge · Pune, India · 2026</p>
+    <span class="font-mono italic text-[12px] text-gray-400">designed with curiosity</span>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

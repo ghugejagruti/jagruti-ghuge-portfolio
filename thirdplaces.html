@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Third Places Case Study — Jagruti Ghuge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { cream: '#FDFBF8', ink: '#191919', navy: '#2b5282', indigo2: '#6266F0' },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #FDFBF8; }
+  ::selection { background: #6266F0; color: #fff; }
+  .bg-alt { background: #F2EFE9; }
+  .num-watermark { color: #6266F0; opacity: 0.12; }
+</style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="border-b border-black/10 bg-cream/90 backdrop-blur sticky top-0 z-40">
+  <div class="max-w-[1180px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
+    <a href="index.html" class="font-mono font-bold text-lg tracking-tight">Jagruti Ghuge</a>
+    <nav class="hidden md:flex items-center gap-10 font-mono text-[13px] tracking-widest text-gray-600">
+      <a href="work.html" class="hover:text-ink transition-colors">WORK</a>
+      <a href="about.html" class="hover:text-ink transition-colors">ABOUT</a>
+      <a href="index.html#contact" class="hover:text-ink transition-colors">CONTACT</a>
+    </nav>
+    <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download class="font-mono text-[12px] tracking-widest border border-black/70 px-4 py-2.5 hover:bg-ink hover:text-cream transition-colors whitespace-nowrap">
+      DOWNLOAD RESUME &nbsp;→
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="relative">
+  <div class="absolute inset-0">
+    <img src="assets/thirdplaces_hero.jpg" alt="Friends gathered for an informal conversation at home" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/60 to-black/30"></div>
+  </div>
+  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 pt-16 pb-14 md:pt-24 md:pb-16">
+    <div class="flex items-center gap-4 mb-8 font-mono text-[13px] tracking-widest">
+      <span class="border border-white/40 text-white/90 rounded-full px-4 py-1.5">PROJECT 05</span>
+      <span class="text-white/60">2025 &nbsp;·&nbsp; UX Researcher</span>
+    </div>
+    <h1 class="font-serif font-black text-white text-[64px] sm:text-[84px] md:text-[100px] leading-none mb-6">Third Places</h1>
+    <p class="font-mono italic text-white/80 text-[18px] md:text-[20px] mb-8">"Chai Stalls or Chat Rooms?"</p>
+    <div class="flex flex-wrap gap-3 mb-14">
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">QUALITATIVE RESEARCH</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">THEMATIC ANALYSIS</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">COMMUNITY DESIGN</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">LITERATURE REVIEW</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">SOCIAL DESIGN</span>
+    </div>
+    <div class="flex flex-wrap gap-16">
+      <div>
+        <p class="font-serif text-white text-[44px] leading-none mb-2">15</p>
+        <p class="font-mono text-[12px] tracking-widest text-white/60">PROFESSIONALS INTERVIEWED</p>
+      </div>
+      <div>
+        <p class="font-serif text-white text-[44px] leading-none mb-2">8</p>
+        <p class="font-mono text-[12px] tracking-widest text-white/60">THEMES IDENTIFIED</p>
+      </div>
+      <div>
+        <p class="font-serif text-white text-[44px] leading-none mb-2">5</p>
+        <p class="font-mono text-[12px] tracking-widest text-white/60">DOMAIN LITERATURE REVIEW</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 OBJECTIVE ================= -->
+<section class="bg-alt">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">01</span>
+      <div>
+        <span class="block w-8 h-[3px] bg-indigo2 mb-3"></span>
+        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Objective</h2>
+      </div>
+    </div>
+    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[820px]">
+      As traditional third places — tea stalls, clubhouses, neighbourhood parks — fade in urban India, what are
+      young working professionals switching to, and how do they actually feel about the switch? This research
+      project set out to answer that, not with surveys or assumptions, but through the kind of slow, open-ended
+      conversation that lets people say what they actually mean.
+    </p>
+  </div>
+</section>
+
+<!-- ================= 02 WHO IT'S FOR ================= -->
+<section class="bg-cream">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">02</span>
+      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Who It's For</h2>
+    </div>
+
+    <div class="border border-black/10 p-8">
+      <div class="grid md:grid-cols-[300px_1fr] gap-8 items-start">
+        <div class="w-full aspect-[250/274] overflow-hidden">
+          <img src="assets/persona_priya.jpg" alt="Portrait of Priya, a young working professional persona, at a cafe" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <h3 class="font-serif font-bold text-[26px] mb-1">Young Working Professional</h3>
+          <p class="text-gray-500 mb-5">Name: Priya &nbsp;I&nbsp; Age: 27 yrs</p>
+          <div class="grid sm:grid-cols-3 gap-6 mb-5">
+            <div>
+              <p class="text-gray-700 leading-relaxed mb-2">Moves between work, home, and planned social activities, with little time for spontaneous hangouts.</p>
+              <p class="font-mono text-[13px] text-gray-400">behavior</p>
+            </div>
+            <div>
+              <p class="text-gray-700 leading-relaxed mb-2">Wants to rediscover the ease of meeting people in informal, welcoming places without having to organize everything in advance.</p>
+              <p class="font-mono text-[13px] text-gray-400">goal</p>
+            </div>
+            <div>
+              <p class="text-gray-700 leading-relaxed mb-2">Finds it harder to discover third places that feel spontaneous and accessible in a life increasingly shaped by screens, schedules, and planned interactions.</p>
+              <p class="font-mono text-[13px] text-gray-400">difficulty</p>
+            </div>
+          </div>
+          <div class="border-t border-black/10 pt-5">
+            <p class="font-serif italic text-[19px] text-gray-700">"I miss having places where you could just show up and something would happen."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 THE RESEARCH ================= -->
+<section class="bg-alt">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">03</span>
+      <div>
+        <span class="block w-8 h-[3px] bg-indigo2 mb-3"></span>
+        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Research</h2>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-4 mb-14">
+      <span class="border border-indigo2/40 text-indigo2 font-mono text-[13px] tracking-wide px-4 py-2">SEMI-STRUCTURED INTERVIEWS (IN-PERSON + VIDEO)</span>
+      <span class="border border-indigo2/40 text-indigo2 font-mono text-[13px] tracking-wide px-4 py-2">INDUCTIVE THEMATIC ANALYSIS</span>
+      <span class="border border-indigo2/40 text-indigo2 font-mono text-[13px] tracking-wide px-4 py-2">LITERATURE REVIEW ACROSS 5 DOMAINS</span>
+      <span class="border border-indigo2/40 text-indigo2 font-mono text-[13px] tracking-wide px-4 py-2">CODING AND THEME GROUPING</span>
+    </div>
+
+    <div class="flex flex-col">
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">People aren't choosing spaces anymore. They're choosing people.</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Across all 15 participants, social chemistry consistently outweighed proximity or aesthetics. The space mattered less than who would be in it. This shift from geography as the organising principle to relationship quality is the finding that reframes everything else.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">Adulthood's time constraints have made spontaneity a luxury</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Participants described a gradual, often unnoticed transition: hangouts that used to just happen now have to be scheduled. Spontaneous third place culture requires unstructured time which urban working life systematically removes.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">Physical space hasn't disappeared. It's just harder to access.</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Digital substitutes exist but don't fully satisfy. Participants consistently described in-person interaction as providing a kind of sensory and emotional clarity that digital couldn't replicate — something was lost even when the connection was maintained.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-b border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">04</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">'Shared interest over shared territory' — the new community logic</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Interest-based communities (hobby groups, professional networks, online forums) are now competing with geography-based ones. Belonging no longer requires living near someone. It requires caring about the same things.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 THE SOLUTION ================= -->
+<section class="bg-cream">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">04</span>
+      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Solution</h2>
+    </div>
+
+    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[860px] mb-6">
+      The research didn't end with a product. It ended with four evidence-backed directions for designers and
+      planners working on community problems. Each direction came directly from a pattern in the interview
+      data — not from general theory, but from what 15 people in urban India actually described wanting.
+    </p>
+
+    <p class="mb-12">
+      <a href="https://docs.google.com/document/d/1qKhWSsMbYbi7KMtjTK5-mu1oNvmcWt0P9cyRNppEVew/edit?usp=sharing" target="_blank" rel="noopener" class="text-blue-600 underline break-all">
+        Paper link: https://docs.google.com/document/d/1qKhWSsMbYbi7KMtjTK5-mu1oNvmcWt0P9cyRNppEVew/edit?usp=sharing
+      </a>
+    </p>
+
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-6 h-px bg-indigo2"></span>
+      <span class="font-mono text-[13px] tracking-widest text-gray-400">WHAT IT DOES</span>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-orange-700 mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Design for shared cultural memory — use familiar rituals (chai, a particular game, a shared playlist) as low-pressure icebreakers for new community formation</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-orange-700 mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Build a repeatable 'community design pipeline' — a structured approach for creating spaces that can be replicated at different urban scales</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-orange-700 mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Create hybrid spaces that use digital tools to spark real-world meetups, not replace them — the digital layer as a coordination tool, not a destination</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-orange-700 mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Design for proximity and walkability — re-centre physical third places within 10-minute walk radii, since proximity is what enables spontaneity</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 HIGHLIGHT (navy band) ================= -->
+<section class="relative bg-navy overflow-hidden">
+  <span class="absolute -top-4 right-6 md:right-10 font-serif text-white/10 text-[180px] md:text-[220px] leading-none select-none">05</span>
+  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-center gap-3 mb-8">
+      <span class="w-6 h-px bg-white/40"></span>
+      <span class="font-mono text-[13px] tracking-widest text-white/50">HIGHLIGHT OF THE PROJECT</span>
+    </div>
+    <h2 class="font-serif font-bold text-white text-[32px] sm:text-[42px] md:text-[48px] leading-tight max-w-[900px] mb-8">"People aren't choosing spaces anymore. They're choosing people."</h2>
+    <p class="text-white/70 text-[17px] leading-relaxed max-w-[780px]">
+      This was the line from the thematic analysis that reframed the whole paper. It shifted the design question
+      from 'how do we preserve physical third places' to 'how do we design for the conditions under which social
+      chemistry can form?' Those are different problems with very different solutions — and the data pointed to
+      the second one.
+    </p>
+  </div>
+</section>
+
+<!-- ================= 07 WHAT I LEARNED ================= -->
+<section class="bg-cream">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">07</span>
+      <div>
+        <span class="block w-8 h-[3px] bg-indigo2 mb-3"></span>
+        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">What I Learned</h2>
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
+        <h3 class="font-serif font-bold text-[22px] leading-snug">Qualitative research is a design tool, not just a validation method</h3>
+        <p class="text-gray-600 leading-relaxed">Running thematic analysis on 15 interviews — coding line by line, grouping into themes, finding the unexpected pattern — changed how I think about the early stages of any design project. The rigour isn't in the number of participants. It's in the quality of listening.</p>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
+        <h3 class="font-serif font-bold text-[22px] leading-snug">The emotional is infrastructural</h3>
+        <p class="text-gray-600 leading-relaxed">'Comfort', 'familiarity', 'belonging' sound soft until you see how consistently they drive behaviour. Every participant who described switching to digital third places also described something missing. The emotional residue of physical space isn't a nice-to-have — it's load-bearing.</p>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-b border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
+        <h3 class="font-serif font-bold text-[22px] leading-snug">Writing up research teaches you what you actually found</h3>
+        <p class="text-gray-600 leading-relaxed">My contribution was two of the eight themes — writing them up forced a clarity that the analysis alone didn't. You can code data without understanding it. You can't write about it without understanding it. The writing was where the research actually finished.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL STATS BAR ================= -->
+<section class="bg-alt border-t border-black/10">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-16">
+    <div class="flex flex-wrap justify-around gap-10 text-center">
+      <div>
+        <p class="font-serif text-indigo2 text-[48px] leading-none mb-2">15</p>
+        <p class="font-mono text-[12px] tracking-widest text-gray-400">PROFESSIONALS INTERVIEWED</p>
+      </div>
+      <div>
+        <p class="font-serif text-indigo2 text-[48px] leading-none mb-2">8</p>
+        <p class="font-mono text-[12px] tracking-widest text-gray-400">THEMES IDENTIFIED</p>
+      </div>
+      <div>
+        <p class="font-serif text-indigo2 text-[48px] leading-none mb-2">5</p>
+        <p class="font-mono text-[12px] tracking-widest text-gray-400">DOMAIN LITERATURE REVIEW</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8">
+  <a href="work.html" class="inline-flex items-center gap-2 font-mono text-[13px] tracking-widest text-gray-500 hover:text-ink transition-colors">
+    <span>←</span> PREVIOUS
+  </a>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-black/10">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8 flex items-center justify-between flex-wrap gap-4">
+    <p class="font-mono text-[12px] text-gray-400">Jagruti Ghuge · Pune, India · 2026</p>
+    <span class="font-mono italic text-[12px] text-gray-400">designed with curiosity</span>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

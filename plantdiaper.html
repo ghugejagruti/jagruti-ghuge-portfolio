@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plant Diaper Case Study — Jagruti Ghuge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { cream: '#FDFBF8', ink: '#191919', forest: '#496741' },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #FDFBF8; }
+  ::selection { background: #496741; color: #fff; }
+  .bg-alt { background: #F2EFE9; }
+  .num-watermark { color: #191919; opacity: 0.08; }
+  input[type="range"] { -webkit-appearance: none; appearance: none; height: 4px; background: #e5e0d8; border-radius: 999px; outline: none; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 999px; background: #496741; cursor: pointer; border: 3px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.1); }
+  input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 999px; background: #496741; cursor: pointer; border: 3px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.1); }
+  input[type="range"]::-webkit-slider-runnable-track { background: linear-gradient(to right, #496741 var(--fill,50%), #e5e0d8 var(--fill,50%)); height: 4px; border-radius: 999px; }
+</style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="border-b border-black/10 bg-cream/90 backdrop-blur sticky top-0 z-40">
+  <div class="max-w-[1180px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
+    <a href="index.html" class="font-mono font-bold text-lg tracking-tight">Jagruti Ghuge</a>
+    <nav class="hidden md:flex items-center gap-10 font-mono text-[13px] tracking-widest text-gray-600">
+      <a href="work.html" class="hover:text-ink transition-colors">WORK</a>
+      <a href="about.html" class="hover:text-ink transition-colors">ABOUT</a>
+      <a href="index.html#contact" class="hover:text-ink transition-colors">CONTACT</a>
+    </nav>
+    <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download class="font-mono text-[12px] tracking-widest border border-black/70 px-4 py-2.5 hover:bg-ink hover:text-cream transition-colors whitespace-nowrap">
+      DOWNLOAD RESUME &nbsp;→
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="relative">
+  <div class="absolute inset-0">
+    <img src="assets/plantdiaper_hero.jpg" alt="Family gardening together in a lush backyard vegetable garden" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-forest/95 via-forest/70 to-forest/40"></div>
+  </div>
+  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 pt-16 pb-14 md:pt-24 md:pb-16">
+    <div class="flex items-center gap-4 mb-8 font-mono text-[13px] tracking-widest">
+      <span class="border border-white/40 text-white/90 rounded-full px-4 py-1.5">PROJECT 02</span>
+      <span class="text-white/60">2026 &nbsp;·&nbsp; UX Design Intern</span>
+    </div>
+    <h1 class="font-serif font-black text-white text-[64px] sm:text-[84px] md:text-[100px] leading-none mb-6">Plant Diaper</h1>
+    <p class="font-mono italic text-white/80 text-[18px] md:text-[20px] mb-8">"Save water, Grow better."</p>
+    <div class="flex flex-wrap gap-3 mb-14">
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">USER RESEARCH</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">COMPETITOR ANALYSIS</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">WIREFRAMING</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">UI DESIGN</span>
+      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">INTERACTION DESIGN</span>
+    </div>
+    <div class="flex flex-wrap gap-16">
+      <div>
+        <p class="font-serif text-white text-[44px] leading-none mb-2">50%</p>
+        <p class="font-mono text-[12px] tracking-widest text-white/60">WATER REDUCTION</p>
+      </div>
+      <div>
+        <p class="font-serif text-white text-[44px] leading-none mb-2">8</p>
+        <p class="font-mono text-[12px] tracking-widest text-white/60">PAGES DESIGNED END-TO-END</p>
+      </div>
+      <div>
+        <p class="font-serif text-white text-[44px] leading-none mb-2">1</p>
+        <p class="font-mono text-[12px] tracking-widest text-white/60">INTERACTIVE CALCULATOR</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 OBJECTIVE ================= -->
+<section class="bg-alt">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">01</span>
+      <div>
+        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
+        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Objective</h2>
+      </div>
+    </div>
+    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[820px]">
+      Design a user-friendly e-commerce site that educates, engages, and drives users to choose Plant Diaper
+      for sustainable gardening — without assuming they already know why water retention matters.
+    </p>
+  </div>
+</section>
+
+<!-- ================= 02 WHO IT'S FOR ================= -->
+<section class="bg-cream">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">02</span>
+      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Who It's For</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="border border-black/10">
+        <img src="assets/persona_emily.jpg" alt="Portrait of Emily, a home gardener persona, in her backyard garden" class="w-full aspect-[4/3] object-cover" />
+        <div class="p-6">
+          <h3 class="font-serif font-bold text-[22px] mb-3">Home gardener</h3>
+          <div class="flex items-center justify-between border-t border-black/10 pt-3 mb-4 text-[15px]">
+            <span>Emily</span><span>39 yrs</span>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-1">Emily maintains a mixed home garden that includes indoor plants, balcony herbs, outdoor vegetables, and perennial flowering plants.</p>
+          <p class="font-mono text-[12px] text-gray-400 mb-4">interest</p>
+          <p class="text-gray-700 leading-relaxed mb-1">Keep plants healthy with less frequent watering.</p>
+          <p class="font-mono text-[12px] text-gray-400 mb-4">goals</p>
+          <p class="text-gray-700 leading-relaxed mb-1">Water runoff wastes fertiliser and nutrients.</p>
+          <p class="font-mono text-[12px] text-gray-400 mb-4">difficulty</p>
+          <p class="font-serif italic text-gray-700 border-t border-black/10 pt-4">"I want healthier plants without spending hours maintaining them every day."</p>
+        </div>
+      </div>
+
+      <div class="border border-black/10">
+        <img src="assets/persona_olivia.jpg" alt="Portrait of Olivia, a gift shop owner persona, at her office desk" class="w-full aspect-[4/3] object-cover" />
+        <div class="p-6">
+          <h3 class="font-serif font-bold text-[22px] mb-3">Gift Shop Owner</h3>
+          <div class="flex items-center justify-between border-t border-black/10 pt-3 mb-4 text-[15px]">
+            <span>Olivia</span><span>31 yrs</span>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-1">She wants a product that retains moisture to improve plant survival during transit.</p>
+          <p class="font-mono text-[12px] text-gray-400 mb-4">interest</p>
+          <p class="text-gray-700 leading-relaxed mb-1">Reduce shipping-related plant damage</p>
+          <p class="font-mono text-[12px] text-gray-400 mb-4">goals</p>
+          <p class="text-gray-700 leading-relaxed mb-1">Needs eco-friendly alternatives to synthetic moisture solutions</p>
+          <p class="font-mono text-[12px] text-gray-400 mb-4">difficulty</p>
+          <p class="font-serif italic text-gray-700 border-t border-black/10 pt-4">"A gifted plant should arrive fresh, healthy, and ready to thrive."</p>
+        </div>
+      </div>
+
+      <div class="border border-black/10">
+        <img src="assets/persona_michael.jpg" alt="Portrait of Michael, a nursery owner persona, in his greenhouse" class="w-full aspect-[4/3] object-cover" />
+        <div class="p-6">
+          <h3 class="font-serif font-bold text-[22px] mb-3">Nursery Owner</h3>
+          <div class="flex items-center justify-between border-t border-black/10 pt-3 mb-4 text-[15px]">
+            <span>Michael</span><span>50 yrs</span>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-1">He constantly looks for innovative products that improve customer satisfaction and reduce plant maintenance</p>
+          <p class="font-mono text-[12px] text-gray-400 mb-4">interest</p>
+          <p class="text-gray-700 leading-relaxed mb-1">Offer unique eco-friendly gardening solutions</p>
+          <p class="font-mono text-[12px] text-gray-400 mb-4">goals</p>
+          <p class="text-gray-700 leading-relaxed mb-1">Plant survival after purchase affects customer trust</p>
+          <p class="font-mono text-[12px] text-gray-400 mb-4">difficulty</p>
+          <p class="font-serif italic text-gray-700 border-t border-black/10 pt-4">"If my customers succeed with their plants, they'll keep coming back."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 THE RESEARCH ================= -->
+<section class="bg-alt">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">03</span>
+      <div>
+        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
+        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Research</h2>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-4 mb-14">
+      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">COMPETITOR ANALYSIS</span>
+      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">GAP MAPPING</span>
+      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">USER PERSONA DEVELOPMENT</span>
+      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">POSITIONING WORKSHOPS</span>
+    </div>
+
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-6 h-px bg-forest"></span>
+      <span class="font-mono text-[13px] tracking-widest text-gray-400">COMPETITIVE LANDSCAPE</span>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-14">
+      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
+        <img src="assets/logo_miraclegro.jpg" alt="Miracle-Gro logo" class="h-14 w-14 object-contain rounded-full mb-3" />
+        <p class="font-medium text-[15px] mb-2">Miracle-Gro</p>
+        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Not organic</span>
+      </div>
+      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
+        <img src="assets/logo_treediaper.jpg" alt="Tree Diaper logo" class="h-14 w-14 object-contain rounded-full mb-3" />
+        <p class="font-medium text-[15px] mb-2">Tree Diaper</p>
+        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Manual monitoring</span>
+      </div>
+      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
+        <img src="assets/logo_growoya.jpg" alt="Growoya logo" class="h-14 w-14 object-contain rounded-full mb-3" />
+        <p class="font-medium text-[15px] mb-2">Growoya</p>
+        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Brittle pots</span>
+      </div>
+      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
+        <img src="assets/logo_kyari.jpg" alt="Kyari logo" class="h-14 w-14 object-contain rounded-full mb-3" />
+        <p class="font-medium text-[15px] mb-2">Kyari</p>
+        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Gifting angle only</span>
+      </div>
+      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
+        <img src="assets/logo_organicbazar.jpg" alt="Organic Bazar logo" class="h-14 w-24 object-contain mb-3" />
+        <p class="font-medium text-[15px] mb-2">Organic Bazar</p>
+        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Distribution gaps</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">Five competitors, five gaps</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Miracle-Gro had scale but wasn't organic. Tree Diaper required manual monitoring. Growoya's pots were brittle. Kyari leaned into gifting angles. None combined durable + organic + truly hands-off — that was the wedge.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">The brand had no positioning yet</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Plant Diaper came to the engagement without settled product sizing, bundles, or pricing. UX started upstream — helping define the product lineup and voice before a single screen was drawn.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">Trust is the conversion blocker</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Organic, sustainable claims are everywhere. Buyers are sceptical. Any site that led with features before building credibility would lose the user before the add-to-cart. Sequence mattered.</p>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-b border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">04</span>
+        <div>
+          <h3 class="font-serif font-bold text-[22px] mb-2">Nurseries needed their own front door</h3>
+          <p class="text-gray-600 leading-relaxed max-w-[820px]">Wholesale buyers found nothing useful on competitor sites — they bounced. A dedicated partner flow with wholesale pricing and training support was a gap nobody had filled well.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 THE SOLUTION ================= -->
+<section class="bg-cream">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">04</span>
+      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Solution</h2>
+    </div>
+
+    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[860px] mb-12">
+      An eight-page site built around one narrative: durable, organic, hands-off. The homepage is a persuasion
+      sequence — hero that sells the feeling of gardening first, then the product, then the five-layer mechanism
+      explained simply, then credibility stats, then a 90-day comparison, then the CTA. Trust is earned before the
+      ask is made. Beyond the homepage: a product finder for buyers who are ready, a wholesale partner flow for
+      Olivias, a blog for between-purchase presence, and a full support suite (FAQ, shipping, returns, contact) so
+      it works as a real storefront.
+    </p>
+
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-6 h-px bg-forest"></span>
+      <span class="font-mono text-[13px] tracking-widest text-gray-400">WHAT IT DOES</span>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-forest mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Full persuasion-sequence homepage (8 distinct sections)</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-forest mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Product finder with size + use-case filtering</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-forest mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Wholesale partner application and pricing flow</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-forest mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Blog and community section for organic retention</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-forest mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Live savings calculator — the interactive centrepiece</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-forest mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">FAQ, shipping, returns, and contact support pages</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-forest mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">90-day growth comparison: with vs. without Plant Diaper</p>
+      </div>
+      <div class="bg-alt border border-black/5 p-5 flex gap-3">
+        <span class="text-forest mt-1">✦</span>
+        <p class="text-gray-700 leading-relaxed">Selling the feeling of gardening first, then the product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 INTERACTIVE CALCULATOR ================= -->
+<section class="bg-alt">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-8">
+      <span class="font-serif num-watermark text-[80px] leading-none">05</span>
+      <div>
+        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
+        <h2 class="font-serif font-bold text-[30px] sm:text-[36px] md:text-[42px] leading-none">The Interactive Piece — Calculate Your Savings</h2>
+      </div>
+    </div>
+    <p class="text-gray-600 text-[17px] leading-relaxed max-w-[780px] mb-12">
+      Enter your plant count, type, and watering frequency. It estimates annual water saved and the
+      trees-equivalent, running on real per-plant data across 12 plant types.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-4">
+      <div class="bg-cream p-6">
+        <p class="font-mono text-[11px] tracking-widest text-gray-400 mb-3">HOW MANY PLANTS?</p>
+        <p class="font-serif text-[40px] leading-none mb-4"><span id="plantCountVal">37</span> <span class="font-sans text-[18px] text-gray-400 font-normal">plants</span></p>
+        <input type="range" id="plantCount" min="1" max="100" value="37" class="w-full" />
+        <div class="flex justify-between font-mono text-[11px] text-gray-400 mt-1"><span>1</span><span>100+</span></div>
+      </div>
+
+      <div class="bg-cream p-6">
+        <p class="font-mono text-[11px] tracking-widest text-gray-400 mb-3">WHAT PLANT DO YOU HAVE?</p>
+        <select id="plantType" class="w-full border border-black/15 px-4 py-3 mb-4 bg-white font-medium text-[17px] focus:outline-none focus:border-forest">
+          <option value="0.5">Succulents</option>
+          <option value="0.8">Herbs</option>
+          <option value="1.2">Flowering Plants</option>
+          <option value="1.3">Houseplants</option>
+          <option value="1.5" selected>Indoor Plants</option>
+          <option value="1.8">Ferns</option>
+          <option value="2.0">Balcony Plants</option>
+          <option value="2.2">Peppers</option>
+          <option value="2.5">Vegetables</option>
+          <option value="2.8">Tomatoes</option>
+          <option value="3.0">Shrubs</option>
+          <option value="3.5">Fruit Trees</option>
+          <option value="4.0">Zucchini</option>
+        </select>
+        <p class="font-mono text-[11px] tracking-widest text-gray-400 mb-1">WATER PER PLANT</p>
+        <p class="font-serif text-[28px]"><span id="waterPerPlantVal">1.5</span>L</p>
+      </div>
+
+      <div class="bg-cream p-6">
+        <p class="font-mono text-[11px] tracking-widest text-gray-400 mb-3">HOW MANY TIMES A WEEK DO YOU WATER?</p>
+        <p class="font-serif text-[40px] leading-none mb-4"><span id="freqVal">3</span> <span class="font-sans text-[18px] text-gray-400 font-normal">times</span></p>
+        <input type="range" id="freq" min="1" max="10" value="3" class="w-full" />
+        <div class="flex justify-between font-mono text-[11px] text-gray-400 mt-1"><span>1</span><span>10</span></div>
+      </div>
+    </div>
+
+    <div class="bg-forest text-white p-8 md:p-10 rounded-sm">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-0">
+        <div class="md:border-r md:border-white/15 md:pr-10">
+          <p class="font-mono text-[11px] tracking-widest text-white/50 mb-6">YOUR ANNUAL SAVINGS</p>
+          <div class="flex items-start gap-3 mb-6">
+            <span class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0">💧</span>
+            <div>
+              <p class="text-white/60 text-[14px] mb-1">Water Saved</p>
+              <p class="font-serif text-[36px] leading-none"><span id="waterSavedVal">4.3</span> <span class="font-sans text-[16px] text-white/60 font-normal">thousand liters</span></p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0">🌱</span>
+            <div>
+              <p class="text-white/60 text-[14px] mb-1">Environmental Impact</p>
+              <p class="font-serif text-[36px] leading-none">40% <span class="font-sans text-[16px] text-white/60 font-normal">less fertilizer loss</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="md:pl-10 flex flex-col items-center justify-center text-center">
+          <p class="font-mono text-[11px] tracking-widest text-white/50 mb-3">THAT'S EQUIVALENT TO</p>
+          <p class="font-serif text-[64px] leading-none mb-2"><span id="treesVal">87</span></p>
+          <p class="text-white/70 mb-6">trees planted</p>
+          <a href="#" class="border border-white/40 text-white font-mono text-[12px] tracking-widest px-6 py-3 rounded-full hover:bg-white/10 transition-colors">START SAVING TODAY</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HIGHLIGHT (forest band) ================= -->
+<section class="relative bg-forest overflow-hidden">
+  <span class="absolute -top-4 right-6 md:right-10 font-serif text-white/10 text-[180px] md:text-[220px] leading-none select-none">05</span>
+  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-center gap-3 mb-8">
+      <span class="w-6 h-px bg-white/40"></span>
+      <span class="font-mono text-[13px] tracking-widest text-white/50">HIGHLIGHT OF THE PROJECT</span>
+    </div>
+    <h2 class="font-serif font-bold text-white text-[30px] sm:text-[40px] md:text-[46px] leading-tight max-w-[900px] mb-8">"From a static stat block to something the user can actually verify for their own plants."</h2>
+    <p class="text-white/70 text-[17px] leading-relaxed max-w-[780px]">
+      The calculator went through four iterations. The first was a fixed infographic — impressive-looking, but
+      passive. The brief kept asking: what if someone could input their actual plant count and type? By iteration
+      four it ran on per-plant water data across 12 plant types, from 0.5L for succulents to 4L for zucchini. The
+      number changes with what you actually grow. That shift from brand claim to personal proof is what made it
+      worth showing in a portfolio.
+    </p>
+  </div>
+</section>
+
+<!-- ================= 06 THE DESIGNS (prototype link) ================= -->
+<section class="bg-cream">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-14">
+      <span class="font-serif num-watermark text-[80px] leading-none">06</span>
+      <div>
+        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
+        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Designs</h2>
+      </div>
+    </div>
+
+    <div class="max-w-[900px] mx-auto">
+      <a href="https://www.figma.com/proto/XdLTZmgURIts88kM13OEgJ/Plant-diaper-design?node-id=1-3&viewport=1166%2C402%2C0.1&scaling=min-zoom&starting-point-node-id=1%3A2419&page-id=0%3A1"
+         target="_blank" rel="noopener" class="relative block group">
+        <img src="assets/plantdiaper_laptop_frame.jpg" alt="Laptop mockup framing the interactive prototype" class="w-full select-none" draggable="false" />
+        <div class="absolute flex items-center justify-center bg-forest/5 group-hover:bg-forest/10 transition-colors" style="left:24.3%; right:24%; top:28.4%; bottom:22.2%;">
+          <span class="flex items-center gap-2 bg-forest text-white font-mono text-[12px] sm:text-[13px] tracking-widest px-4 py-2.5 sm:px-5 sm:py-3 shadow-lg group-hover:bg-forest/90 transition-colors">
+            ▶ &nbsp;LAUNCH PROTOTYPE
+          </span>
+        </div>
+      </a>
+      <p class="text-center font-mono text-[12px] text-gray-400 mt-4">Interactive Figma prototype — opens in a new tab.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 WHAT I LEARNED ================= -->
+<section class="bg-alt">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
+    <div class="flex items-baseline gap-6 mb-10">
+      <span class="font-serif num-watermark text-[80px] leading-none">07</span>
+      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">What I Learned</h2>
+    </div>
+
+    <div class="flex flex-col">
+      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
+        <h3 class="font-serif font-bold text-[22px] leading-snug">Business and UX are not separate disciplines</h3>
+        <p class="text-gray-600 leading-relaxed">Plant Diaper came to us with almost nothing decided — not even product sizing or combos. Before I could design a single screen, we had to help position the business itself. UX starts upstream of the interface: pricing, product lineup, and brand voice all shape what "good design" even means.</p>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
+        <h3 class="font-serif font-bold text-[22px] leading-snug">Flow and content order do the persuading</h3>
+        <p class="text-gray-600 leading-relaxed">The site isn't just a set of screens — it's a sequence. A hero carousel that sells the feeling of gardening, then the product intro, then how it works, then credibility metrics, then comparison videos, then the CTA. Each step earns the next. Skip one and the CTA feels premature.</p>
+      </div>
+      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-b border-black/10">
+        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
+        <h3 class="font-serif font-bold text-[22px] leading-snug">Every visual choice is an emotional lever</h3>
+        <p class="text-gray-600 leading-relaxed">Colour, button shape, even spacing all provoke a feeling before the user reads a word. My job wasn't just to make it usable. It was to make the user feel like Plant Diaper is the answer to their garden problem before they've consciously decided to buy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL STATS BAR ================= -->
+<section class="bg-alt border-t border-black/10">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-16">
+    <div class="flex flex-wrap justify-around gap-10 text-center">
+      <div>
+        <p class="font-serif text-forest text-[48px] leading-none mb-2">50%</p>
+        <p class="font-mono text-[12px] tracking-widest text-gray-400">WATER REDUCTION</p>
+      </div>
+      <div>
+        <p class="font-serif text-forest text-[48px] leading-none mb-2">8</p>
+        <p class="font-mono text-[12px] tracking-widest text-gray-400">PAGES DESIGNED END-TO-END</p>
+      </div>
+      <div>
+        <p class="font-serif text-forest text-[48px] leading-none mb-2">4</p>
+        <p class="font-mono text-[12px] tracking-widest text-gray-400">CALCULATOR ITERATIONS</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8">
+  <a href="work.html" class="inline-flex items-center gap-2 font-mono text-[13px] tracking-widest text-gray-500 hover:text-ink transition-colors">
+    <span>←</span> PREVIOUS
+  </a>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-black/10">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8 flex items-center justify-between flex-wrap gap-4">
+    <p class="font-mono text-[12px] text-gray-400">Jagruti Ghuge · Pune, India · 2026</p>
+    <span class="font-mono italic text-[12px] text-gray-400">designed with curiosity</span>
+  </div>
+</footer>
+
+<script>
+  const TREE_L = 4329 / 87; // liters saved per tree-equivalent, calibrated to the reference case
+
+  const plantCountEl = document.getElementById('plantCount');
+  const plantTypeEl = document.getElementById('plantType');
+  const freqEl = document.getElementById('freq');
+
+  function updateSliderFill(el) {
+    const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+    el.style.setProperty('--fill', pct + '%');
+  }
+
+  function calculate() {
+    const plants = parseFloat(plantCountEl.value);
+    const litersPerPlant = parseFloat(plantTypeEl.value);
+    const freq = parseFloat(freqEl.value);
+
+    document.getElementById('plantCountVal').textContent = plants;
+    document.getElementById('freqVal').textContent = freq;
+    document.getElementById('waterPerPlantVal').textContent = litersPerPlant.toFixed(1);
+
+    const weeklyLiters = plants * litersPerPlant * freq;
+    const annualLiters = weeklyLiters * 52;
+    const savedLiters = annualLiters * 0.5;
+    const savedThousandLiters = savedLiters / 1000;
+    const trees = Math.max(1, Math.round(savedLiters / TREE_L));
+
+    document.getElementById('waterSavedVal').textContent = savedThousandLiters.toFixed(1);
+    document.getElementById('treesVal').textContent = trees;
+  }
+
+  [plantCountEl, freqEl].forEach(el => {
+    updateSliderFill(el);
+    el.addEventListener('input', () => { updateSliderFill(el); calculate(); });
+  });
+  plantTypeEl.addEventListener('change', calculate);
+  calculate();
+</script>
+
+
+
+</body>
+</html>
