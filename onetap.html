@@ -1,405 +1,571 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>OneTap Case Study — Jagruti Ghuge</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: { cream: '#FDFBF8', ink: '#191919', forest: '#496741' },
-        fontFamily: {
-          serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
-          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        },
-      },
-    },
-  };
-</script>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>OneTap Profiles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-  html { scroll-behavior: smooth; }
-  body { background: #FDFBF8; }
-  ::selection { background: #496741; color: #fff; }
-  .bg-alt { background: #F2EFE9; }
-  .num-watermark { color: #191919; opacity: 0.08; }
-</style>
-<link rel="stylesheet" href="assets/gallery.css" />
-</head>
-<body class="font-sans text-ink antialiased">
+/* Layout: a widget-system board on a Figma canvas. Dotted ground, rulers, 12-col grid (meta 3 / body 9), thin-bordered frames, burnt-orange accent for OneTap, stickies for the reframe, concept sketches of each widget. */
+:root{
+  --paper:#FAF8F3; --paper-2:#F1EEE6; --note:#FFFDF8;
+  --ink:#1A1A17; --ink-2:#44433D; --muted:#6A6860;
+  --rule:#DAD5CA; --dot:#D6D1C5;
+  --acc:#B1501A; --acc-soft:#F8E2D3;
+  --pink:#B8325F; --pink-soft:#F6D3E0;
+  --yellow:#F4DB6C; --yellow-ink:#3A3210;
+  --mint:#CDEBDD; --mint-ink:#1E4C38;
+  --select:#3F82F2; --on-select:#FFFFFF;
+  --f-display:'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --f-body:'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --f-mono:'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+  --maxw:1280px; --gut:clamp(16px, 4vw, 40px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#151513; --paper-2:#1F1E1B; --note:#22211E;
+    --ink:#F0EDE5; --ink-2:#CFCAC0; --muted:#A39E93;
+    --rule:#36342F; --dot:#2E2C28;
+    --acc:#F2A271; --acc-soft:#3A2519;
+    --pink:#F08CB0; --pink-soft:#3D2230;
+    --yellow:#E9CF5C; --yellow-ink:#2A240A;
+    --mint:#1D3A2E; --mint-ink:#BDE6D2;
+    --select:#6FA6FF; --on-select:#0E1420;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151513; --paper-2:#1F1E1B; --note:#22211E;
+  --ink:#F0EDE5; --ink-2:#CFCAC0; --muted:#A39E93;
+  --rule:#36342F; --dot:#2E2C28;
+  --acc:#F2A271; --acc-soft:#3A2519;
+  --pink:#F08CB0; --pink-soft:#3D2230;
+  --yellow:#E9CF5C; --yellow-ink:#2A240A;
+  --mint:#1D3A2E; --mint-ink:#BDE6D2;
+  --select:#6FA6FF; --on-select:#0E1420;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+main{overflow-x:clip}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0; background:var(--paper); color:var(--ink-2); font-family:var(--f-body); font-size:17px; line-height:1.6;
+  background-image:radial-gradient(var(--dot) 1.2px, transparent 1.3px); background-size:24px 24px; background-position:12px 12px; -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display); color:var(--ink); margin:0; text-wrap:balance}
+p{margin:0}
+ul,ol{margin:0}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--select); outline-offset:3px}
+.wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gut)}
+.mono{font-family:var(--f-mono); font-size:14px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.lede{font-size:18px; max-width:62ch}
+.arrow{display:grid; place-items:center; color:var(--ink)}
+.arrow svg{width:100%; max-width:64px; height:14px}
+.arrow.a{color:var(--acc)}
 
-<!-- ================= NAV ================= -->
-<header class="border-b border-black/10 bg-cream/90 backdrop-blur sticky top-0 z-40">
-  <div class="max-w-[1180px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
-    <a href="index.html" class="font-mono font-bold text-lg tracking-tight">Jagruti Ghuge</a>
-    <nav class="hidden md:flex items-center gap-10 font-mono text-[13px] tracking-widest text-gray-600">
-      <a href="index.html#work" class="hover:text-ink transition-colors">WORK</a>
-      <a href="index.html#about" class="hover:text-ink transition-colors">ABOUT</a>
-      <a href="index.html#contact" class="hover:text-ink transition-colors">CONTACT</a>
-    </nav>
-    <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download class="font-mono text-[12px] tracking-widest border border-black/70 px-4 py-2.5 hover:bg-ink hover:text-cream transition-colors whitespace-nowrap">
-      DOWNLOAD RESUME &nbsp;→
-    </a>
+/* top bar + ruler */
+.topbar{position:sticky; top:env(safe-area-inset-top, 0px); z-index:20; background:var(--paper); border-bottom:1px solid var(--rule)}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:56px}
+.brand{font-family:var(--f-display); font-weight:700; font-size:17px; color:var(--ink); text-decoration:none}
+.crumb{font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+.back{font-family:var(--f-mono); font-size:14px; color:var(--ink); text-decoration:none; border:1px solid var(--ink); padding:6px 12px; white-space:nowrap}
+.ruler{position:relative; height:26px; overflow:hidden; border-top:1px solid var(--rule);
+  background:repeating-linear-gradient(to right, var(--muted) 0 1px, transparent 1px 100px) 0 0/100% 10px no-repeat, repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 10px) 0 0/100% 5px no-repeat}
+.ruler span{position:absolute; top:9px; font-family:var(--f-mono); font-size:14px; line-height:1; color:var(--muted); transform:translateX(4px)}
+@media (max-width:700px){.crumb{display:none}}
+
+/* sections */
+section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule); position:relative}
+.sec-head{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:16px; margin-bottom:clamp(40px, 5vw, 64px)}
+.sec-meta{grid-column:span 3; display:flex; flex-direction:column; gap:8px}
+.sec-num{font-family:var(--f-display); font-size:clamp(56px, 6vw, 88px); line-height:.9; font-weight:600; letter-spacing:-.04em; color:var(--acc)}
+.coord{font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+.sec-body{grid-column:span 9; display:flex; flex-direction:column; gap:18px; min-width:0}
+.sec-body h2{font-size:clamp(30px, 3.6vw, 48px); line-height:1.1; font-weight:600; letter-spacing:-.025em; max-width:24ch}
+@media (max-width:820px){.sec-meta,.sec-body{grid-column:1 / -1}.sec-meta{flex-direction:row; align-items:baseline; gap:14px; flex-wrap:wrap}}
+
+/* annotations */
+.sticky{background:var(--yellow); color:var(--yellow-ink); font-size:16px; line-height:1.45; font-weight:500; padding:16px 18px; box-shadow:0 6px 14px rgba(40,30,0,.12)}
+.cursor{display:inline-flex; align-items:flex-start; gap:2px}
+.cursor svg{width:18px; height:18px; flex:none}
+.cursor b{font-family:var(--f-mono); font-size:14px; font-weight:500; background:var(--select); color:var(--on-select); padding:3px 8px; margin-top:12px}
+.selbox{position:relative; display:inline-block; border:1.5px solid var(--select); padding:4px 14px}
+.selbox i{position:absolute; width:9px; height:9px; background:var(--paper); border:1.5px solid var(--select)}
+.selbox i:nth-of-type(1){left:-5px; top:-5px}.selbox i:nth-of-type(2){right:-5px; top:-5px}.selbox i:nth-of-type(3){left:-5px; bottom:-5px}.selbox i:nth-of-type(4){right:-5px; bottom:-5px}
+.dims{position:absolute; left:50%; bottom:-28px; transform:translateX(-50%); font-family:var(--f-mono); font-size:14px; line-height:1; background:var(--select); color:var(--on-select); padding:4px 8px; white-space:nowrap}
+.sketch-note{font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+
+/* HERO */
+.hero{border-top:0; padding-block:clamp(48px, 7vw, 96px) clamp(64px, 8vw, 104px)}
+.hero-grid{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:48px; align-items:start}
+.hero-copy{grid-column:1 / span 8; display:flex; flex-direction:column; gap:28px; min-width:0}
+.tags{display:flex; flex-wrap:wrap; gap:8px}
+.tags span{font-family:var(--f-mono); font-size:14px; color:var(--ink); border:1px solid var(--ink); padding:3px 10px; background:var(--note)}
+.tags span:first-child{background:var(--acc); color:var(--paper); border-color:var(--acc)}
+.hero h1{font-size:clamp(42px, 6.4vw, 92px); line-height:1; letter-spacing:-.04em; font-weight:600}
+.hero h1 .hl{color:var(--acc)}
+.hero .lede{font-size:clamp(17px, 1.6vw, 20px); max-width:52ch}
+.hero-art{grid-column:9 / span 4; position:relative; min-width:0; padding-top:24px}
+.stats{grid-column:1 / -1; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); border-top:1px solid var(--ink); border-bottom:1px solid var(--rule)}
+.stat{padding:24px 24px 24px 0; display:flex; flex-direction:column; gap:8px}
+.stat + .stat{border-left:1px solid var(--rule); padding-left:24px}
+.stat b{font-family:var(--f-display); font-size:clamp(56px, 7vw, 104px); line-height:.9; font-weight:600; letter-spacing:-.05em; color:var(--acc)}
+.stat span{font-family:var(--f-mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink)}
+.meta{grid-column:1 / -1; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); margin:0}
+.meta div{padding:4px 20px 4px 0; min-width:0}
+.meta div + div{border-left:1px solid var(--rule); padding-left:20px}
+.meta dt{font-family:var(--f-mono); font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--acc)}
+.meta dd{margin:6px 0 0; font-size:16px; color:var(--ink)}
+@media (max-width:1000px){.hero-copy,.hero-art{grid-column:1 / -1}.hero-art{max-width:420px}}
+@media (max-width:760px){.meta{grid-template-columns:1fr 1fr; row-gap:20px}.meta div:nth-child(3){border-left:0; padding-left:0}}
+@media (max-width:560px){.stats{grid-template-columns:1fr}.stat + .stat{border-left:0; border-top:1px solid var(--rule); padding-left:0}.meta{grid-template-columns:1fr}.meta div + div{border-left:0; padding-left:0}}
+
+/* mini profile in hero */
+.mini{border:1px solid var(--ink); background:var(--note); padding:16px; display:flex; flex-direction:column; gap:12px; transform:rotate(1.5deg)}
+.mini .row{display:flex; gap:10px; align-items:center}
+.mini .av{width:40px; height:40px; border-radius:50%; background:var(--acc-soft); border:1px solid var(--ink)}
+.mini .ln{height:8px; background:var(--rule)}
+.mini .w{border:1px solid var(--rule); padding:10px; display:flex; flex-direction:column; gap:6px}
+.mini .w .mono{font-size:14px}
+.mini .imp{font-family:var(--f-display); font-size:18px; color:var(--ink); font-weight:600}
+.mini .imp u{text-decoration:none; border-bottom:2px solid var(--acc); color:var(--acc)}
+.hero-art .note{position:absolute; left:-36px; bottom:-74px; width:260px; transform:rotate(-3deg)}
+.hero-art .cur{position:absolute; right:-10px; top:46%}
+@media (max-width:1000px){.hero-art .note{left:auto; right:0; bottom:-80px}}
+
+/* process stepper */
+.process{border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); background:var(--paper)}
+.process ol{list-style:none; padding:0; display:grid; grid-template-columns:repeat(6, minmax(0,1fr))}
+.process li{position:relative}
+.process a{display:flex; flex-direction:column; gap:4px; padding:18px 12px 18px 0; text-decoration:none}
+.process a b{font-family:var(--f-mono); font-size:14px; color:var(--acc); font-weight:600}
+.process a span{font-family:var(--f-display); font-size:18px; color:var(--ink); font-weight:600}
+.process li:not(:last-child)::after{content:""; position:absolute; top:28px; left:40px; right:14px; border-top:1px solid var(--rule)}
+.process li:not(:last-child)::before{content:""; position:absolute; top:24px; right:14px; width:8px; height:8px; border-top:1px solid var(--muted); border-right:1px solid var(--muted); transform:rotate(45deg)}
+.process a:hover span{color:var(--acc)}
+@media (max-width:760px){.process ol{grid-template-columns:repeat(3, minmax(0,1fr))}.process li:nth-child(3)::after,.process li:nth-child(3)::before{display:none}}
+
+/* 01 understand */
+.statement{font-family:var(--f-display); font-size:clamp(24px, 2.8vw, 38px); line-height:1.25; color:var(--ink); font-weight:500; letter-spacing:-.015em; max-width:34ch}
+.statement em{font-style:normal; background:linear-gradient(transparent 60%, var(--yellow) 60%)}
+.archetypes{display:flex; gap:10px; flex-wrap:wrap; margin-top:4px}
+.archetypes span{font-family:var(--f-mono); font-size:14px; color:var(--ink); border:1px dashed var(--ink); padding:4px 10px}
+.duo{display:grid; grid-template-columns:minmax(0,1fr) minmax(200px, 260px) minmax(0,1fr); align-items:center; gap:0; margin-top:clamp(40px, 5vw, 64px)}
+.persona{border:1px solid var(--ink); background:var(--note); padding:24px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.persona .n{font-family:var(--f-display); font-size:44px; line-height:1; font-weight:600; color:var(--acc); letter-spacing:-.03em}
+.persona h3{font-size:24px; font-weight:600}
+.persona p{font-size:16px}
+.persona .glyph{display:flex; gap:8px; align-items:center}
+.persona .glyph svg{width:40px; height:40px; color:var(--ink)}
+.mid{display:flex; flex-direction:column; align-items:center; gap:10px; padding:0 8px; position:relative}
+.mid svg.conn{width:100%; height:36px; color:var(--acc)}
+.mid .prof{width:120px; border:1px solid var(--ink); background:var(--paper-2); padding:12px; display:flex; flex-direction:column; gap:6px}
+.mid .prof i{display:block; height:7px; background:var(--rule)}
+.mid .prof i:first-child{width:36px; height:36px; border-radius:50%; background:var(--acc-soft); border:1px solid var(--ink)}
+.mid .mono{text-align:center}
+@media (max-width:860px){.duo{grid-template-columns:1fr}.mid{padding:16px 0}.mid svg.conn{transform:rotate(90deg); width:60px; height:30px}}
+
+/* 02 investigate */
+.inv{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:24px; align-items:start}
+.inv .methods{grid-column:1 / span 8; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); border-top:1px solid var(--ink); border-left:1px solid var(--rule)}
+.method{border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:22px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.method .n{font-family:var(--f-mono); font-size:14px; color:var(--acc); font-weight:600}
+.method h3{font-size:19px; font-weight:600}
+.method p{font-size:16px}
+.method .to{display:flex; align-items:center; gap:8px; margin-top:auto; padding-top:8px}
+.method .to span{font-family:var(--f-mono); font-size:14px; color:var(--ink); border:1px solid var(--acc); background:var(--acc-soft); padding:2px 8px}
+.method.active{background:var(--acc-soft); outline:1.5px solid var(--acc); outline-offset:-1.5px}
+.inv aside{grid-column:9 / span 4; border:1.5px solid var(--ink); background:var(--note); padding:22px; display:flex; flex-direction:column; gap:14px}
+.inv aside h3{font-size:24px; font-weight:600}
+.arch{display:flex; flex-direction:column; gap:8px}
+.arch div{display:grid; grid-template-columns:minmax(0,1fr) 36px minmax(0,1.3fr); align-items:center; gap:6px}
+.arch .p{font-size:15px; color:var(--ink); border:1px solid var(--ink); padding:6px 10px}
+.arch .f{font-size:15px; color:var(--ink); border:1px solid var(--acc); background:var(--acc-soft); padding:6px 10px}
+@media (max-width:960px){.inv .methods,.inv aside{grid-column:1 / -1}}
+@media (max-width:600px){.inv .methods{grid-template-columns:1fr}}
+
+/* 03 discover */
+.finds{border-top:1px solid var(--ink)}
+.find{display:grid; grid-template-columns:80px minmax(0,4fr) minmax(0,6fr); column-gap:28px; row-gap:10px; padding:clamp(24px, 3vw, 36px) 0; border-bottom:1px solid var(--rule); align-items:baseline}
+.find .n{font-family:var(--f-display); font-size:44px; line-height:1; font-weight:600; color:var(--acc); letter-spacing:-.03em}
+.find h3{font-size:clamp(20px, 2vw, 26px); line-height:1.2; font-weight:600}
+.find p{font-size:17px}
+@media (max-width:820px){.find{grid-template-columns:56px minmax(0,1fr)}.find p{grid-column:2}.find .n{font-size:34px}}
+.pull{margin-top:clamp(48px, 6vw, 72px); display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px}
+.pull blockquote{grid-column:2 / span 10; margin:0; font-family:var(--f-display); font-size:clamp(24px, 3vw, 40px); line-height:1.2; letter-spacing:-.02em; color:var(--ink); font-weight:500; position:relative; padding-left:clamp(28px, 4vw, 56px)}
+.pull blockquote::before{content:"\201C"; position:absolute; left:0; top:-.15em; font-size:2.4em; line-height:1; color:var(--acc)}
+@media (max-width:820px){.pull blockquote{grid-column:1 / -1}}
+
+/* 04 reframe */
+.reframe{display:grid; grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr) 64px minmax(0,1fr); align-items:stretch}
+.rnote{padding:24px; display:flex; flex-direction:column; gap:12px; box-shadow:0 6px 14px rgba(40,30,0,.10)}
+.rnote .mono{color:inherit; opacity:.85}
+.rnote p{font-family:var(--f-display); font-size:clamp(20px, 2vw, 26px); line-height:1.3; font-weight:600}
+.rnote.p{background:var(--pink-soft); color:var(--ink); transform:rotate(-1.2deg)}
+.rnote.y{background:var(--yellow); color:var(--yellow-ink); transform:rotate(.8deg)}
+.rnote.m{background:var(--mint); color:var(--mint-ink); transform:rotate(-.6deg)}
+.rnote.p .x{text-decoration:line-through; text-decoration-color:var(--pink); text-decoration-thickness:2px}
+.reframe .arrow{align-self:center}
+@media (max-width:860px){.reframe{grid-template-columns:1fr}.reframe .arrow{height:48px}.reframe .arrow svg{transform:rotate(90deg); width:30px}}
+.principles{margin-top:clamp(56px, 7vw, 88px)}
+.principles .mono{display:block; margin-bottom:16px; color:var(--acc); font-weight:600}
+.pgrid{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); border-top:1px solid var(--ink); border-left:1px solid var(--rule)}
+.pr{border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:22px; display:flex; flex-direction:column; gap:12px; min-width:0}
+.pr .n{font-family:var(--f-display); font-size:40px; line-height:1; font-weight:600; color:var(--acc); letter-spacing:-.03em}
+.pr p{font-size:16px; color:var(--ink)}
+.pr .src{margin-top:auto; font-family:var(--f-mono); font-size:14px; color:var(--muted); border-top:1px dashed var(--rule); padding-top:10px}
+@media (max-width:960px){.pgrid{grid-template-columns:repeat(2, minmax(0,1fr))}}
+@media (max-width:560px){.pgrid{grid-template-columns:1fr}}
+
+/* 05 design */
+.drow{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:24px; padding:clamp(36px, 5vw, 56px) 0; border-top:1px solid var(--rule); align-items:center}
+.drow:first-of-type{border-top:1px solid var(--ink)}
+.drow .canvas{grid-column:1 / span 7; border:1px solid var(--ink); background:var(--paper-2); padding:clamp(18px, 3vw, 36px); display:flex; flex-direction:column; gap:16px; position:relative; min-width:0;
+  background-image:radial-gradient(var(--dot) 1.2px, transparent 1.3px); background-size:16px 16px}
+.drow .canvas .fl{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.drow .txt{grid-column:9 / span 4; display:flex; flex-direction:column; gap:12px}
+.drow .txt .n{font-family:var(--f-display); font-size:clamp(48px, 5vw, 72px); line-height:.9; font-weight:600; letter-spacing:-.04em; color:var(--acc)}
+.drow .txt h3{font-size:20px; line-height:1.4; font-weight:600}
+.drow .txt .ev{font-size:15px; color:var(--muted); border-top:1px dashed var(--rule); padding-top:12px}
+@media (max-width:900px){.drow .canvas,.drow .txt{grid-column:1 / -1}}
+/* widget sketches */
+.wcard{background:var(--note); border:1px solid var(--ink); padding:16px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.wcard .wh{display:flex; justify-content:space-between; align-items:center; gap:10px}
+.blank{display:inline-block; min-width:64px; border-bottom:2px solid var(--acc); color:var(--acc); text-align:center; font-family:var(--f-mono); font-size:15px}
+.tmpl{font-family:var(--f-display); font-size:clamp(18px, 2vw, 24px); color:var(--ink); font-weight:500; line-height:1.6}
+.shuffle{display:inline-flex; align-items:center; gap:6px; font-family:var(--f-mono); font-size:14px; color:var(--ink); border:1px solid var(--ink); padding:4px 10px; background:var(--paper)}
+.shuffle svg{width:16px; height:16px}
+.alts{display:flex; flex-direction:column; gap:6px}
+.alts span{font-size:15px; color:var(--muted); border:1px dashed var(--rule); padding:6px 10px}
+.pair{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; align-items:start}
+.seg{display:inline-flex; border:1px solid var(--ink)}
+.seg span{font-family:var(--f-mono); font-size:14px; padding:3px 10px; color:var(--ink)}
+.seg span.on{background:var(--acc); color:var(--paper)}
+.ln{height:8px; background:var(--rule); display:block}
+.ln.d{background:var(--ink-2); opacity:.55}
+.tlx{position:relative; display:flex; flex-direction:column; gap:10px; padding-top:8px}
+.tlx .axis{display:flex; justify-content:space-between; font-family:var(--f-mono); font-size:14px; color:var(--muted); border-top:1px solid var(--ink); padding-top:6px}
+.tlx .bar{position:relative; height:28px}
+.tlx .bar span{position:absolute; top:0; bottom:0; border:1px solid var(--ink); background:var(--acc-soft); font-family:var(--f-mono); font-size:14px; color:var(--ink); display:flex; align-items:center; padding:0 8px; white-space:nowrap; overflow:hidden}
+.flat{display:flex; flex-direction:column; gap:6px}
+.flat span{font-family:var(--f-mono); font-size:14px; color:var(--muted); border-bottom:1px solid var(--rule); padding:4px 0}
+.formats{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px}
+.fmt{background:var(--note); border:1px solid var(--ink); padding:12px; display:flex; flex-direction:column; gap:8px; min-width:0}
+.fmt .g{display:grid; grid-template-columns:repeat(3, 1fr); gap:4px}
+.fmt .g i{aspect-ratio:1; background:var(--acc-soft); border:1px solid var(--rule)}
+.fmt .yt{display:flex; flex-direction:column; gap:6px}
+.fmt .yt i{display:grid; place-items:center; aspect-ratio:16 / 7; background:var(--paper-2); border:1px solid var(--rule)}
+.fmt .yt i::after{content:""; border-left:10px solid var(--acc); border-top:6px solid transparent; border-bottom:6px solid transparent}
+.fmt .rl{display:flex; flex-direction:column; gap:8px}
+.fmt .rl i{display:flex; align-items:center; gap:6px; height:18px}
+.fmt .rl i::before{content:""; width:8px; height:8px; background:var(--acc); flex:none}
+.fmt .rl i::after{content:""; height:7px; background:var(--rule); flex:1}
+.fmt b{font-family:var(--f-mono); font-size:14px; color:var(--ink); font-weight:600}
+.fmt span{font-size:14px; color:var(--muted)}
+@media (max-width:560px){.pair,.formats{grid-template-columns:1fr}}
+
+/* 06 validate */
+.vstats{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); border-top:1px solid var(--ink); border-bottom:1px solid var(--rule)}
+.vstats .stat b{font-size:clamp(48px, 5vw, 72px)}
+@media (max-width:560px){.vstats{grid-template-columns:1fr}}
+.honest{margin-top:28px; display:flex; gap:14px; align-items:flex-start; font-size:17px; color:var(--ink); border:1px dashed var(--acc); padding:18px 20px; max-width:880px}
+.honest .badge{font-family:var(--f-mono); font-size:14px; font-weight:600; background:var(--acc); color:var(--paper); padding:2px 8px; flex:none}
+.vgrid{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:48px; margin-top:clamp(56px, 7vw, 88px)}
+.next{grid-column:1 / span 5; display:flex; flex-direction:column; gap:16px}
+.next h3,.refl h3.t{font-size:clamp(22px, 2.2vw, 28px); font-weight:600}
+.qs{list-style:none; padding:0; border-top:1px solid var(--ink)}
+.qs li{display:grid; grid-template-columns:44px minmax(0,1fr); column-gap:12px; row-gap:6px; padding:16px 0; border-bottom:1px solid var(--rule)}
+.qs .n{font-family:var(--f-mono); font-size:14px; color:var(--acc); font-weight:600; padding-top:3px}
+.qs p{font-family:var(--f-display); font-size:18px; color:var(--ink); font-weight:500; line-height:1.35}
+.qs .st{grid-column:2; justify-self:start; font-family:var(--f-mono); font-size:14px; color:var(--muted); border:1px dashed var(--muted); padding:1px 8px}
+.refl{grid-column:7 / span 6; display:flex; flex-direction:column; gap:16px}
+.refl article{border-top:1px solid var(--ink); padding:20px 0 8px; display:flex; flex-direction:column; gap:10px}
+.refl article h4{font-size:21px; line-height:1.3; font-weight:600}
+.refl article p{font-size:17px}
+@media (max-width:900px){.next,.refl{grid-column:1 / -1}}
+.endnav{padding-block:40px; border-top:1px solid var(--rule)}
+.endnav .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center}
+.endnav a{font-family:var(--f-display); font-size:22px; font-weight:600; color:var(--ink); text-decoration:none; border-bottom:2px solid var(--ink)}
+.endnav a:hover{color:var(--acc); border-color:var(--acc)}
+footer{border-top:1px solid var(--rule); padding-block:28px}
+footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+</style>
+
+<link rel="stylesheet" href="assets/gx.css">
+<header class="topbar">
+  <div class="wrap">
+    <a class="back" href="index.html#work">&larr; All projects</a>
+    <span class="crumb">OneTap · case study</span>
+    <a class="brand" href="index.html">Jagruti Ghuge</a>
   </div>
+  <div class="ruler" id="ruler" aria-hidden="true"></div>
 </header>
 
-<!-- ================= HERO ================= -->
-<section class="relative">
-  <div class="absolute inset-0">
-    <img src="assets/onetap_hero.jpg" alt="Professionals mingling at a networking event" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-forest/95 via-forest/70 to-forest/40"></div>
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="tags"><span>OneTap</span><span>Product Design</span><span>UX Systems</span><span>Widget Design</span><span>Interaction Design</span><span>Figma</span></div>
+      <h1>Designing profiles that are <span class="hl">easier to fill</span> and faster to understand.</h1>
+      <p class="lede">Designed a customizable profile for professionals — solving the blank-page problem for the person filling out the profile for networking</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="mini">
+        <div class="row"><span class="av"></span><div style="flex:1;display:flex;flex-direction:column;gap:6px"><span class="ln" style="width:70%"></span><span class="ln" style="width:45%"></span></div></div>
+        <div class="w"><span class="mono">Impact card</span><span class="imp">Increased <u>___</u> by <u>___</u> at <u>___</u></span></div>
+        <div class="w"><span class="mono">Bio · compact</span><span class="ln" style="width:90%"></span></div>
+        <div class="w"><span class="mono">Experience · timeline</span><span class="ln" style="width:60%;background:var(--acc-soft);height:12px;border:1px solid var(--ink)"></span><span class="ln" style="width:75%;margin-left:25%;background:var(--acc-soft);height:12px;border:1px solid var(--ink)"></span></div>
+      </div>
+      <span class="cur cursor"><svg viewBox="0 0 24 24"><path d="M3 2l7 19 2.5-7.5L20 11z" style="fill:var(--select)" stroke="#fff" stroke-width="1.2"/></svg><b>Jagruti</b></span>
+      <div class="note sticky">Before designing the output, I needed to understand the problem behind it.</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>6+</b><span>Widget types designed</span></div>
+      <div class="stat"><b>3</b><span>Density variants per widget</span></div>
+      <div class="stat"><b>4+</b><span>Portfolio format previews</span></div>
+    </div>
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Product Designer</dd></div>
+      <div><dt>Year</dt><dd>2024</dd></div>
+      <div><dt>Team / context</dt><dd>Product design project · team details not documented</dd></div>
+      <div><dt>My contribution</dt><dd>Dual-perspective mapping · archetype analysis · widget system · prototyping</dd></div>
+    </dl>
   </div>
-  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 pt-16 pb-14 md:pt-24 md:pb-16">
-    <div class="flex items-center gap-4 mb-8 font-mono text-[13px] tracking-widest">
-      <span class="border border-white/40 text-white/90 rounded-full px-4 py-1.5">PROJECT 04</span>
-      <span class="text-white/60">2025 &nbsp;·&nbsp; Product Designer</span>
-    </div>
-    <h1 class="font-serif font-black text-white text-[64px] sm:text-[84px] md:text-[100px] leading-none mb-6">OneTap</h1>
-    <p class="font-mono italic text-white/80 text-[16px] md:text-[18px] mb-8">"Every widget decision came back to the same tension."</p>
-    <div class="flex flex-wrap gap-3 mb-14">
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">PRODUCT DESIGN</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">UX SYSTEMS</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">WIDGET DESIGN</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">INTERACTION DESIGN</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">FIGMA</span>
-    </div>
-    <div class="flex flex-wrap gap-16">
-      <div>
-        <p class="font-serif text-white text-[44px] leading-none mb-2">6+</p>
-        <p class="font-mono text-[12px] tracking-widest text-white/60">WIDGET TYPES DESIGNED</p>
+</section>
+
+<nav class="process" aria-label="Case study process">
+  <div class="wrap">
+    <ol>
+      <li><a href="#understand"><b>01</b><span>Understand</span></a></li>
+      <li><a href="#investigate"><b>02</b><span>Investigate</span></a></li>
+      <li><a href="#discover"><b>03</b><span>Discover</span></a></li>
+      <li><a href="#reframe"><b>04</b><span>Reframe</span></a></li>
+      <li><a href="#design"><b>05</b><span>Design</span></a></li>
+      <li><a href="#validate"><b>06</b><span>Validate</span></a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- 01 UNDERSTAND -->
+<section id="understand">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">01</span><span class="mono">Understand</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <p class="statement">A professional profile is only useful if people actually fill it out — and most people <em>freeze in front of a blank 'tell us about yourself' field.</em> Beyond that, OneTap needed profiles to work for completely different kinds of professionals: a COO, a freelance photographer, a startup mentor. The page itself had to be customizable, not just the copy.</p>
+        <div class="archetypes" aria-hidden="true"><span>COO</span><span>Freelance photographer</span><span>Startup mentor</span></div>
       </div>
-      <div>
-        <p class="font-serif text-white text-[44px] leading-none mb-2">3</p>
-        <p class="font-mono text-[12px] tracking-widest text-white/60">DENSITY VARIANTS PER WIDGET</p>
+    </div>
+    <div class="duo" aria-label="The profile filler and the profile viewer, on either side of the same profile">
+      <article class="persona">
+        <div class="glyph"><span class="n">01</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 32l4-1 17-17-3-3-17 17z"/><path d="M24 9l3 3"/><path d="M6 36h28"/></svg></div>
+        <h3>The Profile Filler</h3>
+        <p>Wants the profile to be effortless and to look impressive without overselling. Freezes at blank fields. Needs structure that prompts without constraining — something that meets them where they are, not where the product assumes they should be.</p>
+      </article>
+      <div class="mid" aria-hidden="true">
+        <span class="mono">fills</span>
+        <svg class="conn" viewBox="0 0 200 36" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 18H60M140 18H194" vector-effect="non-scaling-stroke"/><path d="M188 12l6 6-6 6" vector-effect="non-scaling-stroke"/></svg>
+        <div class="prof"><i></i><i style="width:80%"></i><i style="width:60%"></i><i style="width:90%"></i></div>
+        <span class="mono">reads</span>
       </div>
-      <div>
-        <p class="font-serif text-white text-[44px] leading-none mb-2">4+</p>
-        <p class="font-mono text-[12px] tracking-widest text-white/60">PORTFOLIO FORMAT PREVIEWS</p>
+      <article class="persona">
+        <div class="glyph"><span class="n">02</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20s6-11 17-11 17 11 17 11-6 11-17 11S3 20 3 20z"/><circle cx="20" cy="20" r="5"/></svg></div>
+        <h3>The Profile Viewer</h3>
+        <p>Wants to quickly judge credibility and decide if this person is worth their time. Doesn't want to read a wall of text to find the actual achievement. Needs the headline before the depth, every time.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 02 INVESTIGATE -->
+<section id="investigate">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">02</span><span class="mono">Investigate</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>The methods that made the problem visible.</h2></div>
+    </div>
+    <div class="inv">
+      <div class="methods">
+        <article class="method"><span class="n">01</span><h3>Dual-perspective mapping (filler vs. viewer)</h3><p>Used to examine the filler and the viewer have opposite needs.</p><span class="to"><span>Finding 01</span></span></article>
+        <article class="method active"><span class="n">02 · Active method</span><h3>Professional archetype analysis</h3><p>Used to examine blank page paralysis is the core ux barrier.</p><span class="to"><span>Finding 02</span></span></article>
+        <article class="method"><span class="n">03</span><h3>Content audit of existing profile products</h3><p>Used to examine the viewer needs density control the user never thought to ask for.</p><span class="to"><span>Finding 03</span></span></article>
+        <article class="method"><span class="n">04</span><h3>Iterative widget prototyping</h3><p>Used to examine 'portfolio' means something different to every profession.</p><span class="to"><span>Finding 04</span></span></article>
+      </div>
+      <aside>
+        <span class="mono">Active method</span>
+        <h3>Professional archetype analysis</h3>
+        <div class="arch" aria-label="Professions and the portfolio format that suits each, from finding 04">
+          <div><span class="p">Designer</span><span class="arrow a" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span><span class="f">Behance grid</span></div>
+          <div><span class="p">Educator</span><span class="arrow a" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span><span class="f">YouTube thumbnail strip</span></div>
+          <div><span class="p">Strategist</span><span class="arrow a" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span><span class="f">Case study link list</span></div>
+        </div>
+        <span class="sketch-note">Pairs taken from finding 04</span>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 03 DISCOVER -->
+<section id="discover">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">03</span><span class="mono">Discover</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>What the evidence changed.</h2></div>
+    </div>
+    <div class="finds">
+      <div class="find"><span class="n">01</span><h3>The filler and the viewer have opposite needs</h3><p>The layout that makes the user's life easy — long free-text fields, space to say everything — is often the layout that fails the viewer. Nobody wants to read a wall of text to figure out if someone is credible. Every widget decision came back to this tension.</p></div>
+      <div class="find"><span class="n">02</span><h3>Blank page paralysis is the core UX barrier</h3><p>'Describe your impact' is a terrible prompt. It asks someone to write from scratch in a format they haven't seen, for an audience they're not sure about, about achievements they're not sure how to frame. This isn't a motivation problem — it's a structure problem.</p></div>
+      <div class="find"><span class="n">03</span><h3>The viewer needs density control the user never thought to ask for</h3><p>Users instinctively want to say everything. But viewers only need the headline until they decide to go deeper. The mismatch isn't the user's fault — the product wasn't giving them a way to show appropriate detail at first glance.</p></div>
+      <div class="find"><span class="n">04</span><h3>'Portfolio' means something different to every profession</h3><p>A Behance grid is right for a designer. A YouTube thumbnail strip is right for an educator. A case study link list is right for a strategist. Forcing everyone into one preview format would flatten most professions' best work into something that looked out of place.</p></div>
+    </div>
+    <div class="pull"><blockquote>The templates and shuffle mechanic turned out to be the most important piece of the whole system — because they removed the decision rather than adding one.”</blockquote></div>
+  </div>
+</section>
+
+<!-- 04 REFRAME -->
+<section id="reframe">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">04</span><span class="mono">Reframe</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>The filler and the viewer had opposite needs—and the viewer’s ease became the binding constraint.</h2></div>
+    </div>
+    <div class="reframe">
+      <div class="rnote p"><span class="mono">Before my thinking</span><p class="x">Give people more ways to describe themselves.</p></div>
+      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span>
+      <div class="rnote y"><span class="mono">What I learned</span><p>Blank-page paralysis needed structure, while profile viewers needed progressive density and fast credibility cues.</p></div>
+      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span>
+      <div class="rnote m"><span class="mono">Design opportunity</span><p>Use constraints, templates, and variants to reduce decisions for both sides.</p></div>
+    </div>
+    <div class="principles">
+      <span class="mono">Principles translated from evidence</span>
+      <div class="pgrid">
+        <div class="pr"><span class="n">01</span><p>Impact Cards: sentence templates ('Increased ___ by ___ at ___') + shuffle for different phrasing — number-first format, user never writes from scratch</p><span class="src">Answers finding 02</span></div>
+        <div class="pr"><span class="n">02</span><p>Compact / expanded variants for Bio, Prizes, Impact — user chooses density, viewer gets the right level of detail at first glance</p><span class="src">Answers finding 03</span></div>
+        <div class="pr"><span class="n">03</span><p>Experience as a timeline — shows progression and overlap, not just a flat list of titles</p></div>
+        <div class="pr"><span class="n">04</span><p>Featured portfolio: Behance-style, YouTube-style, or a running list — format matched to profession, not forced into one mould</p><span class="src">Answers finding 04</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= 01 OBJECTIVE ================= -->
-<section class="bg-alt">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">01</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
-        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Objective</h2>
+<!-- 05 DESIGN -->
+<section id="design">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">05</span><span class="mono">Design</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>The output, shown as decisions rather than a screen dump.</h2></div>
+    </div>
+
+    <div class="drow">
+      <div class="canvas" aria-label="Concept sketch of an Impact Card with a sentence template and a shuffle button">
+        <div class="fl"><span class="mono">Impact card</span><span class="sketch-note">Concept sketch</span></div>
+        <div class="wcard">
+          <div class="wh"><span class="mono">Impact</span><span class="shuffle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h3l8 8h3M1 12h3l8-8h3M13 2l2 2-2 2M13 10l2 2-2 2"/></svg>Shuffle</span></div>
+          <p class="tmpl">Increased <span class="blank">___</span> by <span class="blank">___</span> at <span class="blank">___</span></p>
+        </div>
+        <div class="alts" aria-hidden="true"><span>Other phrasing appears on shuffle</span></div>
       </div>
-    </div>
-    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[820px]">
-      A professional profile is only useful if people actually fill it out and most people freeze in front of a
-      blank 'tell us about yourself' field. Beyond that, OneTap needed profiles to work for completely different
-      kinds of professionals: a COO, a freelance photographer, a startup mentor. The page itself had to be
-      customizable, not just the copy.
-    </p>
-  </div>
-</section>
-
-<!-- ================= 02 WHO IT'S FOR ================= -->
-<section class="bg-cream">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">02</span>
-      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Who It's For</h2>
+      <div class="txt"><span class="n">01</span><span class="mono">Design decision</span><h3>Impact Cards: sentence templates ('Increased ___ by ___ at ___') + shuffle for different phrasing — number-first format, user never writes from scratch</h3><p class="ev">Evidence base: documented research findings and solution rationale shown above.</p></div>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="border border-black/10 p-7">
-        <div class="grid grid-cols-[190px_1fr] gap-5 items-start">
-          <div class="w-full aspect-[2/3] overflow-hidden">
-            <img src="assets/persona_neha.jpg" alt="Portrait of Neha, the profile filler persona" class="w-full h-full object-cover" />
-          </div>
-          <div>
-            <h3 class="font-serif font-bold text-[22px] leading-tight mb-1">The Profile Filler</h3>
-            <p class="text-gray-500 text-[15px] mb-5">Name: Neha &nbsp;I&nbsp; Age: 30 yrs</p>
-            <div class="grid sm:grid-cols-2 gap-5 mb-5">
-              <div>
-                <p class="text-gray-700 text-[15px] leading-relaxed mb-2">Struggles to start when faced with blank fields and relies on prompts to guide what to include.</p>
-                <p class="font-mono text-[13px] text-gray-400">behavior</p>
-              </div>
-              <div>
-                <p class="text-gray-700 text-[15px] leading-relaxed mb-2">Wants to create an impressive profile effortlessly without feeling like they are overselling themselves.</p>
-                <p class="font-mono text-[13px] text-gray-400">goal</p>
-              </div>
-              <div>
-                <p class="text-gray-700 text-[15px] leading-relaxed mb-2">Needs enough structure to know what to say without feeling restricted by rigid templates.</p>
-                <p class="font-mono text-[13px] text-gray-400">difficulty</p>
-              </div>
+    <div class="drow">
+      <div class="canvas" aria-label="Concept sketch of the same widget in compact and expanded density">
+        <div class="fl"><span class="mono">Bio · Prizes · Impact</span><span class="sketch-note">Concept sketch</span></div>
+        <div class="pair">
+          <div class="wcard"><div class="wh"><span class="mono">Bio</span><span class="seg"><span class="on">Compact</span><span>Expanded</span></span></div><span class="ln d" style="width:85%"></span></div>
+          <div class="wcard"><div class="wh"><span class="mono">Bio</span><span class="seg"><span>Compact</span><span class="on">Expanded</span></span></div><span class="ln d" style="width:85%"></span><span class="ln" style="width:100%"></span><span class="ln" style="width:92%"></span><span class="ln" style="width:70%"></span></div>
+        </div>
+      </div>
+      <div class="txt"><span class="n">02</span><span class="mono">Design decision</span><h3>Compact / expanded variants for Bio, Prizes, Impact — user chooses density, viewer gets the right level of detail at first glance</h3><p class="ev">Evidence base: documented research findings and solution rationale shown above.</p></div>
+    </div>
+
+    <div class="drow">
+      <div class="canvas" aria-label="Concept sketch comparing a flat list of titles with a timeline that shows overlapping roles">
+        <div class="fl"><span class="mono">Experience</span><span class="sketch-note">Concept sketch</span></div>
+        <div class="pair">
+          <div class="wcard"><span class="mono">Flat list</span><div class="flat"><span>Role title</span><span>Role title</span><span>Role title</span></div></div>
+          <div class="wcard"><span class="mono">Timeline</span>
+            <div class="tlx">
+              <div class="bar"><span style="left:0;width:55%">Role A</span></div>
+              <div class="bar"><span style="left:40%;width:45%">Role B</span></div>
+              <div class="bar"><span style="left:70%;width:30%">Role C</span></div>
+              <div class="axis"><span>earlier</span><span>now</span></div>
             </div>
-            <div class="border-t border-black/10 pt-5">
-              <p class="font-serif italic text-[17px] text-gray-700">"I know what I've done. I just don't know how to put it into words."</p>
-            </div>
           </div>
         </div>
       </div>
+      <div class="txt"><span class="n">03</span><span class="mono">Design decision</span><h3>Experience as a timeline — shows progression and overlap, not just a flat list of titles</h3><p class="ev">Evidence base: documented research findings and solution rationale shown above.</p></div>
+    </div>
 
-      <div class="border border-black/10 p-7">
-        <div class="grid grid-cols-[190px_1fr] gap-5 items-start">
-          <!-- same box footprint as Neha's portrait (190px wide, same aspect ratio) so both
-               cards match in height; the square placeholder icon sits centered/letterboxed
-               inside, uncropped, on its own gray background -->
-          <div class="w-full aspect-[2/3] bg-gray-100 flex items-center justify-center">
-            <img src="assets/avatar_placeholder.jpg" alt="Generic placeholder avatar representing the profile viewer, who can be anyone" class="max-w-full max-h-full object-contain" />
-          </div>
-          <div>
-            <h3 class="font-serif font-bold text-[22px] leading-tight mb-1">The Profile Viewer</h3>
-            <p class="text-gray-500 text-[15px] mb-5">Can be anyone</p>
-            <div class="grid sm:grid-cols-2 gap-5 mb-5">
-              <div>
-                <p class="text-gray-700 text-[15px] leading-relaxed mb-2">Quickly scans profiles for key achievements and credibility signals before deciding whether to explore further.</p>
-                <p class="font-mono text-[13px] text-gray-400">behavior</p>
-              </div>
-              <div>
-                <p class="text-gray-700 text-[15px] leading-relaxed mb-2">Wants to understand someone's value and experience at a glance without digging through lengthy content.</p>
-                <p class="font-mono text-[13px] text-gray-400">goal</p>
-              </div>
-              <div>
-                <p class="text-gray-700 text-[15px] leading-relaxed mb-2">Struggles when important achievements are buried under too much text or lack clear hierarchy.</p>
-                <p class="font-mono text-[13px] text-gray-400">difficulty</p>
-              </div>
-            </div>
-            <div class="border-t border-black/10 pt-5">
-              <p class="font-serif italic text-[17px] text-gray-700">"I want to quickly understand what someone brings to the table before I dive deeper."</p>
-            </div>
-          </div>
+    <div class="drow">
+      <div class="canvas" aria-label="Concept sketch of three featured portfolio formats">
+        <div class="fl"><span class="mono">Featured portfolio</span><span class="sketch-note">Concept sketch</span></div>
+        <div class="formats">
+          <div class="fmt"><div class="g"><i></i><i></i><i></i><i></i><i></i><i></i></div><b>Behance-style</b><span>Designer</span></div>
+          <div class="fmt"><div class="yt"><i></i><i></i></div><b>YouTube-style</b><span>Educator</span></div>
+          <div class="fmt"><div class="rl"><i></i><i></i><i></i><i></i></div><b>Running list</b><span>Strategist</span></div>
         </div>
       </div>
+      <div class="txt"><span class="n">04</span><span class="mono">Design decision</span><h3>Featured portfolio: Behance-style, YouTube-style, or a running list — format matched to profession, not forced into one mould</h3><p class="ev">Evidence base: documented research findings and solution rationale shown above.</p></div>
     </div>
-  </div>
-</section>
-
-<!-- ================= 03 THE RESEARCH ================= -->
-<section class="bg-alt">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">03</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
-        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Research</h2>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap gap-4 mb-14">
-      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">DUAL-PERSPECTIVE MAPPING (FILLER VS. VIEWER)</span>
-      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">PROFESSIONAL ARCHETYPE ANALYSIS</span>
-      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">CONTENT AUDIT OF EXISTING PROFILE PRODUCTS</span>
-      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">ITERATIVE WIDGET PROTOTYPING</span>
-    </div>
-
-    <div class="flex flex-col">
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">The filler and the viewer have opposite needs</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">The layout that makes the user's life easy — long free-text fields, space to say everything — is often the layout that fails the viewer. Nobody wants to read a wall of text to figure out if someone is credible. Every widget decision came back to this tension.</p>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">Blank page paralysis is the core UX barrier</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">'Describe your impact' is a terrible prompt. It asks someone to write from scratch in a format they haven't seen, for an audience they're not sure about, about achievements they're not sure how to frame. This isn't a motivation problem — it's a structure problem.</p>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">The viewer needs density control the user never thought to ask for</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">Users instinctively want to say everything. But viewers only need the headline until they decide to go deeper. The mismatch isn't the user's fault — the product wasn't giving them a way to show appropriate detail at first glance.</p>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-b border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">04</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">'Portfolio' means something different to every profession</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">A Behance grid is right for a designer. A YouTube thumbnail strip is right for an educator. A case study link list is right for a strategist. Forcing everyone into one preview format would flatten most professions' best work into something that looked out of place.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 04 THE SOLUTION ================= -->
-<section class="bg-cream">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">04</span>
-      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Solution</h2>
-    </div>
-
-    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[860px] mb-12">
-      Each widget type came directly from one of the tensions in the research. Impact Cards solve blank-page
-      paralysis. Compact and expanded variants solve the density mismatch. The timeline view of experience solves
-      the inference problem (what does this person's career trajectory actually look like?). Portfolio format
-      previews solve the profession-specificity problem. None of these were invented for completeness. Each one
-      removed a specific failure mode.
-    </p>
-
-    <div class="flex items-center gap-3 mb-6">
-      <span class="w-6 h-px bg-forest"></span>
-      <span class="font-mono text-[13px] tracking-widest text-gray-400">WHAT IT DOES</span>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Impact Cards: sentence templates ('Increased ___ by ___ at ___') + shuffle for different phrasing — number-first format, user never writes from scratch</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Compact / expanded variants for Bio, Prizes, Impact — user chooses density, viewer gets the right level of detail at first glance</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Experience as a timeline — shows progression and overlap, not just a flat list of titles</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Featured portfolio: Behance-style, YouTube-style, or a running list — format matched to profession, not forced into one mould</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Drag-and-drop widget ordering — the COO and the photographer control their own hierarchy</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Shuffle mechanic on Impact Cards — changes the sentence frame, breaks the blank-page freeze without adding a decision</p>
-      </div>
-    </div>
-    <div class="gal-head">
-      <div class="gal-label"><i></i><span>THE SCREENS</span></div>
-      <a class="figma-btn" href="https://www.figma.com/proto/mGZ63hp9jSzVhXSD45KFtq/One-Tap-shop-page?node-id=7-45&amp;viewport=-164%2C-748%2C0.12&amp;scaling=min-zoom&amp;page-id=0%3A1" target="_blank" rel="noopener">VIEW FIGMA PROTOTYPE <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    </div>
-    <div class="gal phones" style="--c:3">
-      <figure class="shot phone tall"><div class="shot-win"><img src="assets/s_ot_edit.jpg" alt="Edit profile" loading="lazy" /></div><figcaption>Edit profile</figcaption></figure>
-      <figure class="shot phone tall"><div class="shot-win"><img src="assets/s_ot_profile.jpg" alt="Profile" loading="lazy" /></div><figcaption>Profile</figcaption></figure>
-      <figure class="shot phone tall"><div class="shot-win"><img src="assets/s_ot_connected.jpg" alt="Connected" loading="lazy" /></div><figcaption>Connected</figcaption></figure>
-      <figure class="shot phone dark tall"><div class="shot-win"><img src="assets/s_ot_bio.jpg" alt="Bio widget" loading="lazy" /></div><figcaption>Bio widget</figcaption></figure>
-      <figure class="shot phone dark tall"><div class="shot-win"><img src="assets/s_ot_learning.jpg" alt="“Things I am currently learning” widget" loading="lazy" /></div><figcaption>“Things I am currently learning” widget</figcaption></figure>
-      <figure class="shot phone dark tall"><div class="shot-win"><img src="assets/s_ot_themes.jpg" alt="Themes" loading="lazy" /></div><figcaption>Themes</figcaption></figure>
-      <figure class="shot wide"><div class="shot-win"><img src="assets/s_ot_widgets.jpg" alt="Widget sizes" loading="lazy" /></div><figcaption>Widget sizes</figcaption></figure>
+    <div class="gx-head"><span class="gx-label">The screens</span><a class="gx-btn" href="https://www.figma.com/proto/mGZ63hp9jSzVhXSD45KFtq/One-Tap-shop-page?node-id=7-45&amp;viewport=-164%2C-748%2C0.12&amp;scaling=min-zoom&amp;page-id=0%3A1" target="_blank" rel="noopener">View Figma prototype <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+    <div class="gx phones" style="--c:3">
+    <figure class="gx-shot phone tall"><div class="gx-win"><img src="assets/s_ot_edit.jpg" alt="Edit profile" loading="lazy"></div><figcaption>Edit profile</figcaption></figure>
+    <figure class="gx-shot phone tall"><div class="gx-win"><img src="assets/s_ot_profile.jpg" alt="Profile" loading="lazy"></div><figcaption>Profile</figcaption></figure>
+    <figure class="gx-shot phone tall"><div class="gx-win"><img src="assets/s_ot_connected.jpg" alt="You’ve connected with" loading="lazy"></div><figcaption>You’ve connected with</figcaption></figure>
+    <figure class="gx-shot phone dark tall"><div class="gx-win"><img src="assets/s_ot_bio.jpg" alt="Bio widget" loading="lazy"></div><figcaption>Bio widget</figcaption></figure>
+    <figure class="gx-shot phone dark tall"><div class="gx-win"><img src="assets/s_ot_learning.jpg" alt="“Things I am currently learning” widget" loading="lazy"></div><figcaption>“Things I am currently learning” widget</figcaption></figure>
+    <figure class="gx-shot phone dark tall"><div class="gx-win"><img src="assets/s_ot_themes.jpg" alt="Themes" loading="lazy"></div><figcaption>Themes</figcaption></figure>
+    <figure class="gx-shot wide"><div class="gx-win"><img src="assets/s_ot_widgets.jpg" alt="Widget sizes" loading="lazy"></div><figcaption>Widget sizes</figcaption></figure>
     </div>
 
   </div>
 </section>
 
-<!-- ================= 05 HIGHLIGHT (forest band) ================= -->
-<section class="relative bg-forest overflow-hidden">
-  <span class="absolute -top-4 right-6 md:right-10 font-serif text-white/10 text-[180px] md:text-[220px] leading-none select-none">05</span>
-  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-center gap-3 mb-8">
-      <span class="w-6 h-px bg-white/40"></span>
-      <span class="font-mono text-[13px] tracking-widest text-white/50">HIGHLIGHT OF THE PROJECT</span>
+<!-- 06 VALIDATE -->
+<section id="validate">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">06</span><span class="mono">Validate</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>What the evidence supports—and what remains open.</h2></div>
     </div>
-    <h2 class="font-serif font-bold text-white text-[28px] sm:text-[38px] md:text-[44px] leading-tight max-w-[900px] mb-8">"The templates and shuffle mechanic turned out to be the most important piece of the whole system — because they removed the decision rather than adding one."</h2>
-    <p class="text-white/70 text-[17px] leading-relaxed max-w-[780px]">
-      It would've been easy to give users more flexibility: a richer text editor, more formatting options, longer
-      fields. But every extra option is a decision the user has to make, and each one is a chance to lose them.
-      The shuffle mechanic cost almost nothing to design. It turned out to be the feature that got the most done,
-      because it answered the question the user was actually stuck on: what do I even write?
-    </p>
-  </div>
-</section>
-
-<!-- ================= 06 THE DESIGNS (prototype link) ================= -->
-<section class="bg-cream">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-14">
-      <span class="font-serif num-watermark text-[80px] leading-none">06</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
-        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Designs</h2>
+    <div class="vstats">
+      <div class="stat"><b>6+</b><span>Widget types designed</span></div>
+      <div class="stat"><b>3</b><span>Density variants per widget</span></div>
+      <div class="stat"><b>4+</b><span>Portfolio format previews</span></div>
+    </div>
+    <p class="honest"><span class="badge">NOTE</span><span>The repository documents the design reasoning, six-plus widget types, three density variants, and four portfolio formats. No participant-based usability study is documented.</span></p>
+    <div class="vgrid">
+      <div class="next">
+        <h3>What I would validate next</h3>
+        <ol class="qs">
+          <li><span class="n">01</span><p>Do sentence templates reduce blank-page hesitation?</p><span class="st">Not yet tested</span></li>
+          <li><span class="n">02</span><p>Can viewers identify credibility from compact widgets within seconds?</p><span class="st">Not yet tested</span></li>
+          <li><span class="n">03</span><p>Do density controls work across different professional archetypes?</p><span class="st">Not yet tested</span></li>
+          <li><span class="n">04</span><p>Does the shuffle mechanic help without creating new uncertainty?</p><span class="st">Not yet tested</span></li>
+        </ol>
       </div>
-    </div>
-
-    <div class="max-w-[900px] mx-auto">
-      <a href="https://www.figma.com/proto/mGZ63hp9jSzVhXSD45KFtq/One-Tap-shop-page?node-id=7-45&amp;viewport=-164%2C-748%2C0.12&amp;scaling=min-zoom&amp;page-id=0%3A1"
-         target="_blank" rel="noopener" class="relative block group">
-        <img src="assets/onetap_laptop_frame.jpg" alt="Laptop mockup framing the interactive prototype" class="w-full select-none" draggable="false" />
-        <div class="absolute flex items-center justify-center bg-forest/5 group-hover:bg-forest/10 transition-colors" style="left:24.3%; right:24%; top:28.4%; bottom:22.2%;">
-          <span class="flex items-center gap-2 bg-forest text-white font-mono text-[12px] sm:text-[13px] tracking-widest px-4 py-2.5 sm:px-5 sm:py-3 shadow-lg group-hover:bg-forest/90 transition-colors">
-            ▶ &nbsp;LAUNCH PROTOTYPE
-          </span>
-        </div>
-      </a>
-      <p class="text-center font-mono text-[12px] text-gray-400 mt-4">OneTap · Visual Deliverables — opens in a new tab.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 07 WHAT I LEARNED ================= -->
-<section class="bg-alt">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">07</span>
-      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">What I Learned</h2>
-    </div>
-
-    <div class="flex flex-col">
-      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
-        <h3 class="font-serif font-bold text-[22px] leading-snug">Customization isn't 'give users more options'</h3>
-        <p class="text-gray-600 leading-relaxed">Every extra option is a decision the user has to make, and each one is a chance to lose them. The templates and shuffle mechanic worked because they removed the decision rather than adding one. The best customization systems make one good choice easy — not every possible choice available.</p>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
-        <h3 class="font-serif font-bold text-[22px] leading-snug">The viewer's ease is the binding constraint</h3>
-        <p class="text-gray-600 leading-relaxed">It's easy to design for the person filling out a form — they're present, they have opinions, they give feedback. The viewer is invisible. Every widget I built needed to answer the viewer's question ('is this person worth my time?') in under three seconds, or the whole profile failed regardless of how good the content was.</p>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-b border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
-        <h3 class="font-serif font-bold text-[22px] leading-snug">The best variants weren't the most flexible</h3>
-        <p class="text-gray-600 leading-relaxed">The widget variants that worked weren't the ones that gave users the most control. They were the ones that made the viewer's judgment easier while asking the user to do less thinking. Constraint, applied in the right place, is what made the system feel effortless rather than limited.</p>
+      <div class="refl">
+        <h3 class="t">Reflection</h3>
+        <article><h4>Customization isn't 'give users more options'</h4><p>Every extra option is a decision the user has to make, and each one is a chance to lose them. The templates and shuffle mechanic worked because they removed the decision rather than adding one. The best customization systems make one good choice easy — not every possible choice available.</p></article>
+        <article><h4>The viewer's ease is the binding constraint</h4><p>It's easy to design for the person filling out a form — they're present, they have opinions, they give feedback. The viewer is invisible. Every widget I built needed to answer the viewer's question ('is this person worth my time?') in under three seconds, or the whole profile failed regardless of how good the content was.</p></article>
+        <article><h4>The best variants weren't the most flexible</h4><p>The widget variants that worked weren't the ones that gave users the most control. They were the ones that made the viewer's judgment easier while asking the user to do less thinking. Constraint, applied in the right place, is what made the system feel effortless rather than limited.</p></article>
       </div>
     </div>
   </div>
 </section>
+</main>
 
-<!-- ================= FINAL STATS BAR ================= -->
-<section class="bg-alt border-t border-black/10">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-16">
-    <div class="flex flex-wrap justify-around gap-10 text-center">
-      <div>
-        <p class="font-serif text-forest text-[48px] leading-none mb-2">6+</p>
-        <p class="font-mono text-[12px] tracking-widest text-gray-400">WIDGET TYPES DESIGNED</p>
-      </div>
-      <div>
-        <p class="font-serif text-forest text-[48px] leading-none mb-2">3</p>
-        <p class="font-mono text-[12px] tracking-widest text-gray-400">DENSITY VARIANTS PER WIDGET</p>
-      </div>
-      <div>
-        <p class="font-serif text-forest text-[48px] leading-none mb-2">4+</p>
-        <p class="font-mono text-[12px] tracking-widest text-gray-400">PORTFOLIO FORMAT PREVIEWS</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="endnav"><div class="wrap"><a href="index.html#work">&larr; Back to all projects</a><a class="mono" href="#top" style="border:0;font-size:14px">&uarr; Top</a></div></div>
+<footer><div class="wrap"><span>Jagruti Ghuge · Pune, India · 2026</span><span>designed + built with curiosity</span></div></footer>
 
-<div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8">
-  <a href="index.html#work" class="inline-flex items-center gap-2 font-mono text-[13px] tracking-widest text-gray-500 hover:text-ink transition-colors">
-    <span>←</span> PREVIOUS
-  </a>
-</div>
+<script>
+(function(){
+  var r=document.getElementById('ruler');
+  if(r){var h='';for(var x=0;x<=2400;x+=100){h+='<span style="left:'+x+'px">'+x+'</span>';}r.innerHTML=h;}
+  function coords(){document.querySelectorAll('[data-coord]').forEach(function(el){var s=el.closest('section');if(!s)return;el.textContent='X 0 · Y '+Math.round(s.getBoundingClientRect().top+window.scrollY);});}
+  coords(); window.addEventListener('resize',coords); window.addEventListener('load',coords);
+})();
+</script>
 
-<!-- ================= FOOTER ================= -->
-<footer class="border-t border-black/10">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8 flex items-center justify-between flex-wrap gap-4">
-    <p class="font-mono text-[12px] text-gray-400">Jagruti Ghuge · Pune, India · 2026</p>
-    <span class="font-mono italic text-[12px] text-gray-400">designed with curiosity</span>
-  </div>
-</footer>
-
-
-
-<script src="assets/gallery.js"></script>
-</body>
-</html>
+<script src="assets/gx.js"></script>
+</body></html>

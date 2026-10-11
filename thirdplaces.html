@@ -1,342 +1,819 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Third Places Case Study — Jagruti Ghuge</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: { cream: '#FDFBF8', ink: '#191919', navy: '#2b5282', indigo2: '#6266F0' },
-        fontFamily: {
-          serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
-          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        },
-      },
-    },
-  };
-</script>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Third Places</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400&family=Inter:wght@400;500;600&display=swap">
 <style>
-  html { scroll-behavior: smooth; }
-  body { background: #FDFBF8; }
-  ::selection { background: #6266F0; color: #fff; }
-  .bg-alt { background: #F2EFE9; }
-  .num-watermark { color: #6266F0; opacity: 0.12; }
-</style>
-<link rel="stylesheet" href="assets/gallery.css" />
-</head>
-<body class="font-sans text-ink antialiased">
+/* Layout: a Figma-like canvas. Dotted ground, rulers, 12-column editorial grid (meta 3 / body 9), diagrams as primary objects, stickies and selection boxes as annotations. */
+:root{
+  --paper:#FAF8F3; --paper-2:#F2EEE6; --note:#FFFDF8;
+  --ink:#1B1A17; --ink-2:#45423C; --muted:#6B675F;
+  --rule:#DCD6CB; --dot:#D8D2C6;
+  --teal:#11756E; --teal-soft:#D9EFEB;
+  --lav:#5F50C4; --lav-soft:#E9E5FA;
+  --yellow:#F5DC6A; --yellow-soft:#FBF0BF; --yellow-ink:#3A3210;
+  --select:#3F82F2; --on-select:#FFFFFF;
+  --f-display:'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --f-body:'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --maxw:1280px; --gut:clamp(16px, 4vw, 40px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#161512; --paper-2:#201F1B; --note:#23221E;
+    --ink:#F1EEE6; --ink-2:#D0CBC0; --muted:#A49F94;
+    --rule:#37352F; --dot:#2F2D28;
+    --teal:#62C9BE; --teal-soft:#16393A;
+    --lav:#ADA1F5; --lav-soft:#29243F;
+    --yellow:#E9CF5C; --yellow-soft:#3A3417; --yellow-ink:#2A240A;
+    --select:#6FA6FF; --on-select:#0E1420;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#161512; --paper-2:#201F1B; --note:#23221E;
+  --ink:#F1EEE6; --ink-2:#D0CBC0; --muted:#A49F94;
+  --rule:#37352F; --dot:#2F2D28;
+  --teal:#62C9BE; --teal-soft:#16393A;
+  --lav:#ADA1F5; --lav-soft:#29243F;
+  --yellow:#E9CF5C; --yellow-soft:#3A3417; --yellow-ink:#2A240A;
+  --select:#6FA6FF; --on-select:#0E1420;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+main{overflow-x:clip}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{
+  margin:0; background:var(--paper); color:var(--ink-2);
+  font-family:var(--f-body); font-size:17px; line-height:1.6;
+  background-image:radial-gradient(var(--dot) 1.2px, transparent 1.3px);
+  background-size:24px 24px; background-position:12px 12px;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--f-display); color:var(--ink); margin:0; text-wrap:balance; font-optical-sizing:auto}
+p{margin:0}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--select); outline-offset:3px}
+.wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gut)}
+.label{font-family:var(--f-body); font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-<!-- ================= NAV ================= -->
-<header class="border-b border-black/10 bg-cream/90 backdrop-blur sticky top-0 z-40">
-  <div class="max-w-[1180px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
-    <a href="index.html" class="font-mono font-bold text-lg tracking-tight">Jagruti Ghuge</a>
-    <nav class="hidden md:flex items-center gap-10 font-mono text-[13px] tracking-widest text-gray-600">
-      <a href="index.html#work" class="hover:text-ink transition-colors">WORK</a>
-      <a href="index.html#about" class="hover:text-ink transition-colors">ABOUT</a>
-      <a href="index.html#contact" class="hover:text-ink transition-colors">CONTACT</a>
+/* top bar + ruler */
+.topbar{position:sticky; top:env(safe-area-inset-top, 0px); z-index:20; background:var(--paper); border-bottom:1px solid var(--rule)}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:56px}
+.brand{font-family:var(--f-display); font-weight:700; font-size:17px; color:var(--ink); text-decoration:none}
+.nav{display:flex; gap:4px; flex-wrap:wrap}
+.nav a{font-size:14px; text-decoration:none; color:var(--muted); padding:6px 10px; border-radius:6px; font-variant-numeric:tabular-nums}
+.nav a:hover{color:var(--ink); background:var(--paper-2)}
+.back{font-size:14px; font-weight:600; color:var(--ink); text-decoration:none; border:1px solid var(--ink); padding:7px 14px; border-radius:999px; white-space:nowrap}
+.ruler{position:relative; height:26px; overflow:hidden; border-top:1px solid var(--rule);
+  background:
+    repeating-linear-gradient(to right, var(--muted) 0 1px, transparent 1px 100px) 0 0/100% 10px no-repeat,
+    repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 10px) 0 0/100% 5px no-repeat;}
+.ruler span{position:absolute; top:8px; font-size:14px; line-height:1; color:var(--muted); font-variant-numeric:tabular-nums; transform:translateX(4px)}
+@media (max-width:900px){.nav{display:none}}
+
+/* sections */
+section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule); position:relative}
+.sec-head{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:16px; margin-bottom:clamp(40px, 5vw, 64px)}
+.sec-meta{grid-column:span 3; display:flex; flex-direction:column; gap:8px}
+.sec-num{font-family:var(--f-display); font-size:44px; line-height:1; font-weight:500; color:var(--ink); font-variant-numeric:tabular-nums}
+.coord{font-size:14px; color:var(--muted); font-variant-numeric:tabular-nums}
+.sec-body{grid-column:span 9; display:flex; flex-direction:column; gap:18px; min-width:0}
+.sec-body h2{font-size:clamp(30px, 3.4vw, 44px); line-height:1.12; font-weight:600; letter-spacing:-.02em; max-width:20ch}
+.lede{font-size:18px; max-width:62ch; color:var(--ink-2)}
+@media (max-width:820px){.sec-meta,.sec-body{grid-column:1 / -1}.sec-meta{flex-direction:row; align-items:baseline; gap:14px; flex-wrap:wrap}.sec-num{font-size:32px}}
+
+/* sticky notes, pills, cursors, selection */
+.sticky{background:var(--yellow); color:var(--yellow-ink); font-size:15px; line-height:1.4; font-weight:500; padding:14px 16px; width:max-content; max-width:220px; box-shadow:0 6px 14px rgba(40,30,0,.12); border-radius:2px}
+.pill{display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid var(--rule); background:var(--note); color:var(--ink-2); white-space:nowrap}
+.pill i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.cursor{display:inline-flex; align-items:flex-start; gap:2px}
+.cursor svg{width:18px;height:18px;flex:none}
+.cursor b{font-size:14px; font-weight:600; background:var(--select); color:var(--on-select); padding:3px 9px; border-radius:4px; margin-top:12px}
+.selbox{position:relative; border:1.5px solid var(--select); padding:6px 14px}
+.selbox::before,.selbox::after,.selbox .h1,.selbox .h2{content:""; position:absolute; width:9px; height:9px; background:var(--paper); border:1.5px solid var(--select)}
+.selbox::before{left:-5px; top:-5px}.selbox::after{right:-5px; top:-5px}
+.selbox .h1{left:-5px; bottom:-5px}.selbox .h2{right:-5px; bottom:-5px}
+.dims{position:absolute; left:50%; bottom:-28px; transform:translateX(-50%); font-size:14px; line-height:1; background:var(--select); color:var(--on-select); padding:4px 8px; border-radius:3px; white-space:nowrap; font-variant-numeric:tabular-nums; letter-spacing:0; font-family:var(--f-body); font-weight:500}
+
+/* HERO */
+.hero{padding-block:clamp(48px, 7vw, 96px) clamp(72px, 9vw, 120px); border-top:0}
+.hero-grid{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:48px; align-items:start}
+.hero-copy{grid-column:1 / span 7; display:flex; flex-direction:column; gap:28px; min-width:0}
+.hero-title{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+.hero-title .selbox{font-family:var(--f-display); font-weight:700; font-size:20px; letter-spacing:.18em; color:var(--ink)}
+.hero h1{font-size:clamp(44px, 7vw, 100px); line-height:.98; letter-spacing:-.04em; font-weight:600; margin-top:12px}
+.hero h1 em{font-style:italic; font-weight:400; color:var(--teal)}
+.hero .lede{font-size:clamp(17px, 1.6vw, 20px); max-width:52ch}
+.meta-list{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); border-top:1px solid var(--ink); margin:0}
+.meta-list div{padding:14px 16px 14px 0; border-bottom:1px solid var(--rule); min-width:0}
+.meta-list dt{font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.meta-list dd{margin:4px 0 0; font-size:16px; color:var(--ink)}
+.meta-list .wide{grid-column:1 / -1}
+.stats{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; margin-top:8px}
+.stat b{display:block; font-family:var(--f-display); font-size:clamp(56px, 6vw, 88px); line-height:1; font-weight:600; letter-spacing:-.04em; color:var(--ink); font-variant-numeric:tabular-nums}
+.stat span{display:block; margin-top:8px; font-size:15px; color:var(--ink-2); max-width:16ch}
+.hero-art{grid-column:8 / span 5; position:relative; min-width:0; margin-bottom:96px}
+.frame-label{display:flex; justify-content:space-between; font-size:14px; color:var(--muted); margin-bottom:8px; font-variant-numeric:tabular-nums}
+.collage{display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:14px; border:1px solid var(--rule); background:var(--note)}
+.tile{background:var(--paper-2); border-radius:3px; padding:14px 14px 10px; display:flex; flex-direction:column; gap:6px}
+.tile svg{width:100%; height:auto; display:block}
+.tile p{font-size:14px; color:var(--ink-2)}
+.tile.offset{transform:translateY(22px)}
+.hero-art .float{position:absolute; z-index:2}
+.hero-art .a1{top:-18px; right:-8px}
+.hero-art .a2{left:-28px; top:44%}
+.hero-art .a3{right:12px; bottom:-34px}
+.hero-art .s1{left:-40px; bottom:-96px; transform:rotate(-4deg)}
+.hero-art .c1{right:-20px; top:30%}
+@media (max-width:1000px){.hero-copy,.hero-art{grid-column:1 / -1}.hero-art{max-width:560px; margin-inline:auto; width:100%}.hero-art .a2{left:-6px}.hero-art .s1{left:8px}.hero-art .c1{right:0}}
+@media (max-width:520px){.stats{grid-template-columns:1fr 1fr 1fr; gap:12px}.meta-list{grid-template-columns:1fr}.hero-art .float.a1,.hero-art .c1{display:none}.tile.offset{transform:none}}
+
+/* 01 research model */
+.rq{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; margin-bottom:clamp(48px, 6vw, 80px)}
+.rq-inner{grid-column:4 / span 9; display:flex; flex-direction:column; gap:12px}
+.rq q{font-family:var(--f-display); font-size:clamp(24px, 2.6vw, 34px); line-height:1.25; font-weight:500; color:var(--ink); letter-spacing:-.01em; quotes:"\201C" "\201D"}
+@media (max-width:820px){.rq-inner{grid-column:1 / -1}}
+.process{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); grid-template-rows:34px auto; position:relative}
+.process .frame{grid-column:3 / 5; grid-row:1 / 3; border:1.5px dashed var(--select); background:color-mix(in srgb, var(--select) 6%, transparent); position:relative; margin-top:14px}
+.process .frame span{position:absolute; top:-15px; left:14px; font-size:14px; font-weight:600; background:var(--select); color:var(--on-select); padding:4px 10px; border-radius:3px; white-space:nowrap}
+.step{grid-row:2; position:relative; z-index:1; padding:30px 22px 34px; display:flex; flex-direction:column; gap:12px; min-width:0}
+.step:nth-child(2){grid-column:1}.step:nth-child(3){grid-column:2}.step:nth-child(4){grid-column:3}.step:nth-child(5){grid-column:4}.step:nth-child(6){grid-column:5}
+.marker{width:60px; height:60px; border-radius:50%; display:grid; place-items:center; font-family:var(--f-display); font-weight:600; font-size:22px; color:var(--ink); border:1.5px solid var(--ink); font-variant-numeric:tabular-nums; flex:none}
+.m-lav{background:var(--lav-soft)}.m-yel{background:var(--yellow-soft)}.m-teal{background:var(--teal-soft)}.m-plain{background:var(--note)}
+.step:not(:last-child)::after{content:""; position:absolute; top:59px; left:90px; right:-14px; height:1.5px; background:var(--ink)}
+.step:not(:last-child)::before{content:""; position:absolute; top:54px; right:-12px; width:10px; height:10px; border-top:1.5px solid var(--ink); border-right:1.5px solid var(--ink); transform:rotate(45deg)}
+.step h3{font-size:22px; font-weight:600; letter-spacing:.04em; text-transform:uppercase}
+.step p{font-size:16px; line-height:1.55}
+.step .ico{width:44px; height:44px; color:var(--ink)}
+.step .mobile-tag{display:none}
+@media (max-width:860px){
+  .process{grid-template-columns:1fr; grid-template-rows:none}
+  .process .frame{display:none}
+  .step{grid-row:auto!important; grid-column:1!important; display:grid; grid-template-columns:60px minmax(0,1fr); column-gap:20px; row-gap:6px; padding:18px 0 30px}
+  .step > *:not(.marker){grid-column:2}
+  .step .marker{grid-row:1 / span 4}
+  .step:not(:last-child)::after{top:84px; bottom:0; left:29px; right:auto; width:1.5px; height:auto}
+  .step:not(:last-child)::before{top:auto; bottom:2px; left:24.5px; right:auto; transform:rotate(135deg)}
+  .step.hl{background:color-mix(in srgb, var(--select) 6%, transparent); border-left:1.5px dashed var(--select); padding-left:12px; margin-left:-13px}
+  .step .mobile-tag{display:block; font-size:14px; font-weight:600; color:var(--select)}
+}
+
+/* 02 question */
+.q-grid{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:32px; margin-bottom:clamp(48px, 6vw, 72px)}
+.q-copy{grid-column:4 / span 5; display:flex; flex-direction:column; gap:16px}
+.q-ask{grid-column:9 / span 4; align-self:start; background:var(--note); border:1px solid var(--rule); padding:24px; display:flex; flex-direction:column; gap:12px}
+.q-ask p.big{font-family:var(--f-display); font-size:24px; line-height:1.3; font-weight:500; color:var(--ink)}
+.hilite{background:linear-gradient(transparent 58%, var(--yellow-soft) 58%)}
+@media (max-width:900px){.q-copy,.q-ask{grid-column:1 / -1}}
+.places{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); position:relative}
+.places::before{content:""; position:absolute; left:12.5%; right:12.5%; top:58px; height:1.5px; background:var(--ink)}
+.places::after{content:""; position:absolute; right:0; width:12.5%; top:58px; height:0; border-top:1.5px dashed var(--muted)}
+.place{position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; padding:0 12px; min-width:0}
+.place .disc{width:116px; height:116px; border-radius:50%; display:grid; place-items:center; background:var(--note); border:1.5px solid var(--ink); position:relative; z-index:1}
+.place .disc svg{width:58px; height:58px; color:var(--ink)}
+.place.open .disc{border-style:dashed; border-color:var(--teal); background:var(--teal-soft)}
+.place.open .disc svg{color:var(--teal)}
+.place .ord{font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.place h3{font-size:22px; font-weight:600}
+.place p{font-size:15px; max-width:22ch}
+.place.open h3{color:var(--teal)}
+@media (max-width:760px){
+  .places{grid-template-columns:1fr; row-gap:28px}
+  .places::before{left:57px; right:auto; top:58px; bottom:58px; width:1.5px; height:auto}
+  .places::after{display:none}
+  .place{flex-direction:row; text-align:left; align-items:center; gap:18px; padding:0}
+  .place .txt{display:flex; flex-direction:column; gap:4px}
+}
+
+/* 03 participants */
+.people{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:40px; align-items:start}
+.avatars{grid-column:1 / span 7; display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:18px 14px; padding:24px; background:var(--note); border:1px solid var(--rule)}
+.av{display:flex; flex-direction:column; align-items:center; gap:6px}
+.av svg{width:100%; max-width:84px; height:auto; display:block}
+.av span{font-size:14px; color:var(--muted); font-variant-numeric:tabular-nums}
+.demo{grid-column:8 / span 5; display:flex; flex-direction:column; gap:24px}
+.demo dl{margin:0; border-top:1px solid var(--ink)}
+.demo dl div{display:flex; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--rule)}
+.demo dt{font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.demo dd{margin:0; font-size:17px; color:var(--ink); text-align:right}
+.methods{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap}
+.methods div{flex:1 1 180px; padding:14px 16px; border:1px solid var(--rule); background:var(--note)}
+.methods b{display:block; font-family:var(--f-display); font-size:18px; color:var(--ink); font-weight:600}
+.methods span{font-size:15px}
+.methods .arr{flex:0 0 auto; border:0; background:none; padding:0; display:grid; place-items:center; color:var(--muted); font-size:20px}
+@media (max-width:900px){.avatars,.demo{grid-column:1 / -1}}
+@media (max-width:480px){.avatars{grid-template-columns:repeat(3, minmax(0,1fr)); padding:16px}}
+
+/* 04 contribution */
+.team{display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:28px}
+.team .dots{display:flex; gap:8px}
+.team .dots span{width:34px; height:34px; border-radius:50%; border:1.5px dashed var(--muted); display:grid; place-items:center; font-size:14px; color:var(--muted)}
+.team .dots span.me{border:1.5px solid var(--teal); background:var(--teal-soft); color:var(--ink); font-weight:600; width:auto; padding:0 12px; border-radius:999px}
+.legend{display:flex; gap:20px; flex-wrap:wrap; font-size:14px; color:var(--ink-2)}
+.legend span{display:inline-flex; align-items:center; gap:8px}
+.legend i{width:22px; height:14px; border-radius:3px; display:inline-block}
+.legend .k-mine{background:var(--teal-soft); border:1.5px solid var(--teal)}
+.legend .k-team{border:1.5px dashed var(--muted)}
+.tl{list-style:none; margin:0 0 clamp(48px, 6vw, 72px); padding:0; display:flex; align-items:stretch; flex-wrap:wrap; gap:10px}
+.tl li{display:flex; align-items:center; gap:10px}
+@media (min-width:1101px){.tl{flex-wrap:nowrap}.tl li{flex:1 1 0; min-width:0}.tl .node{flex:1}.tl .node b{font-size:14px}}
+.node{padding:12px 16px; border-radius:6px; display:flex; flex-direction:column; gap:2px; min-width:0}
+.node b{font-size:15px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--ink)}
+.node small{font-size:14px}
+.node.mine{background:var(--teal-soft); border:1.5px solid var(--teal)}
+.node.mine small{color:var(--teal); font-weight:600}
+.node.team{border:1.5px dashed var(--muted); background:var(--paper)}
+.node.team small{color:var(--muted); font-weight:600}
+.tl .to{color:var(--ink); font-size:20px}
+@media (max-width:760px){.tl{flex-direction:column; align-items:stretch}.tl li{flex-direction:column; align-items:stretch}.tl .to{transform:rotate(90deg); align-self:flex-start; margin-left:18px}.node{width:100%}}
+.contrib{list-style:none; margin:0; padding:0; border-top:1px solid var(--ink)}
+.contrib li{display:grid; grid-template-columns:72px minmax(0,3fr) minmax(0,6fr) minmax(0,2fr); column-gap:24px; row-gap:8px; padding:24px 0; border-bottom:1px solid var(--rule); align-items:baseline}
+.contrib .n{font-family:var(--f-display); font-size:28px; font-weight:600; color:var(--teal); font-variant-numeric:tabular-nums}
+.contrib h3{font-size:20px; font-weight:600; letter-spacing:.03em; text-transform:uppercase}
+.contrib p{font-size:17px; max-width:56ch}
+.contrib em{font-style:italic}
+.contrib .tag{justify-self:end}
+.tag-mine{font-size:14px; font-weight:600; color:var(--teal); border:1.5px solid var(--teal); border-radius:999px; padding:3px 10px; white-space:nowrap}
+.tag-team{font-size:14px; font-weight:600; color:var(--muted); border:1.5px dashed var(--muted); border-radius:999px; padding:3px 10px; white-space:nowrap}
+@media (max-width:820px){.contrib li{grid-template-columns:52px minmax(0,1fr)}.contrib p,.contrib .tag{grid-column:2}.contrib .tag{justify-self:start}}
+
+/* 05 analysis */
+.pipe{list-style:none; margin:0 0 clamp(56px, 7vw, 88px); padding:0; display:grid; grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr) 36px minmax(0,1fr) 36px minmax(0,1fr) 36px minmax(0,1fr); align-items:start}
+.pipe .stage{display:flex; flex-direction:column; gap:10px; min-width:0}
+.pipe .vis{height:120px; background:var(--note); border:1px solid var(--rule); display:grid; place-items:center; padding:10px}
+.pipe .vis svg{width:100%; max-width:150px; height:100px}
+.pipe h3{font-size:18px; font-weight:600; letter-spacing:.08em; text-transform:uppercase}
+.pipe p{font-size:15px; line-height:1.5}
+.pipe .arrow{align-self:start; height:120px; display:grid; place-items:center; color:var(--ink)}
+.pipe .arrow svg{width:28px; height:14px}
+.pipe .stage.end .vis{background:var(--teal-soft); border-color:var(--teal)}
+@media (max-width:900px){.pipe{grid-template-columns:1fr}.pipe .arrow{height:40px; justify-items:start; padding-left:60px}.pipe .arrow svg{transform:rotate(90deg)}.pipe .stage{display:grid; grid-template-columns:140px minmax(0,1fr); column-gap:18px}.pipe .vis{grid-row:1 / span 2; height:100px}}
+@media (max-width:480px){.pipe .stage{grid-template-columns:1fr}.pipe .vis{grid-row:auto}.pipe .arrow{padding-left:20px}}
+.board{border:1px solid var(--rule); background:var(--paper-2); padding:clamp(18px, 3vw, 36px); position:relative;
+  background-image:radial-gradient(var(--dot) 1.2px, transparent 1.3px); background-size:18px 18px}
+.board-head{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; margin-bottom:28px}
+.board-head h3{font-size:24px; font-weight:600}
+.disclaim{font-size:14px; color:var(--ink-2); background:var(--note); border:1px solid var(--rule); padding:6px 10px; border-radius:4px; max-width:46ch}
+.aff{display:grid; grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr) 64px minmax(0,1.25fr); align-items:center; row-gap:20px}
+.aff .col-h{font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:10px}
+.obs{background:var(--note); border:1px solid var(--rule); padding:18px; box-shadow:0 2px 0 var(--rule)}
+.obs p{font-size:17px; color:var(--ink); line-height:1.5}
+.codes{display:flex; flex-direction:column; gap:12px}
+.code{font-size:16px; font-weight:600; padding:12px 14px; color:var(--yellow-ink); box-shadow:0 4px 10px rgba(40,30,0,.10); border-radius:2px}
+.code:nth-child(1){background:var(--yellow); transform:rotate(-1.5deg)}
+.code:nth-child(2){background:#F3C9A6; transform:rotate(1deg)}
+.code:nth-child(3){background:#CFC6F7; transform:rotate(-.5deg)}
+.aff .link{display:grid; place-items:center; color:var(--ink)}
+.aff .link svg{width:100%; height:180px; overflow:visible}
+.aff .link.short svg{width:28px; height:14px}
+.theme{background:var(--note); border:2px solid var(--ink); padding:22px; display:flex; flex-direction:column; gap:10px; position:relative}
+.theme h4{font-size:22px; line-height:1.25; font-weight:600}
+.theme .interp{border-top:1px dashed var(--rule); padding-top:12px; margin-top:4px}
+.theme .interp p{font-size:16px}
+@media (max-width:900px){.aff{grid-template-columns:1fr}.aff .link svg{display:none}.aff .link::before{content:"\2193"; font-size:22px}.aff .link{justify-items:start; padding-left:20px}}
+
+/* 06 findings */
+.findings{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); border-top:1px solid var(--ink); border-left:1px solid var(--rule)}
+.finding{padding:clamp(24px, 3vw, 40px); border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); display:flex; flex-direction:column; gap:14px; background:color-mix(in srgb, var(--note) 70%, transparent); min-width:0}
+.finding .top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px}
+.finding .n{font-family:var(--f-display); font-size:56px; line-height:1; font-weight:600; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.finding svg{width:148px; height:96px; flex:none; color:var(--ink)}
+.finding h3{font-size:clamp(20px, 2vw, 24px); line-height:1.25; font-weight:600}
+.finding p{font-size:17px; max-width:44ch}
+.finding .k{font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase}
+.f1 .n,.f1 .k{color:var(--lav)}.f2 .n,.f2 .k{color:var(--teal)}.f3 .n,.f3 .k{color:#B4651F}.f4 .n,.f4 .k{color:var(--select)}
+:root[data-theme="dark"] .f3 .n,:root[data-theme="dark"] .f3 .k{color:#E9A15F}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .f3 .n,:root:not([data-theme="light"]) .f3 .k{color:#E9A15F}}
+.note-line{margin-top:20px; display:flex; gap:10px; align-items:flex-start; font-size:15px; color:var(--ink-2); max-width:70ch}
+.note-line b{color:var(--ink)}
+@media (max-width:760px){.findings{grid-template-columns:1fr}.finding svg{width:120px; height:78px}}
+
+/* 07 map */
+.map-h,.map-row{display:grid; grid-template-columns:minmax(0,3fr) minmax(0,4fr) 72px minmax(0,4.5fr); column-gap:20px}
+.map-h{padding-bottom:12px; border-bottom:1px solid var(--ink)}
+.map-h span{font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.map-row{padding:26px 0; border-bottom:1px solid var(--rule); align-items:center}
+.map-row .f{display:flex; gap:12px; align-items:baseline}
+.map-row .f b{font-family:var(--f-display); font-size:22px; font-weight:600; color:var(--muted); font-variant-numeric:tabular-nums}
+.map-row .f h3{font-size:19px; line-height:1.3; font-weight:600}
+.map-row .i{font-size:16px}
+.map-row .wire{color:var(--ink); align-self:stretch; display:grid; place-items:center}
+.map-row .wire svg{width:72px; height:100%; min-height:40px; overflow:visible}
+.opps{display:flex; flex-direction:column; gap:12px}
+.opp{border:1.5px solid var(--ink); background:var(--note); padding:14px 16px; display:flex; flex-direction:column; gap:4px}
+.opp b{font-size:15px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--ink)}
+.opp span{font-size:16px}
+.mm-label{display:none}
+.caveat{margin-top:28px; display:inline-flex; gap:10px; align-items:center; font-size:15px; color:var(--yellow-ink); background:var(--yellow-soft); padding:10px 14px; border-radius:4px}
+:root[data-theme="dark"] .caveat{color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .caveat{color:var(--ink)}}
+@media (max-width:860px){.map-h{display:none}.map-row{grid-template-columns:1fr; row-gap:10px}.map-row .wire{display:none}.mm-label{display:block; font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-top:6px}}
+
+/* 08 learned */
+.learn{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:clamp(24px, 5vw, 72px); row-gap:clamp(32px, 4vw, 56px)}
+.learn article{display:grid; grid-template-columns:76px minmax(0,1fr); column-gap:18px; padding-top:20px; border-top:1px solid var(--ink)}
+.learn .n{font-family:var(--f-display); font-size:48px; line-height:1; font-weight:500; color:var(--teal); font-variant-numeric:tabular-nums}
+.learn h3{font-size:20px; line-height:1.3; font-weight:600; letter-spacing:.02em; text-transform:uppercase; margin-bottom:10px}
+.learn p{font-size:17px; max-width:48ch}
+@media (max-width:760px){.learn{grid-template-columns:1fr}.learn article{grid-template-columns:56px minmax(0,1fr)}.learn .n{font-size:36px}}
+
+/* closing */
+.closing{padding-block:clamp(88px, 12vw, 160px)}
+.closing blockquote{margin:0; font-family:var(--f-display); font-size:clamp(30px, 4.2vw, 56px); line-height:1.12; letter-spacing:-.025em; font-weight:500; color:var(--ink); max-width:24ch}
+.closing blockquote .hilite{background:linear-gradient(transparent 62%, var(--yellow) 62%)}
+:root[data-theme="dark"] .closing blockquote .hilite{background:linear-gradient(transparent 62%, color-mix(in srgb, var(--yellow) 40%, transparent) 62%)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .closing blockquote .hilite{background:linear-gradient(transparent 62%, color-mix(in srgb, var(--yellow) 40%, transparent) 62%)}}
+.close-meta{display:flex; flex-wrap:wrap; margin-top:clamp(40px, 5vw, 64px); border-top:1px solid var(--ink); border-bottom:1px solid var(--rule)}
+.close-meta span{flex:1 1 200px; padding:16px 20px 16px 0; font-size:14px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink)}
+.next{margin-top:40px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+.next a.go{display:inline-flex; align-items:center; gap:14px; text-decoration:none; font-family:var(--f-display); font-size:clamp(22px, 2.4vw, 30px); font-weight:600; color:var(--ink); border-bottom:2px solid var(--ink); padding-bottom:4px}
+.next a.go:hover{color:var(--teal); border-color:var(--teal)}
+.next .label{display:block; margin-bottom:6px}
+footer{border-top:1px solid var(--rule); padding-block:28px}
+footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:14px; color:var(--muted)}
+</style>
+</head><body>
+
+<link rel="stylesheet" href="assets/gx.css">
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Jagruti Ghuge</a>
+    <nav class="nav" aria-label="Case study sections">
+      <a href="#model">01 Model</a><a href="#question">02 Question</a><a href="#people">03 People</a><a href="#role">04 My role</a><a href="#analysis">05 Analysis</a><a href="#findings">06 Findings</a><a href="#opportunities">07 Opportunities</a><a href="#learned">08 Learned</a>
     </nav>
-    <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download class="font-mono text-[12px] tracking-widest border border-black/70 px-4 py-2.5 hover:bg-ink hover:text-cream transition-colors whitespace-nowrap">
-      DOWNLOAD RESUME &nbsp;→
-    </a>
+    <a class="back" href="index.html#work">&larr; All work</a>
   </div>
+  <div class="ruler" aria-hidden="true" id="ruler"></div>
 </header>
 
-<!-- ================= HERO ================= -->
-<section class="relative">
-  <div class="absolute inset-0">
-    <img src="assets/thirdplaces_hero.jpg" alt="Friends gathered for an informal conversation at home" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/60 to-black/30"></div>
-  </div>
-  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 pt-16 pb-14 md:pt-24 md:pb-16">
-    <div class="flex items-center gap-4 mb-8 font-mono text-[13px] tracking-widest">
-      <span class="border border-white/40 text-white/90 rounded-full px-4 py-1.5">PROJECT 05</span>
-      <span class="text-white/60">2025 &nbsp;·&nbsp; UX Researcher</span>
-    </div>
-    <h1 class="font-serif font-black text-white text-[64px] sm:text-[84px] md:text-[100px] leading-none mb-6">Third Places</h1>
-    <p class="font-mono italic text-white/80 text-[18px] md:text-[20px] mb-8">"Chai Stalls or Chat Rooms?"</p>
-    <div class="flex flex-wrap gap-3 mb-14">
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">QUALITATIVE RESEARCH</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">THEMATIC ANALYSIS</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">COMMUNITY DESIGN</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">LITERATURE REVIEW</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">SOCIAL DESIGN</span>
-    </div>
-    <div class="flex flex-wrap gap-16">
-      <div>
-        <p class="font-serif text-white text-[44px] leading-none mb-2">15</p>
-        <p class="font-mono text-[12px] tracking-widest text-white/60">PROFESSIONALS INTERVIEWED</p>
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-title">
+        <span class="selbox">THIRD PLACES<i class="h1"></i><i class="h2"></i><span class="dims" aria-hidden="true">Academic research</span></span>
       </div>
-      <div>
-        <p class="font-serif text-white text-[44px] leading-none mb-2">8</p>
-        <p class="font-mono text-[12px] tracking-widest text-white/60">THEMES IDENTIFIED</p>
+      <h1>Where does community go when the usual places <em>disappear?</em></h1>
+      <p class="lede">An academic research project exploring how working adults find connection, belonging, and community as traditional third places evolve.</p>
+      <dl class="meta-list">
+        <div><dt>Type</dt><dd>Academic research project</dd></div>
+        <div><dt>Duration</dt><dd>1.5 months</dd></div>
+        <div><dt>Team</dt><dd>5 members</dd></div>
+        <div><dt>Focus</dt><dd>Community design and changing social behaviour</dd></div>
+        <div class="wide"><dt>Methods</dt><dd>Literature review, qualitative interviews, coding, thematic analysis</dd></div>
+      </dl>
+      <div class="stats">
+        <div class="stat"><b>15</b><span>Participants</span></div>
+        <div class="stat"><b>8</b><span>Themes identified</span></div>
+        <div class="stat"><b>5</b><span>Literature domains reviewed</span></div>
       </div>
-      <div>
-        <p class="font-serif text-white text-[44px] leading-none mb-2">5</p>
-        <p class="font-mono text-[12px] tracking-widest text-white/60">DOMAIN LITERATURE REVIEW</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 01 OBJECTIVE ================= -->
-<section class="bg-alt">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">01</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-indigo2 mb-3"></span>
-        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Objective</h2>
-      </div>
-    </div>
-    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[820px]">
-      As traditional third places — tea stalls, clubhouses, neighbourhood parks — fade in urban India, what are
-      young working professionals switching to, and how do they actually feel about the switch? This research
-      project set out to answer that, not with surveys or assumptions, but through the kind of slow, open-ended
-      conversation that lets people say what they actually mean.
-    </p>
-  </div>
-</section>
-
-<!-- ================= 02 WHO IT'S FOR ================= -->
-<section class="bg-cream">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">02</span>
-      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Who It's For</h2>
     </div>
 
-    <div class="border border-black/10 p-8">
-      <div class="grid md:grid-cols-[300px_1fr] gap-8 items-start">
-        <div class="w-full aspect-[250/274] overflow-hidden">
-          <img src="assets/persona_priya.jpg" alt="Portrait of Priya, a young working professional persona, at a cafe" class="w-full h-full object-cover" />
+    <div class="hero-art" aria-label="Collage of community spaces: café, park, group chat and hobby club">
+      <div class="frame-label" aria-hidden="true"><span>Frame / where-people-gather</span><span>520 × 560</span></div>
+      <div class="collage">
+        <div class="tile">
+          <svg viewBox="0 0 160 110" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)">
+            <ellipse cx="80" cy="58" rx="56" ry="14" style="fill:var(--note)"/><path d="M80 72v30M62 102h36"/>
+            <path d="M52 44h18v10a9 9 0 0 1-18 0z" style="fill:var(--yellow-soft)"/><path d="M70 47h4a4 4 0 0 1 0 8h-3"/>
+            <path d="M92 44h18v10a9 9 0 0 1-18 0z" style="fill:var(--teal-soft)"/><path d="M110 47h4a4 4 0 0 1 0 8h-3"/>
+            <path d="M58 36c2-4-2-6 0-10M98 36c2-4-2-6 0-10" stroke-width="1.5"/>
+            <circle cx="22" cy="40" r="9"/><path d="M8 102c0-26 8-38 14-38s14 12 14 38"/>
+            <circle cx="138" cy="40" r="9"/><path d="M124 102c0-26 8-38 14-38s14 12 14 38"/>
+          </svg>
+          <p>Cafés</p>
         </div>
-        <div>
-          <h3 class="font-serif font-bold text-[26px] mb-1">Young Working Professional</h3>
-          <p class="text-gray-500 mb-5">Name: Priya &nbsp;I&nbsp; Age: 27 yrs</p>
-          <div class="grid sm:grid-cols-3 gap-6 mb-5">
-            <div>
-              <p class="text-gray-700 leading-relaxed mb-2">Moves between work, home, and planned social activities, with little time for spontaneous hangouts.</p>
-              <p class="font-mono text-[13px] text-gray-400">behavior</p>
-            </div>
-            <div>
-              <p class="text-gray-700 leading-relaxed mb-2">Wants to rediscover the ease of meeting people in informal, welcoming places without having to organize everything in advance.</p>
-              <p class="font-mono text-[13px] text-gray-400">goal</p>
-            </div>
-            <div>
-              <p class="text-gray-700 leading-relaxed mb-2">Finds it harder to discover third places that feel spontaneous and accessible in a life increasingly shaped by screens, schedules, and planned interactions.</p>
-              <p class="font-mono text-[13px] text-gray-400">difficulty</p>
-            </div>
-          </div>
-          <div class="border-t border-black/10 pt-5">
-            <p class="font-serif italic text-[19px] text-gray-700">"I miss having places where you could just show up and something would happen."</p>
-          </div>
+        <div class="tile offset">
+          <svg viewBox="0 0 160 110" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)">
+            <circle cx="112" cy="36" r="26" style="fill:var(--teal-soft)"/><path d="M112 62v40M112 76l-10-8M112 70l9-7"/>
+            <path d="M20 74h64M24 74v18M80 74v18M20 64h64" /><path d="M16 102h128" stroke-dasharray="3 6"/>
+            <circle cx="40" cy="48" r="7"/><path d="M34 64c0-6 2-9 6-9s6 3 6 9"/>
+            <circle cx="62" cy="48" r="7"/><path d="M56 64c0-6 2-9 6-9s6 3 6 9"/>
+          </svg>
+          <p>Parks</p>
+        </div>
+        <div class="tile">
+          <svg viewBox="0 0 160 110" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)">
+            <rect x="52" y="6" width="56" height="98" rx="10" style="fill:var(--note)"/><path d="M74 14h12"/>
+            <rect x="60" y="24" width="32" height="14" rx="7" style="fill:var(--lav-soft)"/>
+            <rect x="68" y="44" width="32" height="14" rx="7" style="fill:var(--yellow-soft)"/>
+            <rect x="60" y="64" width="26" height="14" rx="7" style="fill:var(--lav-soft)"/>
+            <circle cx="24" cy="34" r="8"/><circle cx="136" cy="70" r="8"/>
+            <path d="M32 38l18 4M128 68l-18-4" stroke-dasharray="3 4"/>
+          </svg>
+          <p>Group chats</p>
+        </div>
+        <div class="tile offset">
+          <svg viewBox="0 0 160 110" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)">
+            <circle cx="80" cy="58" r="40" stroke-dasharray="4 5"/>
+            <circle cx="80" cy="18" r="9" style="fill:var(--yellow-soft)"/><circle cx="118" cy="50" r="9" style="fill:var(--lav-soft)"/>
+            <circle cx="104" cy="94" r="9" style="fill:var(--teal-soft)"/><circle cx="56" cy="94" r="9" style="fill:var(--yellow-soft)"/>
+            <circle cx="42" cy="50" r="9" style="fill:var(--teal-soft)"/>
+            <path d="M70 58h20M80 48v20" stroke-width="2.5"/>
+          </svg>
+          <p>Hobby clubs</p>
         </div>
       </div>
+      <span class="float a1 pill"><i style="background:var(--teal)"></i>Community design</span>
+      <span class="float a2 pill"><i style="background:var(--lav)"></i>Qualitative research</span>
+      <span class="float a3 pill"><i style="background:var(--yellow)"></i>Field notes</span>
+      <div class="float s1 sticky">RQ: what are people switching to, and how do they feel about it?</div>
+      <span class="float c1 cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 2l7 19 2.5-7.5L20 11z" style="fill:var(--select)" stroke="#fff" stroke-width="1.2"/></svg><b>Jagruti</b></span>
     </div>
   </div>
 </section>
 
-<!-- ================= 03 THE RESEARCH ================= -->
-<section class="bg-alt">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">03</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-indigo2 mb-3"></span>
-        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Research</h2>
+<!-- 01 RESEARCH MODEL -->
+<section id="model">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">01</span><span class="label">The research model</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <h2>From conversations to design opportunities.</h2>
+        <p class="lede">We explored how working adults experience community, analysed their interviews for recurring patterns, and translated the findings into design implications.</p>
+      </div>
+    </div>
+    <div class="rq">
+      <div class="rq-inner">
+        <span class="label">Research question</span>
+        <q>What alternatives are working adults switching to as traditional third places decline, and how do they feel about them?</q>
       </div>
     </div>
 
-    <div class="flex flex-wrap gap-4 mb-14">
-      <span class="border border-indigo2/40 text-indigo2 font-mono text-[13px] tracking-wide px-4 py-2">SEMI-STRUCTURED INTERVIEWS (IN-PERSON + VIDEO)</span>
-      <span class="border border-indigo2/40 text-indigo2 font-mono text-[13px] tracking-wide px-4 py-2">INDUCTIVE THEMATIC ANALYSIS</span>
-      <span class="border border-indigo2/40 text-indigo2 font-mono text-[13px] tracking-wide px-4 py-2">LITERATURE REVIEW ACROSS 5 DOMAINS</span>
-      <span class="border border-indigo2/40 text-indigo2 font-mono text-[13px] tracking-wide px-4 py-2">CODING AND THEME GROUPING</span>
-    </div>
+    <ol class="process" aria-label="Research process in five stages">
+      <li class="frame" aria-hidden="true"><span>From responses to patterns</span></li>
+      <li class="step">
+        <span class="marker m-lav">01</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10c6-2 12-2 18 2v28c-6-4-12-4-18-2z"/><path d="M42 10c-6-2-12-2-18 2v28c6-4 12-4 18-2z"/><path d="M11 18h8M11 24h8M29 18h8M29 24h6"/></svg>
+        <h3>Explore</h3>
+        <p>Review existing literature and understand the research gap.</p>
+      </li>
+      <li class="step">
+        <span class="marker m-yel">02</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h24v15H15l-6 5v-5H5z"/><path d="M33 19h10v15h-4v5l-6-5H19v-6"/></svg>
+        <h3>Interview</h3>
+        <p>Conduct qualitative interviews with working professionals aged 20–45.</p>
+      </li>
+      <li class="step hl">
+        <span class="marker m-teal">03</span>
+        <span class="mobile-tag">From responses to patterns</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h18l18 18-16 16L8 24z"/><circle cx="15" cy="16" r="3"/></svg>
+        <h3>Code</h3>
+        <p>Transcribe interviews and identify meaningful observations and recurring ideas.</p>
+      </li>
+      <li class="step hl">
+        <span class="marker m-teal">04</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="6" width="12" height="9"/><rect x="5" y="20" width="12" height="9"/><rect x="5" y="34" width="12" height="9"/><path d="M17 10l10 12M17 25h10M17 38l10-12"/><rect x="28" y="16" width="15" height="16"/></svg>
+        <h3>Synthesize</h3>
+        <p>Group related codes into themes across the team's interviews.</p>
+      </li>
+      <li class="step">
+        <span class="marker m-plain">05</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 32c-4-3-7-7-7-13a14 14 0 0 1 28 0c0 6-3 10-7 13v5H17z"/><path d="M19 43h10M24 26v-8M20 22l4-4 4 4"/></svg>
+        <h3>Interpret</h3>
+        <p>Translate themes into insights and design opportunities.</p>
+      </li>
+    </ol>
+  </div>
+</section>
 
-    <div class="flex flex-col">
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">People aren't choosing spaces anymore. They're choosing people.</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">Across all 15 participants, social chemistry consistently outweighed proximity or aesthetics. The space mattered less than who would be in it. This shift from geography as the organising principle to relationship quality is the finding that reframes everything else.</p>
+<!-- 02 QUESTION -->
+<section id="question">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">02</span><span class="label">The question</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>Where does community happen when traditional third places fade?</h2></div>
+    </div>
+    <div class="q-grid">
+      <div class="q-copy">
+        <p class="lede">Cafés, parks, clubs, and neighbourhood spaces have traditionally offered places to connect beyond home and work.</p>
+        <p class="lede">As work, responsibilities, and digital habits change, we wanted to understand what people turn to instead.</p>
+      </div>
+      <div class="q-ask">
+        <span class="label">Our question</span>
+        <p class="big">What makes an alternative community space <span class="hilite">meaningful, accessible, and worth returning to?</span></p>
+      </div>
+    </div>
+    <ol class="places" aria-label="From first place to evolving communities">
+      <li class="place">
+        <span class="disc"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22L24 7l18 15"/><path d="M11 19v22h26V19"/><path d="M20 41V29h8v12"/></svg></span>
+        <span class="txt"><span class="ord">First place</span><h3>Home</h3></span>
+      </li>
+      <li class="place">
+        <span class="disc"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="15" width="36" height="25" rx="2"/><path d="M17 15v-5h14v5M6 26h36M22 26v4h4v-4"/></svg></span>
+        <span class="txt"><span class="ord">Second place</span><h3>Work</h3></span>
+      </li>
+      <li class="place">
+        <span class="disc"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 22h20v8a10 10 0 0 1-20 0z"/><path d="M28 24h4a5 5 0 0 1 0 10h-4"/><path d="M14 16c2-3-2-5 0-8M21 16c2-3-2-5 0-8"/><path d="M6 44h28"/></svg></span>
+        <span class="txt"><span class="ord">Third places</span><h3>Cafés, parks, clubs</h3></span>
+      </li>
+      <li class="place open">
+        <span class="disc"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="14" r="5"/><circle cx="36" cy="14" r="5"/><circle cx="24" cy="36" r="5"/><path d="M17 14h14M15 18l6 13M33 18l-6 13" stroke-dasharray="3 3"/><path d="M40 34l4 4M44 34l-4 4"/></svg></span>
+        <span class="txt"><span class="ord">Still evolving</span><h3>Evolving communities</h3><p>Hobby groups, digital communities, hybrid gatherings</p></span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 03 PEOPLE -->
+<section id="people">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">03</span><span class="label">Who we spoke to</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <h2>15 working professionals. Different routines. Changing ideas of community.</h2>
+        <p class="lede">Our study focused on Gen Z and Millennial working professionals aged 20–45 in urban areas.</p>
+      </div>
+    </div>
+    <div class="people">
+      <div class="avatars" id="avatars" role="img" aria-label="Fifteen illustrated participant avatars, P01 to P15"></div>
+      <div class="demo">
+        <dl>
+          <div><dt>Participants</dt><dd>15</dd></div>
+          <div><dt>Ages</dt><dd>20–45</dd></div>
+          <div><dt>Location</dt><dd>Urban</dd></div>
+          <div><dt>Work</dt><dd>Full-time professionals</dd></div>
+          <div><dt>Generation</dt><dd>Gen Z and Millennials</dd></div>
+        </dl>
+        <div class="methods" aria-label="Interview approach">
+          <div><b>Preliminary interviews</b><span>To explore existing routines</span></div>
+          <div class="arr" aria-hidden="true">&rarr;</div>
+          <div><b>Semi-structured interviews</b><span>To understand experiences and perspectives in depth</span></div>
         </div>
       </div>
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">Adulthood's time constraints have made spontaneity a luxury</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">Participants described a gradual, often unnoticed transition: hangouts that used to just happen now have to be scheduled. Spontaneous third place culture requires unstructured time which urban working life systematically removes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 CONTRIBUTION -->
+<section id="role">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">04</span><span class="label">My contribution</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <h2>From individual interviews to collective research findings.</h2>
+        <p class="lede">Within the five-member team, I contributed to the literature review, primary research, data analysis, and writing of the research paper.</p>
+      </div>
+    </div>
+    <div class="team">
+      <span class="label">Team of 5</span>
+      <span class="dots" aria-label="Five team members, one of them is me"><span class="me">Me</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></span>
+      <span class="legend"><span><i class="k-mine"></i>My contribution</span><span><i class="k-team"></i>Team-level work</span></span>
+    </div>
+    <ol class="tl" aria-label="Contribution timeline">
+      <li><span class="node mine"><b>Literature review</b><small>Mine</small></span><span class="to" aria-hidden="true">&rarr;</span></li>
+      <li><span class="node mine"><b>3 interviews</b><small>Mine</small></span><span class="to" aria-hidden="true">&rarr;</span></li>
+      <li><span class="node mine"><b>Transcript coding</b><small>Mine</small></span><span class="to" aria-hidden="true">&rarr;</span></li>
+      <li><span class="node mine"><b>Initial themes</b><small>Mine</small></span><span class="to" aria-hidden="true">&rarr;</span></li>
+      <li><span class="node team"><b>Team synthesis</b><small>Team</small></span><span class="to" aria-hidden="true">&rarr;</span></li>
+      <li><span class="node mine"><b>Paper writing</b><small>Mine: Themes 1 and 2</small></span></li>
+    </ol>
+    <ol class="contrib">
+      <li><span class="n">01</span><h3>Literature review</h3><p>Reviewed <em>Third Places in the Era of Virtual Communities</em> to understand how virtual communities relate to traditional third-place theory.</p><span class="tag"><span class="tag-mine">My contribution</span></span></li>
+      <li><span class="n">02</span><h3>Primary research</h3><p>Conducted 3 interviews with working professionals.</p><span class="tag"><span class="tag-mine">My contribution</span></span></li>
+      <li><span class="n">03</span><h3>Coding and thematic analysis</h3><p>Coded the transcripts of my three interviews, grouped recurring ideas, and developed initial themes from the responses.</p><span class="tag"><span class="tag-mine">My contribution</span></span></li>
+      <li><span class="n">04</span><h3>Team synthesis</h3><p>Brought my initial themes into the team's broader analysis, where themes across interviews were combined into the final set.</p><span class="tag"><span class="tag-team">With the team</span></span></li>
+      <li><span class="n">05</span><h3>Research paper</h3><p>Wrote Theme 1 and Theme 2 for the final research paper.</p><span class="tag"><span class="tag-mine">My contribution</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 05 ANALYSIS -->
+<section id="analysis">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">05</span><span class="label">How we analysed the interviews</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <h2>Individual responses became patterns we could interpret.</h2>
+        <p class="lede">We moved beyond collecting opinions to identify recurring behaviours, motivations, and tensions across the interviews.</p>
+      </div>
+    </div>
+    <ol class="pipe" aria-label="The analysis pipeline">
+      <li class="stage">
+        <div class="vis"><svg viewBox="0 0 150 100" aria-hidden="true" fill="none" stroke-width="1.6"><rect x="44" y="12" width="56" height="74" style="fill:var(--paper-2);stroke:var(--muted)"/><rect x="50" y="6" width="56" height="74" style="fill:var(--note);stroke:var(--ink)"/><path d="M58 20h40M58 30h34M58 40h40M58 50h28M58 60h38M58 70h22" style="stroke:var(--muted)"/></svg></div>
+        <h3>Transcripts</h3><p>Interview responses and observations</p>
+      </li>
+      <li class="arrow" aria-hidden="true"><svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 7h26M20 1l6 6-6 6"/></svg></li>
+      <li class="stage">
+        <div class="vis"><svg viewBox="0 0 150 100" aria-hidden="true" stroke-width="1.2"><rect x="14" y="14" width="34" height="16" rx="3" style="fill:var(--yellow);stroke:var(--ink)"/><rect x="58" y="10" width="40" height="16" rx="3" style="fill:var(--lav-soft);stroke:var(--ink)"/><rect x="106" y="18" width="30" height="16" rx="3" style="fill:var(--teal-soft);stroke:var(--ink)"/><rect x="22" y="44" width="40" height="16" rx="3" style="fill:var(--teal-soft);stroke:var(--ink)"/><rect x="74" y="42" width="34" height="16" rx="3" style="fill:var(--yellow);stroke:var(--ink)"/><rect x="40" y="72" width="34" height="16" rx="3" style="fill:var(--lav-soft);stroke:var(--ink)"/><rect x="88" y="70" width="40" height="16" rx="3" style="fill:var(--yellow);stroke:var(--ink)"/></svg></div>
+        <h3>Codes</h3><p>Meaningful words, behaviours, and recurring ideas</p>
+      </li>
+      <li class="arrow" aria-hidden="true"><svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 7h26M20 1l6 6-6 6"/></svg></li>
+      <li class="stage">
+        <div class="vis"><svg viewBox="0 0 150 100" aria-hidden="true" stroke-width="1.2"><rect x="8" y="10" width="62" height="80" rx="6" style="fill:none;stroke:var(--muted)" stroke-dasharray="4 4"/><rect x="16" y="20" width="46" height="14" rx="3" style="fill:var(--yellow);stroke:var(--ink)"/><rect x="16" y="42" width="46" height="14" rx="3" style="fill:var(--yellow);stroke:var(--ink)"/><rect x="16" y="64" width="46" height="14" rx="3" style="fill:var(--yellow);stroke:var(--ink)"/><rect x="80" y="10" width="62" height="58" rx="6" style="fill:none;stroke:var(--muted)" stroke-dasharray="4 4"/><rect x="88" y="20" width="46" height="14" rx="3" style="fill:var(--lav-soft);stroke:var(--ink)"/><rect x="88" y="42" width="46" height="14" rx="3" style="fill:var(--lav-soft);stroke:var(--ink)"/></svg></div>
+        <h3>Clusters</h3><p>Related codes grouped together</p>
+      </li>
+      <li class="arrow" aria-hidden="true"><svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 7h26M20 1l6 6-6 6"/></svg></li>
+      <li class="stage">
+        <div class="vis"><svg viewBox="0 0 150 100" aria-hidden="true" stroke-width="1.6"><rect x="30" y="14" width="90" height="72" style="fill:var(--note);stroke:var(--ink)" stroke-width="2"/><rect x="30" y="14" width="90" height="18" style="fill:var(--ink)"/><path d="M40 46h70M40 58h56M40 70h62" style="stroke:var(--muted)"/></svg></div>
+        <h3>Themes</h3><p>Patterns that helped explain participant experiences</p>
+      </li>
+      <li class="arrow" aria-hidden="true"><svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 7h26M20 1l6 6-6 6"/></svg></li>
+      <li class="stage end">
+        <div class="vis"><svg viewBox="0 0 150 100" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--ink)"><path d="M64 62c-6-4-10-10-10-18a21 21 0 0 1 42 0c0 8-4 14-10 18v8H64z" style="fill:var(--note)"/><path d="M66 80h18M68 88h14"/><path d="M75 12V4M46 22l-6-6M104 22l6-6M38 46h-8M112 46h8"/></svg></div>
+        <h3>Design implications</h3><p>Opportunities informed by the findings</p>
+      </li>
+    </ol>
+
+    <div class="board" aria-label="Affinity mapping example">
+      <div class="board-head">
+        <div><span class="label">An example of the process</span><h3>One observation, traced to a theme</h3></div>
+        <p class="disclaim">Illustrative synthesis example written for this case study. It is not a verbatim participant quote.</p>
+      </div>
+      <div class="aff">
+        <div><p class="col-h">Observation</p><div class="obs"><p>Work and personal responsibilities limit opportunities to socialise.</p></div></div>
+        <div class="link short" aria-hidden="true"><svg viewBox="0 0 28 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M0 7h26M20 1l6 6-6 6"/></svg></div>
+        <div><p class="col-h">Related codes</p><div class="codes"><span class="code">Time scarcity</span><span class="code">Planning fatigue</span><span class="code">Changing priorities</span></div></div>
+        <div class="link" aria-hidden="true"><svg viewBox="0 0 64 180" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 30 C 34 30, 30 90, 60 90" vector-effect="non-scaling-stroke"/><path d="M0 90 H 60" vector-effect="non-scaling-stroke"/><path d="M0 150 C 34 150, 30 90, 60 90" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="theme">
+          <span class="label">Theme</span>
+          <h4>Constraints of Adulthood: Time, Work &amp; Priorities</h4>
+          <div class="interp"><span class="label">Interpretation</span><p>People may still want connection, but participation needs to fit their changing routines.</p></div>
         </div>
       </div>
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">Physical space hasn't disappeared. It's just harder to access.</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">Digital substitutes exist but don't fully satisfy. Participants consistently described in-person interaction as providing a kind of sensory and emotional clarity that digital couldn't replicate — something was lost even when the connection was maintained.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 FINDINGS -->
+<section id="findings">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">06</span><span class="label">What we found</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>Four patterns helped us understand changing community needs.</h2></div>
+    </div>
+    <div class="findings">
+      <article class="finding f1">
+        <div class="top"><span class="n">01</span>
+          <svg viewBox="0 0 148 96" aria-hidden="true" fill="none" stroke-width="1.5"><g style="stroke:var(--ink)"><rect x="4" y="16" width="56" height="60"/><path d="M4 30h56"/></g><g style="fill:var(--lav-soft)"><rect x="12" y="38" width="10" height="10"/><rect x="40" y="58" width="10" height="10"/></g><path d="M66 46h14M74 40l6 6-6 6" style="stroke:var(--ink)"/><g style="stroke:var(--ink)"><rect x="88" y="16" width="56" height="60"/><path d="M88 30h56"/></g><g style="fill:var(--lav)"><rect x="96" y="36" width="10" height="10"/><rect x="110" y="36" width="10" height="10"/><rect x="124" y="36" width="10" height="10"/><rect x="96" y="50" width="10" height="10"/><rect x="110" y="50" width="10" height="10"/><rect x="124" y="50" width="10" height="10"/><rect x="96" y="64" width="10" height="8"/><rect x="110" y="64" width="10" height="8"/></g></svg>
+        </div>
+        <span class="k">Time</span>
+        <h3>Time changes how we socialise</h3>
+        <p>Work, responsibilities, and planning fatigue make spontaneous participation harder.</p>
+      </article>
+      <article class="finding f2">
+        <div class="top"><span class="n">02</span>
+          <svg viewBox="0 0 148 96" aria-hidden="true" stroke-width="1.5"><circle cx="54" cy="40" r="28" style="fill:var(--teal-soft);stroke:var(--ink)" fill-opacity=".8"/><circle cx="94" cy="40" r="28" style="fill:var(--yellow-soft);stroke:var(--ink)" fill-opacity=".8"/><circle cx="74" cy="66" r="28" style="fill:var(--lav-soft);stroke:var(--ink)" fill-opacity=".8"/><circle cx="74" cy="50" r="4" style="fill:var(--ink)"/><circle cx="66" cy="56" r="3" style="fill:var(--ink)"/><circle cx="82" cy="56" r="3" style="fill:var(--ink)"/></svg>
+        </div>
+        <span class="k">Shared interests</span>
+        <h3>Shared interests create meaningful connection</h3>
+        <p>People seek communities built around hobbies, passions, learning, and a sense of purpose.</p>
+      </article>
+      <article class="finding f3">
+        <div class="top"><span class="n">03</span>
+          <svg viewBox="0 0 148 96" aria-hidden="true" stroke-width="1.5"><circle cx="74" cy="48" r="36" style="fill:none;stroke:var(--muted)" stroke-dasharray="3 5"/><path d="M50 30L98 30L98 66L50 66Z M50 30L98 66 M98 30L50 66" style="fill:none;stroke:var(--ink)"/><circle cx="50" cy="30" r="9" style="fill:var(--yellow-soft);stroke:var(--ink)"/><circle cx="98" cy="30" r="9" style="fill:var(--teal-soft);stroke:var(--ink)"/><circle cx="50" cy="66" r="9" style="fill:var(--lav-soft);stroke:var(--ink)"/><circle cx="98" cy="66" r="9" style="fill:var(--yellow-soft);stroke:var(--ink)"/><circle cx="16" cy="18" r="5" style="fill:none;stroke:var(--muted)"/><circle cx="134" cy="80" r="5" style="fill:none;stroke:var(--muted)"/><circle cx="132" cy="14" r="5" style="fill:none;stroke:var(--muted)"/></svg>
+        </div>
+        <span class="k">Belonging</span>
+        <h3>Social chemistry matters more than social quantity</h3>
+        <p>Comfort, familiarity, and shared values can matter more than simply being around more people.</p>
+      </article>
+      <article class="finding f4">
+        <div class="top"><span class="n">04</span>
+          <svg viewBox="0 0 148 96" aria-hidden="true" stroke-width="1.5" fill="none"><rect x="8" y="10" width="38" height="70" rx="7" style="fill:var(--note);stroke:var(--ink)"/><rect x="15" y="24" width="20" height="9" rx="4" style="fill:var(--lav-soft)"/><rect x="19" y="38" width="20" height="9" rx="4" style="fill:var(--yellow-soft)"/><path d="M50 46h40" style="stroke:var(--ink)" stroke-dasharray="4 4"/><ellipse cx="114" cy="60" rx="26" ry="8" style="fill:var(--paper-2);stroke:var(--ink)"/><circle cx="94" cy="36" r="7" style="fill:var(--teal-soft);stroke:var(--ink)"/><circle cx="114" cy="30" r="7" style="fill:var(--yellow-soft);stroke:var(--ink)"/><circle cx="134" cy="36" r="7" style="fill:var(--lav-soft);stroke:var(--ink)"/></svg>
+        </div>
+        <span class="k">Physical + digital</span>
+        <h3>Digital convenience doesn't replace physical connection</h3>
+        <p>Digital and hybrid spaces offer flexibility, while physical interactions continue to provide presence, spontaneity, and emotional depth.</p>
+      </article>
+    </div>
+    <p class="note-line"><span class="pill">Note</span><span>These four clusters synthesise the team's broader findings into a concise portfolio narrative. <b>The full research identified eight themes.</b></span></p>
+  </div>
+</section>
+
+<!-- 07 OPPORTUNITIES -->
+<section id="opportunities">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">07</span><span class="label">From findings to design opportunities</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>What could designers do with these insights?</h2></div>
+    </div>
+    <div class="map">
+      <div class="map-h" aria-hidden="true"><span>Research finding</span><span>Interpretation</span><span></span><span>Design opportunity</span></div>
+      <div class="map-row">
+        <div class="f"><b>01</b><h3>Time changes how we socialise</h3></div>
+        <p class="i">People may still want connection, but participation needs to fit their changing routines.</p>
+        <div class="wire" aria-hidden="true"><svg viewBox="0 0 72 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 50 C 36 50, 36 25, 66 25" vector-effect="non-scaling-stroke"/><path d="M0 50 C 36 50, 36 75, 66 75" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="opps"><span class="mm-label">Leads to</span>
+          <div class="opp"><b>Proximity and accessibility</b><span>Reduce the effort needed to participate in community activities.</span></div>
+          <div class="opp"><b>Low-pressure participation</b><span>Create flexible ways to connect that respect people's time and energy.</span></div>
         </div>
       </div>
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-b border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">04</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">'Shared interest over shared territory' — the new community logic</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">Interest-based communities (hobby groups, professional networks, online forums) are now competing with geography-based ones. Belonging no longer requires living near someone. It requires caring about the same things.</p>
+      <div class="map-row">
+        <div class="f"><b>02</b><h3>Shared interests create meaningful connection</h3></div>
+        <p class="i">People seek communities built around hobbies, passions, learning, and a sense of purpose.</p>
+        <div class="wire" aria-hidden="true"><svg viewBox="0 0 72 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 50 H 66" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="opps"><span class="mm-label">Leads to</span>
+          <div class="opp"><b>Community structures</b><span>Help people form and sustain communities around shared interests.</span></div>
+        </div>
+      </div>
+      <div class="map-row">
+        <div class="f"><b>03</b><h3>Social chemistry matters more than social quantity</h3></div>
+        <p class="i">Comfort, familiarity, and shared values can matter more than simply being around more people.</p>
+        <div class="wire" aria-hidden="true"><svg viewBox="0 0 72 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 50 H 66" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="opps"><span class="mm-label">Leads to</span>
+          <div class="opp"><b>Shared cultural memory</b><span>Use familiar references and activities to help people feel comfortable connecting.</span></div>
+        </div>
+      </div>
+      <div class="map-row">
+        <div class="f"><b>04</b><h3>Digital convenience doesn't replace physical connection</h3></div>
+        <p class="i">Digital and hybrid spaces offer flexibility, while physical interactions provide presence, spontaneity, and emotional depth.</p>
+        <div class="wire" aria-hidden="true"><svg viewBox="0 0 72 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 50 H 66" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="opps"><span class="mm-label">Leads to</span>
+          <div class="opp"><b>Digital to physical</b><span>Use digital tools to make real-world gatherings easier to organise.</span></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= 04 THE SOLUTION ================= -->
-<section class="bg-cream">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">04</span>
-      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Solution</h2>
-    </div>
-
-    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[860px] mb-6">
-      The research didn't end with a product. It ended with four evidence-backed directions for designers and
-      planners working on community problems. Each direction came directly from a pattern in the interview
-      data — not from general theory, but from what 15 people in urban India actually described wanting.
-    </p>
-
-    <p class="mb-12">
-      <a href="https://docs.google.com/document/d/1qKhWSsMbYbi7KMtjTK5-mu1oNvmcWt0P9cyRNppEVew/edit?usp=sharing" target="_blank" rel="noopener" class="text-blue-600 underline break-all">
-        Paper link: https://docs.google.com/document/d/1qKhWSsMbYbi7KMtjTK5-mu1oNvmcWt0P9cyRNppEVew/edit?usp=sharing
-      </a>
-    </p>
-
-    <div class="flex items-center gap-3 mb-6">
-      <span class="w-6 h-px bg-indigo2"></span>
-      <span class="font-mono text-[13px] tracking-widest text-gray-400">WHAT IT DOES</span>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-orange-700 mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Design for shared cultural memory — use familiar rituals (chai, a particular game, a shared playlist) as low-pressure icebreakers for new community formation</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-orange-700 mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Build a repeatable 'community design pipeline' — a structured approach for creating spaces that can be replicated at different urban scales</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-orange-700 mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Create hybrid spaces that use digital tools to spark real-world meetups, not replace them — the digital layer as a coordination tool, not a destination</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-orange-700 mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Design for proximity and walkability — re-centre physical third places within 10-minute walk radii, since proximity is what enables spontaneity</p>
-      </div>
-    </div>
-    <div class="gal-head">
-      <div class="gal-label"><i></i><span>DESIGN DIRECTIONS</span></div>
-      
-    </div>
-    <div class="gal " style="--c:3">
-      <figure class="shot "><div class="shot-win"><img src="assets/s_tp_2.jpg" alt="Shared cultural memory" loading="lazy" /></div><figcaption>Shared cultural memory</figcaption></figure>
-      <figure class="shot "><div class="shot-win"><img src="assets/s_tp_3.jpg" alt="Community design pipeline" loading="lazy" /></div><figcaption>Community design pipeline</figcaption></figure>
-      <figure class="shot "><div class="shot-win"><img src="assets/s_tp_4.jpg" alt="Hybrid third places" loading="lazy" /></div><figcaption>Hybrid third places</figcaption></figure>
-      <figure class="shot "><div class="shot-win"><img src="assets/s_tp_5.jpg" alt="Proximity and walkability" loading="lazy" /></div><figcaption>Proximity and walkability</figcaption></figure>
-      <figure class="shot "><div class="shot-win"><img src="assets/s_tp_6.jpg" alt="Systemic approach to community life" loading="lazy" /></div><figcaption>Systemic approach to community life</figcaption></figure>
+    <p class="caveat">These are research-informed design opportunities, not a finished or validated product.</p>
+    <div class="gx-head"><span class="gx-label">Design directions</span></div>
+    <div class="gx " style="--c:3">
+    <figure class="gx-shot "><div class="gx-win"><img src="assets/s_tp_2.jpg" alt="Design for shared cultural memory" loading="lazy"></div><figcaption>Design for shared cultural memory</figcaption></figure>
+    <figure class="gx-shot "><div class="gx-win"><img src="assets/s_tp_3.jpg" alt="Build a community design pipeline" loading="lazy"></div><figcaption>Build a community design pipeline</figcaption></figure>
+    <figure class="gx-shot "><div class="gx-win"><img src="assets/s_tp_4.jpg" alt="Create hybrid third places that bridge digital and physical" loading="lazy"></div><figcaption>Create hybrid third places that bridge digital and physical</figcaption></figure>
+    <figure class="gx-shot "><div class="gx-win"><img src="assets/s_tp_5.jpg" alt="Design with proximity and walkability in mind" loading="lazy"></div><figcaption>Design with proximity and walkability in mind</figcaption></figure>
+    <figure class="gx-shot "><div class="gx-win"><img src="assets/s_tp_6.jpg" alt="Adopt a systemic design approach to community life" loading="lazy"></div><figcaption>Adopt a systemic design approach to community life</figcaption></figure>
     </div>
 
   </div>
 </section>
 
-<!-- ================= 05 HIGHLIGHT (navy band) ================= -->
-<section class="relative bg-navy overflow-hidden">
-  <span class="absolute -top-4 right-6 md:right-10 font-serif text-white/10 text-[180px] md:text-[220px] leading-none select-none">05</span>
-  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-center gap-3 mb-8">
-      <span class="w-6 h-px bg-white/40"></span>
-      <span class="font-mono text-[13px] tracking-widest text-white/50">HIGHLIGHT OF THE PROJECT</span>
+<!-- 08 LEARNED -->
+<section id="learned">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">08</span><span class="label">Things I learned</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>What research taught me about community.</h2></div>
     </div>
-    <h2 class="font-serif font-bold text-white text-[32px] sm:text-[42px] md:text-[48px] leading-tight max-w-[900px] mb-8">"People aren't choosing spaces anymore. They're choosing people."</h2>
-    <p class="text-white/70 text-[17px] leading-relaxed max-w-[780px]">
-      This was the line from the thematic analysis that reframed the whole paper. It shifted the design question
-      from 'how do we preserve physical third places' to 'how do we design for the conditions under which social
-      chemistry can form?' Those are different problems with very different solutions — and the data pointed to
-      the second one.
-    </p>
-  </div>
-</section>
-
-<!-- ================= 07 WHAT I LEARNED ================= -->
-<section class="bg-cream">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">07</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-indigo2 mb-3"></span>
-        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">What I Learned</h2>
-      </div>
-    </div>
-
-    <div class="flex flex-col">
-      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
-        <h3 class="font-serif font-bold text-[22px] leading-snug">Qualitative research is a design tool, not just a validation method</h3>
-        <p class="text-gray-600 leading-relaxed">Running thematic analysis on 15 interviews — coding line by line, grouping into themes, finding the unexpected pattern — changed how I think about the early stages of any design project. The rigour isn't in the number of participants. It's in the quality of listening.</p>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
-        <h3 class="font-serif font-bold text-[22px] leading-snug">The emotional is infrastructural</h3>
-        <p class="text-gray-600 leading-relaxed">'Comfort', 'familiarity', 'belonging' sound soft until you see how consistently they drive behaviour. Every participant who described switching to digital third places also described something missing. The emotional residue of physical space isn't a nice-to-have — it's load-bearing.</p>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-b border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
-        <h3 class="font-serif font-bold text-[22px] leading-snug">Writing up research teaches you what you actually found</h3>
-        <p class="text-gray-600 leading-relaxed">My contribution was two of the eight themes — writing them up forced a clarity that the analysis alone didn't. You can code data without understanding it. You can't write about it without understanding it. The writing was where the research actually finished.</p>
-      </div>
+    <div class="learn">
+      <article><span class="n">01</span><div><h3>Interviews are only the beginning.</h3><p>The value of qualitative research comes from finding patterns across conversations, not treating every response as an isolated opinion.</p></div></article>
+      <article><span class="n">02</span><div><h3>Coding makes ambiguity easier to work with.</h3><p>Turning responses into codes helped me organise observations and build a clearer path toward themes.</p></div></article>
+      <article><span class="n">03</span><div><h3>Research becomes stronger through synthesis.</h3><p>My initial themes became part of a larger team analysis, showing me how individual perspectives can contribute to a more complete understanding.</p></div></article>
+      <article><span class="n">04</span><div><h3>Findings matter when they inform decisions.</h3><p>Research can move beyond describing people's experiences to identifying opportunities for more meaningful, accessible community design.</p></div></article>
     </div>
   </div>
 </section>
 
-<!-- ================= FINAL STATS BAR ================= -->
-<section class="bg-alt border-t border-black/10">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-16">
-    <div class="flex flex-wrap justify-around gap-10 text-center">
-      <div>
-        <p class="font-serif text-indigo2 text-[48px] leading-none mb-2">15</p>
-        <p class="font-mono text-[12px] tracking-widest text-gray-400">PROFESSIONALS INTERVIEWED</p>
-      </div>
-      <div>
-        <p class="font-serif text-indigo2 text-[48px] leading-none mb-2">8</p>
-        <p class="font-mono text-[12px] tracking-widest text-gray-400">THEMES IDENTIFIED</p>
-      </div>
-      <div>
-        <p class="font-serif text-indigo2 text-[48px] leading-none mb-2">5</p>
-        <p class="font-mono text-[12px] tracking-widest text-gray-400">DOMAIN LITERATURE REVIEW</p>
-      </div>
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap">
+    <span class="label">Final reflection</span>
+    <blockquote style="margin-top:20px">Community is not defined by a place alone. It's shaped by the conditions that make people feel <span class="hilite">connected, comfortable, and willing to return.</span></blockquote>
+    <div class="close-meta"><span>15 participants</span><span>8 themes</span><span>5-member team</span><span>1.5-month project</span></div>
+    <div class="next">
+      <a href="#top" class="label" style="text-decoration:none">&uarr; Back to top</a>
+      <div><span class="label">Next project</span><a class="go" href="plantdiaper.html">Plant Diaper <span aria-hidden="true">&rarr;</span></a></div>
     </div>
   </div>
 </section>
+</main>
 
-<div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8">
-  <a href="index.html#work" class="inline-flex items-center gap-2 font-mono text-[13px] tracking-widest text-gray-500 hover:text-ink transition-colors">
-    <span>←</span> PREVIOUS
-  </a>
-</div>
+<footer><div class="wrap"><span>Jagruti Ghuge · Pune, India · 2026</span><span>designed + built with curiosity</span></div></footer>
 
-<!-- ================= FOOTER ================= -->
-<footer class="border-t border-black/10">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8 flex items-center justify-between flex-wrap gap-4">
-    <p class="font-mono text-[12px] text-gray-400">Jagruti Ghuge · Pune, India · 2026</p>
-    <span class="font-mono italic text-[12px] text-gray-400">designed with curiosity</span>
-  </div>
-</footer>
-
-
-
-<script src="assets/gallery.js"></script>
-</body>
-</html>
+<script>
+(function(){
+  // ruler labels
+  var r=document.getElementById('ruler');
+  if(r){var h='';for(var x=0;x<=2400;x+=100){h+='<span style="left:'+x+'px">'+x+'</span>';}r.innerHTML=h;}
+  // coordinates on section meta (decorative, like a canvas)
+  function coords(){document.querySelectorAll('[data-coord]').forEach(function(el){var s=el.closest('section');if(!s)return;var y=Math.round(s.getBoundingClientRect().top+window.scrollY);el.textContent='X 0 · Y '+y;});}
+  coords(); window.addEventListener('resize',coords); window.addEventListener('load',coords);
+  // avatars
+  var bgs=['#E9E5FA','#D9EFEB','#FBF0BF','#F6DCCB','#E2ECF8'];
+  var skins=['#F1C9A5','#D9A47C','#B97B53','#8E5A3B','#E8B892','#C68B62'];
+  var hairs=['#2B2118','#4A3222','#1E1A17','#6B4A2E','#2F2A26'];
+  var shirts=['#5F50C4','#11756E','#D98B3A','#3F82F2','#B54E6A','#4F5D52','#8A6FD6'];
+  var cfg=[[0,0,0,0,0,0],[1,1,1,1,1,1],[2,2,2,0,2,0],[3,3,3,2,3,0],[4,4,0,1,4,1],[5,5,4,2,5,0],[2,0,1,3,0,0],[0,1,2,4,1,2],[1,2,3,0,2,0],[3,3,4,4,3,1],[4,4,0,2,4,0],[5,5,1,0,5,2],[0,2,2,1,1,0],[1,3,3,3,2,1],[2,4,4,2,3,0]];
+  function hairPath(t,c){
+    switch(t){
+      case 0:return '<path d="M21 28C20 15 44 15 43 28C40 22 25 21 21 28Z" fill="'+c+'"/>';
+      case 1:return '<path d="M20 29C18 13 46 13 44 29L46 46C41 45 39 40 40 30C36 24 28 24 24 30C25 40 23 45 18 46Z" fill="'+c+'"/>';
+      case 2:return '<path d="M21 28C20 17 44 17 43 28C39 23 25 23 21 28Z" fill="'+c+'"/><circle cx="32" cy="14" r="6" fill="'+c+'"/>';
+      case 3:return '<g fill="'+c+'"><circle cx="24" cy="22" r="6"/><circle cx="32" cy="18" r="7"/><circle cx="40" cy="22" r="6"/><circle cx="21" cy="29" r="4"/><circle cx="43" cy="29" r="4"/></g>';
+      case 4:return '<path d="M21 30C19 14 45 14 43 26C36 26 30 22 26 20C25 24 23 27 21 30Z" fill="'+c+'"/>';
+      default:return '<path d="M22 26C23 16 41 16 42 26C38 22 26 22 22 26Z" fill="'+c+'" opacity=".55"/>';
+    }
+  }
+  var el=document.getElementById('avatars');
+  if(el){
+    var out='';
+    cfg.forEach(function(c,i){
+      var hairType=c[0], skin=skins[c[1]], hair=hairs[c[2]], shirt=shirts[(i*3)%shirts.length], bg=bgs[i%bgs.length], extra=c[5];
+      var acc='';
+      if(extra===1)acc='<g fill="none" stroke="#1B1A17" stroke-width="1.3"><circle cx="27.5" cy="30" r="3.4"/><circle cx="36.5" cy="30" r="3.4"/><path d="M31 30h2"/></g>';
+      if(extra===2)acc='<path d="M25 34c2 6 12 6 14 0" fill="'+hair+'" opacity=".85"/>';
+      out+='<div class="av"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="'+bg+'" stroke="#1B1A17" stroke-width="1"/>'+
+        '<clipPath id="cp'+i+'"><circle cx="32" cy="32" r="31"/></clipPath><g clip-path="url(#cp'+i+')">'+
+        '<path d="M10 66C11 50 21 45 32 45C43 45 53 50 54 66Z" fill="'+shirt+'" stroke="#1B1A17" stroke-width="1"/>'+
+        '<rect x="28.5" y="38" width="7" height="8" fill="'+skin+'"/>'+
+        '<circle cx="32" cy="29" r="11" fill="'+skin+'" stroke="#1B1A17" stroke-width="1"/>'+hairPath(hairType,hair)+acc+
+        '<circle cx="28" cy="30" r="1" fill="#1B1A17"/><circle cx="36" cy="30" r="1" fill="#1B1A17"/><path d="M29.5 35c1.5 1 3.5 1 5 0" fill="none" stroke="#1B1A17" stroke-width="1"/>'+
+        '</g></svg><span>P'+String(i+1).padStart(2,'0')+'</span></div>';
+    });
+    el.innerHTML=out;
+  }
+})();
+</script>
+<script src="assets/gx.js"></script>
+</body></html>

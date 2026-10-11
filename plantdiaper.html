@@ -1,563 +1,780 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Plant Diaper Case Study — Jagruti Ghuge</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: { cream: '#FDFBF8', ink: '#191919', forest: '#496741' },
-        fontFamily: {
-          serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
-          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        },
-      },
-    },
-  };
-</script>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <style>
-  html { scroll-behavior: smooth; }
-  body { background: #FDFBF8; }
-  ::selection { background: #496741; color: #fff; }
-  .bg-alt { background: #F2EFE9; }
-  .num-watermark { color: #191919; opacity: 0.08; }
-  input[type="range"] { -webkit-appearance: none; appearance: none; height: 4px; background: #e5e0d8; border-radius: 999px; outline: none; }
-  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 999px; background: #496741; cursor: pointer; border: 3px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.1); }
-  input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 999px; background: #496741; cursor: pointer; border: 3px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.1); }
-  input[type="range"]::-webkit-slider-runnable-track { background: linear-gradient(to right, #496741 var(--fill,50%), #e5e0d8 var(--fill,50%)); height: 4px; border-radius: 999px; }
+/* Plant Diaper savings calculator (live) */
+.pdc{--g:#3b5f45;--g2:#4a7455;--cr:#f7f4ec;--tx:#2c3a2f;background:#eef1ec;color:var(--tx);padding:clamp(18px,3vw,34px);font-family:var(--f-body,Inter,sans-serif)}
+.pdc h3{font-family:'Playfair Display',var(--f-display,serif);font-weight:600;font-size:clamp(24px,3vw,36px);margin:0 0 6px;color:#2a2f2a;letter-spacing:0}
+.pdc .sub{color:#6c7a6c;font-size:15px;margin:0 0 22px}
+.pdc .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pdc .card{background:var(--cr);border-radius:14px;padding:18px 18px 16px;min-width:0}
+.pdc .card label,.pdc .card .lbl{display:block;font-size:13px;color:#7a8777;margin-bottom:8px}
+.pdc .big{font-family:'Playfair Display',var(--f-display,serif);font-size:clamp(34px,4vw,48px);line-height:1;font-weight:600;color:#26302a}
+.pdc .big small{font-family:Inter,sans-serif;font-size:14px;font-weight:400;color:#8a9788;margin-left:6px}
+.pdc input[type=range]{width:100%;margin:14px 0 6px;-webkit-appearance:none;appearance:none;height:6px;border-radius:99px;background:linear-gradient(to right,#6a7b45 var(--f,30%),#dfe3da var(--f,30%));outline:none}
+.pdc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#6a7b45;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:pointer}
+.pdc input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#6a7b45;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:pointer}
+.pdc input[type=range]:focus-visible,.pdc select:focus-visible,.pdc .cta:focus-visible{outline:2px solid #3F82F2;outline-offset:3px}
+.pdc .rng{display:flex;justify-content:space-between;font-size:11px;color:#9aa597}
+.pdc select{width:100%;appearance:none;-webkit-appearance:none;background:#ece3c9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%232c3a2f' stroke-width='3'%3E%3Cpath d='m8 4 8 8-8 8'/%3E%3C/svg%3E") no-repeat right 14px center;border:1.5px solid #c9c4a9;border-radius:12px;padding:12px 34px 12px 12px;font:500 15px Inter,sans-serif;color:#26302a;cursor:pointer}
+.pdc .wpp{margin-top:12px;background:#e6ebe1;border-radius:12px;padding:14px;text-align:center}
+.pdc .wpp>span{display:block;font-size:12px;color:#7a8777}
+.pdc .wpp b{font-family:'Playfair Display',var(--f-display,serif);font-size:26px;color:#4d5f33;font-weight:600}
+.pdc .res{margin-top:16px;background:var(--g);border-radius:18px;display:grid;grid-template-columns:1.1fr 1fr;gap:16px;padding:clamp(18px,3vw,34px);color:#f4f1e6}
+.pdc .res .k{font-size:12px;letter-spacing:.14em;color:#a9bfaa;text-transform:uppercase;margin-bottom:18px}
+.pdc .row{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.pdc .ic{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none;font-size:18px}
+.pdc .row small{display:block;color:#a9bfaa;font-size:13px}
+.pdc .row b{font-family:'Playfair Display',var(--f-display,serif);font-size:clamp(30px,3.6vw,44px);font-weight:600;color:#efe8cf;line-height:1.05}
+.pdc .row b i{font-family:Inter,sans-serif;font-style:normal;font-size:14px;font-weight:400;color:#bfd0bf;margin-left:6px}
+.pdc .eq{background:var(--g2);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;gap:6px}
+.pdc .eq .ic2{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:22px}
+.pdc .eq small{color:#c5d6c5;font-size:13px}
+.pdc .eq b{font-family:'Playfair Display',var(--f-display,serif);font-size:clamp(46px,6vw,72px);font-weight:600;color:#efe8cf;line-height:1}
+.pdc .cta{margin-top:10px;border:1.5px solid rgba(255,255,255,.5);color:#f4f1e6;border-radius:99px;padding:11px 24px;font-size:13px;letter-spacing:.12em;text-decoration:none;text-transform:uppercase;transition:background .25s}
+.pdc .cta:hover{background:rgba(255,255,255,.12)}
+@media(max-width:780px){.pdc .grid,.pdc .res{grid-template-columns:1fr}}
 </style>
-<link rel="stylesheet" href="assets/gallery.css" />
-</head>
-<body class="font-sans text-ink antialiased">
+</head><body>
+<title>Plant Diaper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: an editorial research board on a Figma canvas. Dotted ground, rulers, 12-col grid (meta 3 / body 9), square thin-bordered frames, botanical green accent, yellow stickies and pink pins as annotations. */
+:root{
+  --paper:#FAF8F2; --paper-2:#F1EEE5; --note:#FFFDF8;
+  --ink:#1A1A16; --ink-2:#44433C; --muted:#6A685F;
+  --rule:#DAD5C9; --dot:#D6D1C4;
+  --green:#3B6A34; --green-soft:#DFEAD5;
+  --pink:#B8325F; --pink-soft:#F7DCE5;
+  --yellow:#F4DB6C; --yellow-soft:#FAF0C2; --yellow-ink:#3A3210;
+  --select:#3F82F2; --on-select:#FFFFFF;
+  --f-display:'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --f-body:'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --f-mono:'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+  --maxw:1280px; --gut:clamp(16px, 4vw, 40px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#151512; --paper-2:#1F1E1A; --note:#22211D;
+    --ink:#F0EDE4; --ink-2:#CFCABF; --muted:#A39E92;
+    --rule:#36342E; --dot:#2E2C27;
+    --green:#97C682; --green-soft:#1E3220;
+    --pink:#F08CB0; --pink-soft:#3A1F2B;
+    --yellow:#E9CF5C; --yellow-soft:#3A3417; --yellow-ink:#2A240A;
+    --select:#6FA6FF; --on-select:#0E1420;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151512; --paper-2:#1F1E1A; --note:#22211D;
+  --ink:#F0EDE4; --ink-2:#CFCABF; --muted:#A39E92;
+  --rule:#36342E; --dot:#2E2C27;
+  --green:#97C682; --green-soft:#1E3220;
+  --pink:#F08CB0; --pink-soft:#3A1F2B;
+  --yellow:#E9CF5C; --yellow-soft:#3A3417; --yellow-ink:#2A240A;
+  --select:#6FA6FF; --on-select:#0E1420;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+main{overflow-x:clip}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0; background:var(--paper); color:var(--ink-2); font-family:var(--f-body); font-size:17px; line-height:1.6;
+  background-image:radial-gradient(var(--dot) 1.2px, transparent 1.3px); background-size:24px 24px; background-position:12px 12px; -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display); color:var(--ink); margin:0; text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--select); outline-offset:3px}
+.wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gut)}
+.mono{font-family:var(--f-mono); font-size:14px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.narrow{max-width:62ch}
 
-<!-- ================= NAV ================= -->
-<header class="border-b border-black/10 bg-cream/90 backdrop-blur sticky top-0 z-40">
-  <div class="max-w-[1180px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
-    <a href="index.html" class="font-mono font-bold text-lg tracking-tight">Jagruti Ghuge</a>
-    <nav class="hidden md:flex items-center gap-10 font-mono text-[13px] tracking-widest text-gray-600">
-      <a href="index.html#work" class="hover:text-ink transition-colors">WORK</a>
-      <a href="index.html#about" class="hover:text-ink transition-colors">ABOUT</a>
-      <a href="index.html#contact" class="hover:text-ink transition-colors">CONTACT</a>
-    </nav>
-    <a href="assets/Jagruti_Ghuge_Resume_2026.pdf" download class="font-mono text-[12px] tracking-widest border border-black/70 px-4 py-2.5 hover:bg-ink hover:text-cream transition-colors whitespace-nowrap">
-      DOWNLOAD RESUME &nbsp;→
-    </a>
+/* top bar + ruler */
+.topbar{position:sticky; top:env(safe-area-inset-top, 0px); z-index:20; background:var(--paper); border-bottom:1px solid var(--rule)}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:56px}
+.brand{font-family:var(--f-display); font-weight:700; font-size:17px; color:var(--ink); text-decoration:none}
+.nav{display:flex; gap:2px; flex-wrap:wrap}
+.nav a{font-family:var(--f-mono); font-size:14px; text-decoration:none; color:var(--muted); padding:6px 9px}
+.nav a:hover{color:var(--ink); background:var(--paper-2)}
+.back{font-family:var(--f-mono); font-size:14px; color:var(--ink); text-decoration:none; border:1px solid var(--ink); padding:6px 12px; white-space:nowrap}
+.ruler{position:relative; height:26px; overflow:hidden; border-top:1px solid var(--rule);
+  background:repeating-linear-gradient(to right, var(--muted) 0 1px, transparent 1px 100px) 0 0/100% 10px no-repeat, repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 10px) 0 0/100% 5px no-repeat}
+.ruler span{position:absolute; top:9px; font-family:var(--f-mono); font-size:14px; line-height:1; color:var(--muted); transform:translateX(4px)}
+@media (max-width:980px){.nav{display:none}}
+
+/* sections */
+section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule); position:relative}
+.sec-head{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:16px; margin-bottom:clamp(40px, 5vw, 64px)}
+.sec-meta{grid-column:span 3; display:flex; flex-direction:column; gap:8px}
+.sec-num{font-family:var(--f-display); font-size:clamp(56px, 6vw, 88px); line-height:.9; font-weight:600; letter-spacing:-.04em; color:var(--green)}
+.coord{font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+.sec-body{grid-column:span 9; display:flex; flex-direction:column; gap:18px; min-width:0}
+.sec-body h2{font-size:clamp(30px, 3.6vw, 48px); line-height:1.1; font-weight:600; letter-spacing:-.025em; max-width:22ch}
+.lede{font-size:18px; max-width:62ch}
+@media (max-width:820px){.sec-meta,.sec-body{grid-column:1 / -1}.sec-meta{flex-direction:row; align-items:baseline; gap:14px; flex-wrap:wrap}}
+
+/* annotations */
+.sticky{background:var(--yellow); color:var(--yellow-ink); font-size:16px; line-height:1.45; font-weight:500; padding:16px 18px; box-shadow:0 6px 14px rgba(40,30,0,.12)}
+.cursor{display:inline-flex; align-items:flex-start; gap:2px}
+.cursor svg{width:18px; height:18px; flex:none}
+.cursor b{font-family:var(--f-mono); font-size:14px; font-weight:500; background:var(--select); color:var(--on-select); padding:3px 8px; margin-top:12px}
+.pin{display:inline-grid; place-items:center; width:30px; height:30px; border-radius:50%; background:var(--pink); color:var(--paper); font-family:var(--f-mono); font-size:14px; font-weight:600; flex:none}
+.selbox{position:relative; display:inline-block; border:1.5px solid var(--select); padding:4px 14px}
+.selbox i{position:absolute; width:9px; height:9px; background:var(--paper); border:1.5px solid var(--select)}
+.selbox i:nth-of-type(1){left:-5px; top:-5px}.selbox i:nth-of-type(2){right:-5px; top:-5px}.selbox i:nth-of-type(3){left:-5px; bottom:-5px}.selbox i:nth-of-type(4){right:-5px; bottom:-5px}
+.dims{position:absolute; left:50%; bottom:-28px; transform:translateX(-50%); font-family:var(--f-mono); font-size:14px; line-height:1; background:var(--select); color:var(--on-select); padding:4px 8px; white-space:nowrap}
+
+/* asset slots: swap the inner content for an <img> */
+.slot{position:relative; width:100%; max-width:100%; aspect-ratio:var(--ar, 4 / 3); border:1px solid var(--ink); background:var(--note); display:grid; place-items:center; overflow:hidden; margin:0}
+.slot .x{position:absolute; inset:0; width:100%; height:100%; fill:none; stroke:var(--rule); stroke-width:1}
+.slot figcaption{position:relative; background:var(--note); border:1px dashed var(--muted); padding:10px 14px; text-align:center; display:flex; flex-direction:column; gap:2px; max-width:86%}
+.slot figcaption b{font-family:var(--f-display); font-size:16px; color:var(--ink); font-weight:600}
+.slot figcaption span{font-size:14px}
+.slot img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.slot.contain img{object-fit:contain}
+
+/* HERO */
+.hero{border-top:0; padding-block:clamp(48px, 7vw, 96px) clamp(80px, 10vw, 128px)}
+.hero-grid{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:56px; align-items:start}
+.hero-copy{grid-column:1 / span 7; display:flex; flex-direction:column; gap:28px; min-width:0}
+.hero-copy .selbox{font-family:var(--f-display); font-size:22px; font-weight:700; color:var(--green); align-self:flex-start}
+.hero h1{font-size:clamp(42px, 6.2vw, 88px); line-height:1; letter-spacing:-.04em; font-weight:600; margin-top:14px}
+.hero .lede{font-size:clamp(17px, 1.6vw, 20px); max-width:50ch}
+.meta{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); border-top:1px solid var(--ink); margin:0}
+.meta div{padding:16px 20px 16px 0; border-bottom:1px solid var(--rule); min-width:0}
+.meta dt{font-family:var(--f-mono); font-size:14px; font-weight:600; letter-spacing:.08em; color:var(--green)}
+.meta dd{margin:6px 0 0; font-size:16px; color:var(--ink)}
+.hero-art{grid-column:8 / span 5; position:relative; min-width:0; margin-bottom:40px}
+.frame-label{display:flex; justify-content:space-between; font-family:var(--f-mono); font-size:14px; color:var(--muted); margin-bottom:8px}
+.hero-art .note{position:absolute; right:-24px; bottom:-60px; width:230px; transform:rotate(-3deg)}
+.hero-art .cur{position:absolute; right:-14px; top:22%}
+@media (max-width:1000px){.hero-copy,.hero-art{grid-column:1 / -1}.hero-art{max-width:520px; width:100%; margin-inline:auto}.hero-art .note{right:8px}.hero-art .cur{right:0}}
+@media (max-width:560px){.meta{grid-template-columns:1fr}}
+
+/* 01 audience */
+.aud{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); border-top:1px solid var(--ink); border-left:1px solid var(--rule)}
+.aud article{border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:24px; display:flex; flex-direction:column; gap:14px; min-width:0}
+.aud .ill{border:1px solid var(--ink); background:var(--paper-2); aspect-ratio:4 / 3; display:grid; place-items:center}
+.aud .ill svg{width:78%; height:auto; color:var(--ink)}
+.aud h3{font-size:24px; font-weight:600; letter-spacing:-.01em}
+.aud p{font-size:17px}
+.after{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; margin-top:clamp(40px, 5vw, 64px)}
+.after p{grid-column:4 / span 7; font-family:var(--f-display); font-size:clamp(20px, 2vw, 26px); line-height:1.4; color:var(--ink); font-weight:500}
+@media (max-width:900px){.aud{grid-template-columns:1fr}.after p{grid-column:1 / -1}}
+
+/* 02 market */
+.gallery{display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:20px; margin-bottom:clamp(48px, 6vw, 72px)}
+.prod{display:flex; flex-direction:column; gap:10px; min-width:0}
+.prod h3{font-size:19px; font-weight:600}
+.prod p{font-size:15px; line-height:1.5}
+.prod .src{font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+@media (max-width:1000px){.gallery{grid-template-columns:repeat(3, minmax(0,1fr))}}
+@media (max-width:640px){.gallery{grid-template-columns:repeat(2, minmax(0,1fr))}}
+@media (max-width:400px){.gallery{grid-template-columns:1fr}}
+.matrix-wrap{overflow-x:auto; border-top:1px solid var(--ink)}
+table.matrix{width:100%; border-collapse:collapse; min-width:680px}
+.matrix th{font-family:var(--f-mono); font-size:14px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); text-align:left; padding:16px 20px 14px 0; border-bottom:1px solid var(--ink)}
+.matrix td{padding:22px 20px 22px 0; border-bottom:1px solid var(--rule); vertical-align:top; font-size:16px}
+.matrix td:first-child{font-family:var(--f-display); font-size:19px; font-weight:600; color:var(--ink); white-space:nowrap}
+@media (max-width:640px){
+  table.matrix{min-width:0}
+  .matrix thead{display:none}
+  .matrix tr{display:block; padding:18px 0; border-bottom:1px solid var(--rule)}
+  .matrix td{display:block; border:0; padding:4px 0}
+  .matrix td:not(:first-child)::before{content:attr(data-label); display:block; font-family:var(--f-mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:8px}
+}
+.takeaway{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; margin-top:clamp(40px, 5vw, 56px)}
+.takeaway .sticky{grid-column:3 / span 8; font-size:clamp(18px, 1.8vw, 22px); line-height:1.45; padding:28px 32px; transform:rotate(-.6deg); position:relative}
+.takeaway .sticky .pin{position:absolute; top:-15px; left:24px}
+@media (max-width:820px){.takeaway .sticky{grid-column:1 / -1}}
+
+/* 03 insights */
+.rows{border-top:1px solid var(--ink)}
+.irow{display:grid; grid-template-columns:120px minmax(0,5fr) minmax(0,4fr); column-gap:32px; row-gap:16px; padding:clamp(28px, 4vw, 44px) 0; border-bottom:1px solid var(--rule); align-items:center}
+.irow .n{font-family:var(--f-display); font-size:clamp(48px, 5vw, 72px); line-height:1; font-weight:600; letter-spacing:-.04em; color:var(--green)}
+.irow h3{font-size:clamp(22px, 2.2vw, 28px); font-weight:600; letter-spacing:-.01em; margin-bottom:10px}
+.irow p{font-size:17px; max-width:48ch}
+.irow figure{margin:0; border:1px solid var(--ink); background:var(--note); padding:16px; display:flex; flex-direction:column; gap:8px}
+.irow figure svg{width:100%; height:auto; display:block; color:var(--ink)}
+.irow figcaption{font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+@media (max-width:900px){.irow{grid-template-columns:72px minmax(0,1fr)}.irow figure{grid-column:1 / -1}.irow .n{font-size:44px}}
+.after2{margin-top:clamp(40px, 5vw, 56px)}
+.flowmap{margin-top:clamp(56px, 7vw, 88px)}
+.flowmap-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:20px}
+.flowmap-head h3{font-size:24px; font-weight:600}
+.fm{display:grid; grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr) 64px minmax(0,1fr); row-gap:14px; align-items:stretch}
+.fm .colh{font-family:var(--f-mono); font-size:14px; font-weight:600; letter-spacing:.06em; color:var(--ink); padding:10px 14px; border:1px solid var(--ink); background:var(--paper-2)}
+.fm .colh.g{background:var(--green-soft); border-color:var(--green)}
+.box{border:1px solid var(--ink); background:var(--note); padding:14px 16px; display:flex; flex-direction:column; gap:4px; min-width:0}
+.box .src{font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+.box b{font-family:var(--f-display); font-size:17px; color:var(--ink); font-weight:600}
+.box.g{border-color:var(--green); background:var(--green-soft)}
+.con{display:grid; place-items:center; color:var(--ink)}
+.con svg{width:100%; height:14px}
+.con.g{color:var(--green)}
+@media (max-width:860px){
+  .fm{grid-template-columns:1fr; row-gap:0}
+  .fm .colh,.fm .con.h{display:none}
+  .fm .box{margin-bottom:0}
+  .fm .con{height:40px; justify-items:start; padding-left:24px}
+  .fm .con svg{width:40px; height:14px; transform:rotate(90deg)}
+  .fm .rowend{height:36px; border-bottom:1px solid var(--rule); margin-bottom:28px}
+  .fm .box::before{content:attr(data-k); font-family:var(--f-mono); font-size:14px; color:var(--green); font-weight:600}
+}
+@media (min-width:861px){.fm .rowend{display:none}}
+
+/* 04 journey */
+.journey{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); position:relative; border-top:1px solid var(--ink)}
+.jstep{position:relative; padding:36px 28px 36px 0; display:flex; flex-direction:column; gap:14px; min-width:0}
+.jstep .dot{width:20px; height:20px; border-radius:50%; border:1.5px solid var(--ink); background:var(--paper); position:relative; z-index:1}
+.jstep:not(:last-child)::after{content:""; position:absolute; top:46px; left:28px; right:8px; height:1.5px; background:var(--ink)}
+.jstep:not(:last-child)::before{content:""; position:absolute; top:41px; right:9px; width:10px; height:10px; border-top:1.5px solid var(--ink); border-right:1.5px solid var(--ink); transform:rotate(45deg)}
+.jstep.cur .dot{background:var(--green); border-color:var(--green)}
+.jstep.cur:not(:last-child)::after{background:var(--green)}
+.jstep.cur:not(:last-child)::before{border-color:var(--green)}
+.jstep .ill{width:96px; height:96px; border:1px solid var(--ink); background:var(--note); display:grid; place-items:center}
+.jstep.cur .ill{background:var(--green-soft); border-color:var(--green)}
+.jstep .ill svg{width:64px; height:64px; color:var(--ink)}
+.jstep h3{font-size:clamp(26px, 2.6vw, 34px); font-weight:600; letter-spacing:.02em}
+.jstep.cur h3{color:var(--green)}
+.jstep p{font-size:17px; max-width:30ch}
+.jstep .k{font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+@media (max-width:860px){
+  .journey{grid-template-columns:1fr}
+  .jstep{display:grid; grid-template-columns:20px minmax(0,1fr); column-gap:24px; padding:24px 0 32px}
+  .jstep > *:not(.dot){grid-column:2}
+  .jstep .dot{grid-row:1 / span 5; margin-top:4px}
+  .jstep:not(:last-child)::after{top:28px; bottom:0; left:9px; right:auto; width:1.5px; height:auto}
+  .jstep:not(:last-child)::before{top:auto; bottom:2px; left:4.5px; right:auto; transform:rotate(135deg)}
+}
+
+/* 05 website */
+.browser{border:1px solid var(--ink); background:var(--note)}
+.browser .bar{display:flex; align-items:center; gap:8px; padding:10px 14px; border-bottom:1px solid var(--ink)}
+.browser .bar i{width:10px; height:10px; border-radius:50%; border:1px solid var(--ink); display:inline-block}
+.browser .bar span{margin-left:12px; font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+.browser .slot{border:0}
+.screens{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; margin-top:clamp(40px, 5vw, 64px)}
+.screen{display:flex; flex-direction:column; gap:14px; min-width:0}
+.screen .slotwrap{position:relative}
+.screen .slotwrap .pin{position:absolute}
+.screen ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px}
+.screen li{display:flex; gap:12px; align-items:center; font-family:var(--f-display); font-size:17px; font-weight:600; color:var(--ink)}
+.screen li .pin{width:26px; height:26px}
+@media (max-width:900px){.screens{grid-template-columns:1fr}.screen .slot{--ar:16 / 10 !important}}
+.dmap{margin-top:clamp(56px, 7vw, 88px); border-top:1px solid var(--ink)}
+.dmap-h{display:grid; grid-template-columns:52px minmax(0,3fr) minmax(0,5fr) 72px minmax(0,2fr); column-gap:20px; padding:14px 0; border-bottom:1px solid var(--ink)}
+.dmap-h span{font-family:var(--f-mono); font-size:14px; font-weight:600; letter-spacing:.06em; color:var(--muted)}
+.drow{display:grid; grid-template-columns:52px minmax(0,3fr) minmax(0,5fr) 72px minmax(0,2fr); column-gap:20px; padding:22px 0; border-bottom:1px solid var(--rule); align-items:center}
+.drow h3{font-size:20px; font-weight:600}
+.drow p{font-size:16px}
+.drow .con svg{height:14px}
+.chip{display:flex; align-items:center; gap:10px; border:1px solid var(--ink); background:var(--note); padding:8px 12px}
+.chip .thumb{width:40px; height:28px; border:1px solid var(--muted); background:var(--paper-2); flex:none}
+.chip span{font-family:var(--f-mono); font-size:14px; color:var(--ink)}
+@media (max-width:860px){.dmap-h{display:none}.drow{grid-template-columns:44px minmax(0,1fr); row-gap:8px}.drow p,.drow .chip{grid-column:2}.drow .con{display:none}.drow .chip{justify-self:start}}
+
+/* 06 calculator */
+.calc{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:32px; align-items:start}
+.calc .main{grid-column:1 / span 8; min-width:0}
+.calc .side{grid-column:9 / span 4; display:flex; flex-direction:column; gap:24px}
+.calc .side .sticky{transform:rotate(1.2deg); position:relative}
+.calc .side .sticky .pin{position:absolute; top:-14px; right:18px}
+.calc .side .sticky b{display:block; font-family:var(--f-mono); font-size:14px; letter-spacing:.06em; margin-bottom:6px}
+@media (max-width:900px){.calc .main,.calc .side{grid-column:1 / -1}}
+.iflow{list-style:none; margin:clamp(48px, 6vw, 72px) 0 0; padding:0; display:grid; grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr) 72px minmax(0,1fr); align-items:start}
+.istage{border:1px solid var(--ink); background:var(--note); padding:22px; display:flex; flex-direction:column; gap:12px; min-width:0}
+.istage svg.ill{width:56px; height:56px; color:var(--ink)}
+.istage h3{font-size:18px; font-family:var(--f-mono); font-weight:600; letter-spacing:.06em; color:var(--ink)}
+.istage p{font-size:16px}
+.istage.g{border-color:var(--green); background:var(--green-soft)}
+.iflow .con{height:120px}
+@media (max-width:860px){.iflow{grid-template-columns:1fr}.iflow .con{height:44px; justify-items:start; padding-left:28px}.iflow .con svg{width:40px; transform:rotate(90deg)}}
+.closing-line{margin-top:clamp(36px, 4vw, 48px)}
+
+/* 07 learned */
+.learn{border-top:1px solid var(--ink)}
+.lrow{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:12px; padding:clamp(32px, 4vw, 48px) 0; border-bottom:1px solid var(--rule)}
+.lrow .n{grid-column:span 2; font-family:var(--f-display); font-size:clamp(48px, 5vw, 72px); line-height:1; font-weight:600; letter-spacing:-.04em; color:var(--green)}
+.lrow h3{grid-column:span 4; font-size:clamp(22px, 2.2vw, 28px); line-height:1.2; font-weight:600; letter-spacing:-.01em}
+.lrow p{grid-column:span 6; font-size:17px; max-width:56ch}
+@media (max-width:860px){.lrow .n{grid-column:1 / -1; font-size:44px}.lrow h3,.lrow p{grid-column:1 / -1}}
+
+/* final */
+.final{padding-block:clamp(88px, 12vw, 160px)}
+.final .rule{border-top:1px solid var(--ink); padding-top:24px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+.final blockquote{margin:clamp(28px, 4vw, 48px) 0 0; font-family:var(--f-display); font-size:clamp(32px, 4.6vw, 64px); line-height:1.08; letter-spacing:-.03em; font-weight:600; color:var(--ink); max-width:22ch}
+.final blockquote span{color:var(--green)}
+.final .support{margin-top:32px; display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px}
+.final .support p{grid-column:5 / span 6; font-size:18px}
+@media (max-width:860px){.final .support p{grid-column:1 / -1}}
+footer{border-top:1px solid var(--rule); padding-block:28px}
+footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+</style>
+
+<link rel="stylesheet" href="assets/gx.css">
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Jagruti Ghuge</a>
+    <nav class="nav" aria-label="Case study sections"><a href="#who">01 Who</a><a href="#market">02 Market</a><a href="#research">03 Research</a><a href="#experience">04 Experience</a><a href="#website">05 Website</a><a href="#calculator">06 Calculator</a><a href="#learned">07 Learned</a></nav>
+    <a class="back" href="index.html#work">&larr; All work</a>
   </div>
+  <div class="ruler" id="ruler" aria-hidden="true"></div>
 </header>
 
-<!-- ================= HERO ================= -->
-<section class="relative">
-  <div class="absolute inset-0">
-    <img src="assets/plantdiaper_hero.jpg" alt="Family gardening together in a lush backyard vegetable garden" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-forest/95 via-forest/70 to-forest/40"></div>
-  </div>
-  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 pt-16 pb-14 md:pt-24 md:pb-16">
-    <div class="flex items-center gap-4 mb-8 font-mono text-[13px] tracking-widest">
-      <span class="border border-white/40 text-white/90 rounded-full px-4 py-1.5">PROJECT 02</span>
-      <span class="text-white/60">2026 &nbsp;·&nbsp; UX Design Intern</span>
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="mono">UX case study · E-commerce</span>
+      <span class="selbox">Plant Diaper<i></i><i></i><i></i><i></i><span class="dims" aria-hidden="true">Case study 01</span></span>
+      <h1>Helping people understand why their plants need less watering.</h1>
+      <p class="lede">An e-commerce experience for a sustainable gardening product, designed to turn product education into purchase confidence.</p>
+      <dl class="meta">
+        <div><dt>PROJECT</dt><dd>E-commerce website design</dd></div>
+        <div><dt>FOCUS</dt><dd>Product positioning, competitor research, information architecture, and interaction design</dd></div>
+        <div><dt>AUDIENCE</dt><dd>Home gardeners, nursery owners, and landscape professionals</dd></div>
+        <div><dt>DELIVERABLES</dt><dd>Website design, product education, and an interactive savings calculator</dd></div>
+      </dl>
     </div>
-    <h1 class="font-serif font-black text-white text-[64px] sm:text-[84px] md:text-[100px] leading-none mb-6">Plant Diaper</h1>
-    <p class="font-mono italic text-white/80 text-[18px] md:text-[20px] mb-8">"Save water, Grow better."</p>
-    <div class="flex flex-wrap gap-3 mb-14">
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">USER RESEARCH</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">COMPETITOR ANALYSIS</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">WIREFRAMING</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">UI DESIGN</span>
-      <span class="border border-white/30 text-white/85 font-mono text-[12px] tracking-widest px-4 py-2">INTERACTION DESIGN</span>
-    </div>
-    <div class="flex flex-wrap gap-16">
-      <div>
-        <p class="font-serif text-white text-[44px] leading-none mb-2">50%</p>
-        <p class="font-mono text-[12px] tracking-widest text-white/60">WATER REDUCTION</p>
-      </div>
-      <div>
-        <p class="font-serif text-white text-[44px] leading-none mb-2">8</p>
-        <p class="font-mono text-[12px] tracking-widest text-white/60">PAGES DESIGNED END-TO-END</p>
-      </div>
-      <div>
-        <p class="font-serif text-white text-[44px] leading-none mb-2">1</p>
-        <p class="font-mono text-[12px] tracking-widest text-white/60">INTERACTIVE CALCULATOR</p>
-      </div>
+    <div class="hero-art">
+      <div class="frame-label" aria-hidden="true"><span>Frame / plant-diaper-product</span><span>4 : 5</span></div>
+      <figure class="slot" style="--ar:4 / 5" data-asset="hero-product"><img src="assets/n_plantdiaper.jpg" alt="Plant Diaper product: a burlap water-retention sleeve with garden gloves and a plant" style="object-position:center;">
+        
+        
+      </figure>
+      <div class="note sticky">turn product education into purchase confidence</div>
+      <span class="cur cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 2l7 19 2.5-7.5L20 11z" style="fill:var(--select)" stroke="#fff" stroke-width="1.2"/></svg><b>Jagruti</b></span>
     </div>
   </div>
 </section>
 
-<!-- ================= 01 OBJECTIVE ================= -->
-<section class="bg-alt">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">01</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
-        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Objective</h2>
-      </div>
+<!-- 01 WHO -->
+<section id="who">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">01</span><span class="mono">Who It's For</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>Different gardeners. One shared need: healthier plants with less effort.</h2></div>
     </div>
-    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[820px]">
-      Design a user-friendly e-commerce site that educates, engages, and drives users to choose Plant Diaper
-      for sustainable gardening — without assuming they already know why water retention matters.
-    </p>
+    <div class="aud">
+      <article>
+        <div class="ill"><svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M70 92h60l-8 44H78z" style="fill:var(--note)"/><path d="M66 92h68"/><path d="M100 92V58"/><path d="M100 70c-14-2-24-12-26-26 14 2 24 12 26 26z" style="fill:var(--green-soft)"/><path d="M100 62c10-4 20-14 22-28-14 2-22 12-22 28z" style="fill:var(--green-soft)"/><path d="M150 70h22l10-12M150 70v24h22V70" /><path d="M172 76l14 6" stroke-dasharray="2 4"/><path d="M20 136h160"/></svg></div>
+        <span class="mono">Audience 01</span>
+        <h3>Home gardeners</h3>
+        <p>Want healthier plants, less frequent watering, and a simpler care routine.</p>
+      </article>
+      <article>
+        <div class="ill"><svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="28" y="96" width="144" height="34" style="fill:var(--note)"/><path d="M28 113h144M64 96v34M100 96v34M136 96v34"/><path d="M46 96V80M82 96V76M118 96V80M154 96V76"/><path d="M46 84c-8 0-12-6-12-12 8 0 12 6 12 12zM82 80c8 0 12-6 12-12-8 0-12 6-12 12zM118 84c-8 0-12-6-12-12 8 0 12 6 12 12zM154 80c8 0 12-6 12-12-8 0-12 6-12 12z" style="fill:var(--green-soft)"/><path d="M40 40h52v26H40zM92 46h18l8 10v10H92z"/><circle cx="54" cy="68" r="5"/><circle cx="106" cy="68" r="5"/></svg></div>
+        <span class="mono">Audience 02</span>
+        <h3>Nursery owners</h3>
+        <p>Need practical ways to maintain plant moisture during handling, shipping, and customer handover.</p>
+      </article>
+      <article>
+        <div class="ill"><svg viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 104h180"/><path d="M10 116h180M10 128h180" stroke-dasharray="3 6"/><circle cx="60" cy="56" r="28" style="fill:var(--green-soft)"/><path d="M60 84v20M60 92l-8-6"/><circle cx="132" cy="66" r="20" style="fill:var(--green-soft)"/><path d="M132 86v18"/><path d="M164 104c0-10 6-16 12-16s12 6 12 16"/><path d="M28 104c0-8 4-12 10-12s10 4 10 12"/></svg></div>
+        <span class="mono">Audience 03</span>
+        <h3>Landscape professionals</h3>
+        <p>Look for water-efficient gardening practices, healthier soil, and reduced nutrient loss.</p>
+      </article>
+    </div>
+    <div class="after"><p>The challenge was to communicate Plant Diaper's value to people with different gardening needs without assuming they already understood the product.</p></div>
   </div>
 </section>
 
-<!-- ================= 02 WHO IT'S FOR ================= -->
-<section class="bg-cream">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">02</span>
-      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">Who It's For</h2>
+<!-- 02 MARKET -->
+<section id="market">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">02</span><span class="mono">Understanding the Market</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <h2>Before designing the website, I studied how similar products communicate value.</h2>
+        <p class="lede">I reviewed five competing watering and water-retention products to understand their mechanisms, messaging, strengths, limitations, and approaches to building customer trust.</p>
+      </div>
     </div>
+    <div class="gallery">
+      <div class="prod"><figure class="slot" style="background:#000000;--ar:1 / 1" data-asset="miracle-gro"><img src="assets/logo_miraclegro.jpg" alt="Miracle-Gro logo" style="object-position:center;object-fit:contain;"></figure><h3>Miracle-Gro</h3><p>Water-retention crystals mixed into soil.</p><span class="src">Source: [official link]</span></div>
+      <div class="prod"><figure class="slot" style="background:#513a32;--ar:1 / 1" data-asset="treediaper"><img src="assets/logo_treediaper.jpg" alt="TreeDiaper logo" style="object-position:center;object-fit:contain;"></figure><h3>TreeDiaper</h3><p>Water-retaining mat.</p><span class="src">Source: [official link]</span></div>
+      <div class="prod"><figure class="slot" style="background:#f4e5d0;--ar:1 / 1" data-asset="growoya"><img src="assets/logo_growoya.jpg" alt="GrowOya logo" style="object-position:center;object-fit:contain;"></figure><h3>GrowOya</h3><p>Porous pot that releases water gradually.</p><span class="src">Source: [official link]</span></div>
+      <div class="prod"><figure class="slot" style="background:#000000;--ar:1 / 1" data-asset="organic-bazar"><img src="assets/logo_organicbazar.jpg" alt="Organic Bazar logo" style="object-position:center;object-fit:contain;"></figure><h3>Organic Bazar</h3><p>Bottle-based watering spikes.</p><span class="src">Source: [official link]</span></div>
+      <div class="prod"><figure class="slot" style="background:#000000;--ar:1 / 1" data-asset="kyari"><img src="assets/logo_kyari.jpg" alt="Kyari logo" style="object-position:center;object-fit:contain;"></figure><h3>Kyari</h3><p>Watering globes.</p><span class="src">Source: [official link]</span></div>
+    </div>
+    <div class="matrix-wrap" role="region" aria-label="Competitor comparison table" tabindex="0">
+      <table class="matrix">
+        <thead><tr><th style="width:18%">Competitor</th><th style="width:38%">Product approach</th><th>What I examined</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Competitor">Miracle-Gro</td><td data-label="Product approach">Water-retention crystals mixed into soil</td><td data-label="What I examined">Product explanation and established brand trust</td></tr>
+          <tr><td data-label="Competitor">TreeDiaper</td><td data-label="Product approach">Water-retaining mat</td><td data-label="What I examined">Water-saving claims and usage guidance</td></tr>
+          <tr><td data-label="Competitor">GrowOya</td><td data-label="Product approach">Porous pot that releases water gradually</td><td data-label="What I examined">Product mechanism and sustainability messaging</td></tr>
+          <tr><td data-label="Competitor">Organic Bazar</td><td data-label="Product approach">Bottle-based watering spikes</td><td data-label="What I examined">Setup instructions and product reviews</td></tr>
+          <tr><td data-label="Competitor">Kyari</td><td data-label="Product approach">Watering globes</td><td data-label="What I examined">Visual instructions and simplified product communication</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="takeaway"><p class="sticky"><span class="pin" aria-hidden="true">!</span><b>What emerged:</b> Competitors used different mechanisms, but their communication repeatedly needed to explain how the product worked, what benefit it offered, and how to use it.</p></div>
+  </div>
+</section>
 
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="border border-black/10">
-        <img src="assets/persona_emily.jpg" alt="Portrait of Emily, a home gardener persona, in her backyard garden" class="w-full aspect-[4/3] object-cover" />
-        <div class="p-6">
-          <h3 class="font-serif font-bold text-[22px] mb-3">Home gardener</h3>
-          <div class="flex items-center justify-between border-t border-black/10 pt-3 mb-4 text-[15px]">
-            <span>Emily</span><span>39 yrs</span>
+<!-- 03 RESEARCH -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">03</span><span class="mono">What the Research Revealed</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <h2>The product needed explanation before it could earn trust.</h2>
+        <p class="lede">My research and competitor analysis highlighted four opportunities.</p>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="irow">
+        <span class="n">01</span>
+        <div><h3>Explain the mechanism</h3><p>Show what Plant Diaper does and how it works, rather than relying on product claims alone.</p></div>
+        <figure>
+          <svg viewBox="0 0 320 150" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Product placed in soil, with arrows showing water moving toward the roots">
+            <path d="M20 40h280v100H20z" style="fill:var(--paper-2)"/>
+            <path d="M20 40c40-6 80 6 120 0s100 6 160 0" />
+            <path d="M160 40V14M160 24c-12-2-18-8-20-16 10 0 18 6 20 16zM160 20c10-2 16-8 18-16-10 0-18 6-18 16z" style="fill:var(--green-soft)"/>
+            <path d="M160 40v22M160 52l-14 18M160 52l14 18M160 62l-6 22M160 62l8 24" />
+            <rect x="96" y="104" width="128" height="22" style="fill:var(--green-soft);stroke:var(--green)"/>
+            <path d="M120 100c0-8 6-12 0-20M160 100c0-8 6-12 0-20M200 100c0-8 6-12 0-20" style="stroke:var(--green)"/>
+            <path d="M115 84l5-6 5 6M155 84l5-6 5 6M195 84l5-6 5 6" style="stroke:var(--green)"/>
+          </svg>
+          <figcaption>Explanatory illustration, not a scientific diagram</figcaption>
+        </figure>
+      </div>
+      <div class="irow">
+        <span class="n">02</span>
+        <div><h3>Make the benefit tangible</h3><p>Connect water retention to everyday gardening needs and understandable outcomes.</p></div>
+        <figure>
+          <svg viewBox="0 0 320 150" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Watering needs connected to three gardening contexts">
+            <path d="M26 66h44l12-14M26 66v34h44V66" style="fill:var(--note)"/><path d="M82 52l14 8" stroke-dasharray="2 4"/>
+            <path d="M104 82h70" style="stroke:var(--green)"/><path d="M104 82C140 82 140 34 196 34M104 82C140 82 140 128 196 128" style="stroke:var(--green)"/>
+            <path d="M190 28l6 6-6 6M190 76l6 6-6 6M190 122l6 6-6 6" style="stroke:var(--green)"/>
+            <path d="M210 24h28l-4 22h-20z"/><path d="M224 24v-8"/>
+            <rect x="206" y="72" width="40" height="20"/><path d="M219 72v20M232 72v20"/>
+            <circle cx="226" cy="118" r="10"/><path d="M226 128v10M206 138h40"/>
+          </svg>
+          <figcaption>Watering needs, read through the gardening context</figcaption>
+        </figure>
+      </div>
+      <div class="irow">
+        <span class="n">03</span>
+        <div><h3>Build confidence before purchase</h3><p>Use clear information, visual demonstrations, and supporting evidence to help customers assess the product.</p></div>
+        <figure>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);align-items:center;gap:0">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div class="box" style="padding:8px 12px"><b style="font-size:15px">Clear information</b></div>
+              <div class="box" style="padding:8px 12px"><b style="font-size:15px">Visual demonstrations</b></div>
+              <div class="box" style="padding:8px 12px"><b style="font-size:15px">Supporting evidence</b></div>
+            </div>
+            <div class="con g" aria-hidden="true"><svg viewBox="0 0 40 120" preserveAspectRatio="none" style="height:120px" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 20C20 20 20 60 36 60M0 60H36M0 100C20 100 20 60 36 60" vector-effect="non-scaling-stroke"/></svg></div>
+            <div class="box g"><b style="font-size:15px">Help customers assess the product</b></div>
           </div>
-          <p class="text-gray-700 leading-relaxed mb-1">Emily maintains a mixed home garden that includes indoor plants, balcony herbs, outdoor vegetables, and perennial flowering plants.</p>
-          <p class="font-mono text-[12px] text-gray-400 mb-4">interest</p>
-          <p class="text-gray-700 leading-relaxed mb-1">Keep plants healthy with less frequent watering.</p>
-          <p class="font-mono text-[12px] text-gray-400 mb-4">goals</p>
-          <p class="text-gray-700 leading-relaxed mb-1">Water runoff wastes fertiliser and nutrients.</p>
-          <p class="font-mono text-[12px] text-gray-400 mb-4">difficulty</p>
-          <p class="font-serif italic text-gray-700 border-t border-black/10 pt-4">"I want healthier plants without spending hours maintaining them every day."</p>
-        </div>
+          <figcaption>Information hierarchy</figcaption>
+        </figure>
       </div>
-
-      <div class="border border-black/10">
-        <img src="assets/persona_olivia.jpg" alt="Portrait of Olivia, a gift shop owner persona, at her office desk" class="w-full aspect-[4/3] object-cover" />
-        <div class="p-6">
-          <h3 class="font-serif font-bold text-[22px] mb-3">Gift Shop Owner</h3>
-          <div class="flex items-center justify-between border-t border-black/10 pt-3 mb-4 text-[15px]">
-            <span>Olivia</span><span>31 yrs</span>
+      <div class="irow">
+        <span class="n">04</span>
+        <div><h3>Support different buying contexts</h3><p>Address the needs of individual gardeners as well as nursery and landscaping professionals.</p></div>
+        <figure>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+            <div class="box" style="padding:10px"><span class="src">01</span><b style="font-size:15px">Home gardeners</b></div>
+            <div class="box" style="padding:10px"><span class="src">02</span><b style="font-size:15px">Nursery owners</b></div>
+            <div class="box" style="padding:10px"><span class="src">03</span><b style="font-size:15px">Landscape professionals</b></div>
           </div>
-          <p class="text-gray-700 leading-relaxed mb-1">She wants a product that retains moisture to improve plant survival during transit.</p>
-          <p class="font-mono text-[12px] text-gray-400 mb-4">interest</p>
-          <p class="text-gray-700 leading-relaxed mb-1">Reduce shipping-related plant damage</p>
-          <p class="font-mono text-[12px] text-gray-400 mb-4">goals</p>
-          <p class="text-gray-700 leading-relaxed mb-1">Needs eco-friendly alternatives to synthetic moisture solutions</p>
-          <p class="font-mono text-[12px] text-gray-400 mb-4">difficulty</p>
-          <p class="font-serif italic text-gray-700 border-t border-black/10 pt-4">"A gifted plant should arrive fresh, healthy, and ready to thrive."</p>
-        </div>
+          <figcaption>The three audiences from section 01</figcaption>
+        </figure>
       </div>
+    </div>
+    <p class="lede after2">The opportunity was to make the website more than a product catalogue: it needed to help people understand the product before asking them to buy it.</p>
 
-      <div class="border border-black/10">
-        <img src="assets/persona_michael.jpg" alt="Portrait of Michael, a nursery owner persona, in his greenhouse" class="w-full aspect-[4/3] object-cover" />
-        <div class="p-6">
-          <h3 class="font-serif font-bold text-[22px] mb-3">Nursery Owner</h3>
-          <div class="flex items-center justify-between border-t border-black/10 pt-3 mb-4 text-[15px]">
-            <span>Michael</span><span>50 yrs</span>
-          </div>
-          <p class="text-gray-700 leading-relaxed mb-1">He constantly looks for innovative products that improve customer satisfaction and reduce plant maintenance</p>
-          <p class="font-mono text-[12px] text-gray-400 mb-4">interest</p>
-          <p class="text-gray-700 leading-relaxed mb-1">Offer unique eco-friendly gardening solutions</p>
-          <p class="font-mono text-[12px] text-gray-400 mb-4">goals</p>
-          <p class="text-gray-700 leading-relaxed mb-1">Plant survival after purchase affects customer trust</p>
-          <p class="font-mono text-[12px] text-gray-400 mb-4">difficulty</p>
-          <p class="font-serif italic text-gray-700 border-t border-black/10 pt-4">"If my customers succeed with their plants, they'll keep coming back."</p>
-        </div>
+    <div class="flowmap">
+      <div class="flowmap-head"><h3>From research to website</h3><span class="mono">Built from text already in this case study</span></div>
+      <div class="fm">
+        <div class="colh">RESEARCH OBSERVATION</div><div class="con h" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div><div class="colh">INSIGHT</div><div class="con h" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div><div class="colh g">WEBSITE OPPORTUNITY</div>
+
+        <div class="box" data-k="RESEARCH OBSERVATION"><span class="src">From 02</span><b>how the product worked</b></div>
+        <div class="con" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div>
+        <div class="box" data-k="INSIGHT"><span class="src">03 · 01</span><b>Explain the mechanism</b></div>
+        <div class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div>
+        <div class="box g" data-k="WEBSITE OPPORTUNITY"><span class="src">Section 05</span><b>Explain how it works</b></div>
+        <div class="rowend" aria-hidden="true"></div>
+
+        <div class="box" data-k="RESEARCH OBSERVATION"><span class="src">From 02</span><b>what benefit it offered</b></div>
+        <div class="con" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div>
+        <div class="box" data-k="INSIGHT"><span class="src">03 · 02</span><b>Make the benefit tangible</b></div>
+        <div class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div>
+        <div class="box g" data-k="WEBSITE OPPORTUNITY"><span class="src">Section 05</span><b>Lead with the benefit</b></div>
+        <div class="rowend" aria-hidden="true"></div>
+
+        <div class="box" data-k="RESEARCH OBSERVATION"><span class="src">From 02</span><b>how to use it</b></div>
+        <div class="con" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div>
+        <div class="box" data-k="INSIGHT"><span class="src">03 · 03</span><b>Build confidence before purchase</b></div>
+        <div class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div>
+        <div class="box g" data-k="WEBSITE OPPORTUNITY"><span class="src">Section 05</span><b>Make evidence accessible</b></div>
+        <div class="rowend" aria-hidden="true"></div>
+
+        <div class="box" data-k="RESEARCH OBSERVATION"><span class="src">From 01</span><b>people with different gardening needs</b></div>
+        <div class="con" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div>
+        <div class="box" data-k="INSIGHT"><span class="src">03 · 04</span><b>Support different buying contexts</b></div>
+        <div class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div>
+        <div class="box g" data-k="WEBSITE OPPORTUNITY"><span class="src">Section 05</span><b>Support product discovery</b></div>
+        <div class="rowend" aria-hidden="true"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= 03 THE RESEARCH ================= -->
-<section class="bg-alt">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">03</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
-        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Research</h2>
+<!-- 04 EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">04</span><span class="mono">From Research to Experience</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <h2>The website became a sequence of understanding, confidence, and action.</h2>
+        <p class="lede">Instead of presenting information as disconnected sections, I organised the experience around the questions a potential customer might ask.</p>
       </div>
     </div>
-
-    <div class="flex flex-wrap gap-4 mb-14">
-      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">COMPETITOR ANALYSIS</span>
-      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">GAP MAPPING</span>
-      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">USER PERSONA DEVELOPMENT</span>
-      <span class="border border-forest/40 text-forest font-mono text-[13px] tracking-wide px-4 py-2">POSITIONING WORKSHOPS</span>
-    </div>
-
-    <div class="flex items-center gap-3 mb-6">
-      <span class="w-6 h-px bg-forest"></span>
-      <span class="font-mono text-[13px] tracking-widest text-gray-400">COMPETITIVE LANDSCAPE</span>
-    </div>
-
-    <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-14">
-      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
-        <img src="assets/logo_miraclegro.jpg" alt="Miracle-Gro logo" class="h-14 w-14 object-contain rounded-full mb-3" />
-        <p class="font-medium text-[15px] mb-2">Miracle-Gro</p>
-        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Not organic</span>
-      </div>
-      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
-        <img src="assets/logo_treediaper.jpg" alt="Tree Diaper logo" class="h-14 w-14 object-contain rounded-full mb-3" />
-        <p class="font-medium text-[15px] mb-2">Tree Diaper</p>
-        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Manual monitoring</span>
-      </div>
-      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
-        <img src="assets/logo_growoya.jpg" alt="Growoya logo" class="h-14 w-14 object-contain rounded-full mb-3" />
-        <p class="font-medium text-[15px] mb-2">Growoya</p>
-        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Brittle pots</span>
-      </div>
-      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
-        <img src="assets/logo_kyari.jpg" alt="Kyari logo" class="h-14 w-14 object-contain rounded-full mb-3" />
-        <p class="font-medium text-[15px] mb-2">Kyari</p>
-        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Gifting angle only</span>
-      </div>
-      <div class="bg-cream border border-black/10 p-5 flex flex-col items-center text-center">
-        <img src="assets/logo_organicbazar.jpg" alt="Organic Bazar logo" class="h-14 w-24 object-contain mb-3" />
-        <p class="font-medium text-[15px] mb-2">Organic Bazar</p>
-        <span class="bg-forest/10 text-forest font-mono text-[11px] px-2 py-1">Distribution gaps</span>
-      </div>
-    </div>
-
-    <div class="flex flex-col">
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">Five competitors, five gaps</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">Miracle-Gro had scale but wasn't organic. Tree Diaper required manual monitoring. Growoya's pots were brittle. Kyari leaned into gifting angles. None combined durable + organic + truly hands-off — that was the wedge.</p>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">The brand had no positioning yet</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">Plant Diaper came to the engagement without settled product sizing, bundles, or pricing. UX started upstream — helping define the product lineup and voice before a single screen was drawn.</p>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">Trust is the conversion blocker</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">Organic, sustainable claims are everywhere. Buyers are sceptical. Any site that led with features before building credibility would lose the user before the add-to-cart. Sequence mattered.</p>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr] gap-4 py-8 border-t border-b border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">04</span>
-        <div>
-          <h3 class="font-serif font-bold text-[22px] mb-2">Nurseries needed their own front door</h3>
-          <p class="text-gray-600 leading-relaxed max-w-[820px]">Wholesale buyers found nothing useful on competitor sites — they bounced. A dedicated partner flow with wholesale pricing and training support was a gap nobody had filled well.</p>
-        </div>
-      </div>
-    </div>
+    <ol class="journey" aria-label="Customer experience flow in four stages">
+      <li class="jstep">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="ill" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 48h48"/><path d="M32 48V30"/><path d="M32 36c-10 0-14-8-14-14 10 0 14 8 14 14zM32 32c8 0 12-8 12-14-8 0-12 8-12 14z"/></svg></span>
+        <span class="k">Stage 1</span><h3>DISCOVER</h3><p>Introduce the gardening problem and Plant Diaper's value proposition.</p>
+      </li>
+      <li class="jstep cur">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="ill" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="27" cy="27" r="15"/><path d="M38 38l14 14"/><path d="M27 36V22M27 28c-5 0-7-4-7-7 5 0 7 4 7 7zM27 26c4 0 6-4 6-7-4 0-6 4-6 7z"/></svg></span>
+        <span class="k">Stage 2</span><h3>UNDERSTAND</h3><p>Explain the product, its mechanism, and how it fits into a gardening routine.</p>
+      </li>
+      <li class="jstep">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="ill" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 10v42M20 52h24M12 20h40"/><path d="M12 20l-6 14h12zM52 20l-6 14h12z"/></svg></span>
+        <span class="k">Stage 3</span><h3>EVALUATE</h3><p>Present supporting information, benefits, and relevant comparisons.</p>
+      </li>
+      <li class="jstep">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="ill" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14h8l6 26h26l6-18H20"/><circle cx="26" cy="50" r="3"/><circle cx="44" cy="50" r="3"/><path d="M36 28v-10M36 22c-4 0-6-3-6-6 4 0 6 3 6 6z"/></svg></span>
+        <span class="k">Stage 4</span><h3>ACT</h3><p>Give users a clear path to explore products, calculate potential savings, or make a purchase.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
-<!-- ================= 04 THE SOLUTION ================= -->
-<section class="bg-cream">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">04</span>
-      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Solution</h2>
+<!-- 05 WEBSITE -->
+<section id="website">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">05</span><span class="mono">The Website Design</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <h2>An eight-page experience built around product education.</h2>
+        <p class="lede">The design brings together product storytelling, practical information, and purchase-oriented interactions.</p>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>plant-diaper / home</span></div>
+      <figure class="slot contain" style="--ar:16 / 10" data-asset="homepage-full"><img src="assets/pd_home_wide.jpg" alt="Plant Diaper homepage" style="object-position:top;">
+        
+        
+      </figure>
+    </div>
+    <div class="screens">
+      <div class="screen">
+        <div class="slotwrap">
+          <figure class="slot" style="--ar:3 / 4" data-asset="screen-a"><img src="assets/pd_home_a.jpg" alt="Plant Diaper homepage opening screen" style="object-position:top;"></figure>
+          <span class="pin" style="left:12px;top:14%" aria-hidden="true">1</span>
+          <span class="pin" style="right:12px;bottom:12%" aria-hidden="true">5</span>
+        </div>
+        <ul><li><span class="pin">1</span>Lead with the benefit</li><li><span class="pin">5</span>Keep the next step clear</li></ul>
+      </div>
+      <div class="screen">
+        <div class="slotwrap">
+          <figure class="slot" style="--ar:3 / 4" data-asset="screen-b"><img src="assets/s_pd_product.jpg" alt="Plant Diaper product information page" style="object-position:top;"></figure>
+          <span class="pin" style="left:12px;top:22%" aria-hidden="true">2</span>
+          <span class="pin" style="right:12px;top:64%" aria-hidden="true">4</span>
+        </div>
+        <ul><li><span class="pin">2</span>Explain how it works</li><li><span class="pin">4</span>Make evidence accessible</li></ul>
+      </div>
+      <div class="screen">
+        <div class="slotwrap">
+          <figure class="slot" style="--ar:3 / 4" data-asset="screen-c"><img src="assets/s_pd_shop.jpg" alt="Plant Diaper shop page" style="object-position:top;"></figure>
+          <span class="pin" style="left:12px;top:30%" aria-hidden="true">3</span>
+        </div>
+        <ul><li><span class="pin">3</span>Support product discovery</li></ul>
+      </div>
     </div>
 
-    <p class="text-gray-600 text-[19px] leading-relaxed max-w-[860px] mb-12">
-      An eight-page site built around one narrative: durable, organic, hands-off. The homepage is a persuasion
-      sequence — hero that sells the feeling of gardening first, then the product, then the five-layer mechanism
-      explained simply, then credibility stats, then a 90-day comparison, then the CTA. Trust is earned before the
-      ask is made. Beyond the homepage: a product finder for buyers who are ready, a wholesale partner flow for
-      Olivias, a blog for between-purchase presence, and a full support suite (FAQ, shipping, returns, contact) so
-      it works as a real storefront.
-    </p>
-
-    <div class="flex items-center gap-3 mb-6">
-      <span class="w-6 h-px bg-forest"></span>
-      <span class="font-mono text-[13px] tracking-widest text-gray-400">WHAT IT DOES</span>
+    <div class="dmap" aria-label="Design decision map">
+      <div class="dmap-h" aria-hidden="true"><span>#</span><span>DESIGN DECISION</span><span>WHAT IT DOES</span><span></span><span>SEEN IN</span></div>
+      <div class="drow"><span class="pin">1</span><h3>Lead with the benefit</h3><p>The homepage introduces the gardening problem before presenting the product.</p><div class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div><span class="chip"><span class="thumb" aria-hidden="true"></span><span>Screen A</span></span></div>
+      <div class="drow"><span class="pin">2</span><h3>Explain how it works</h3><p>Visual storytelling helps users understand the product mechanism.</p><div class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div><span class="chip"><span class="thumb" aria-hidden="true"></span><span>Screen B</span></span></div>
+      <div class="drow"><span class="pin">3</span><h3>Support product discovery</h3><p>Organised product information helps users explore the offering.</p><div class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div><span class="chip"><span class="thumb" aria-hidden="true"></span><span>Screen C</span></span></div>
+      <div class="drow"><span class="pin">4</span><h3>Make evidence accessible</h3><p>Supporting information helps customers evaluate the product's relevance to their needs.</p><div class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div><span class="chip"><span class="thumb" aria-hidden="true"></span><span>Screen B</span></span></div>
+      <div class="drow"><span class="pin">5</span><h3>Keep the next step clear</h3><p>Calls to action connect learning with product exploration and purchase.</p><div class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div><span class="chip"><span class="thumb" aria-hidden="true"></span><span>Screen A</span></span></div>
     </div>
-
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Full persuasion-sequence homepage (8 distinct sections)</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Product finder with size + use-case filtering</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Wholesale partner application and pricing flow</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Blog and community section for organic retention</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Live savings calculator — the interactive centrepiece</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">FAQ, shipping, returns, and contact support pages</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">90-day growth comparison: with vs. without Plant Diaper</p>
-      </div>
-      <div class="bg-alt border border-black/5 p-5 flex gap-3">
-        <span class="text-forest mt-1">✦</span>
-        <p class="text-gray-700 leading-relaxed">Selling the feeling of gardening first, then the product.</p>
-      </div>
-    </div>
-    <div class="gal-head">
-      <div class="gal-label"><i></i><span>THE SCREENS</span></div>
-      <a class="figma-btn" href="https://www.figma.com/proto/XdLTZmgURIts88kM13OEgJ/Plant-diaper-design?node-id=1-3&amp;viewport=1166%2C402%2C0.1&amp;scaling=min-zoom&amp;starting-point-node-id=1%3A2419&amp;page-id=0%3A1" target="_blank" rel="noopener">VIEW FIGMA PROTOTYPE <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    </div>
-    <div class="gal " style="--c:3">
-      <figure class="shot tall"><div class="shot-win"><img src="assets/s_pd_home.jpg" alt="Home" loading="lazy" /></div><figcaption>Home</figcaption></figure>
-      <figure class="shot tall"><div class="shot-win"><img src="assets/s_pd_shop.jpg" alt="Shop" loading="lazy" /></div><figcaption>Shop</figcaption></figure>
-      <figure class="shot tall"><div class="shot-win"><img src="assets/s_pd_product.jpg" alt="Product info" loading="lazy" /></div><figcaption>Product info</figcaption></figure>
-      <figure class="shot tall"><div class="shot-win"><img src="assets/s_pd_about.jpg" alt="About us" loading="lazy" /></div><figcaption>About us</figcaption></figure>
-      <figure class="shot tall"><div class="shot-win"><img src="assets/s_pd_distributors.jpg" alt="Distributors" loading="lazy" /></div><figcaption>Distributors</figcaption></figure>
-      <figure class="shot tall"><div class="shot-win"><img src="assets/s_pd_blog.jpg" alt="Blog" loading="lazy" /></div><figcaption>Blog</figcaption></figure>
-      <figure class="shot tall"><div class="shot-win"><img src="assets/s_pd_faq.jpg" alt="FAQ" loading="lazy" /></div><figcaption>FAQ</figcaption></figure>
-      <figure class="shot tall"><div class="shot-win"><img src="assets/s_pd_shipping.jpg" alt="Shipping policy" loading="lazy" /></div><figcaption>Shipping policy</figcaption></figure>
-      <figure class="shot tall"><div class="shot-win"><img src="assets/s_pd_returns.jpg" alt="Returns & refunds" loading="lazy" /></div><figcaption>Returns & refunds</figcaption></figure>
-      <figure class="shot "><div class="shot-win"><img src="assets/s_pd_contact.jpg" alt="Contact us" loading="lazy" /></div><figcaption>Contact us</figcaption></figure>
+    <div class="gx-head"><span class="gx-label">All pages · scroll inside each frame</span><a class="gx-btn" href="https://www.figma.com/proto/XdLTZmgURIts88kM13OEgJ/Plant-diaper-design?node-id=1-3&amp;viewport=1166%2C402%2C0.1&amp;scaling=min-zoom&amp;starting-point-node-id=1%3A2419&amp;page-id=0%3A1" target="_blank" rel="noopener">View Figma prototype <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+    <div class="gx " style="--c:3">
+    <figure class="gx-shot tall"><div class="gx-win"><img src="assets/s_pd_home.jpg" alt="Home" loading="lazy"></div><figcaption>Home</figcaption></figure>
+    <figure class="gx-shot tall"><div class="gx-win"><img src="assets/s_pd_shop.jpg" alt="Shop" loading="lazy"></div><figcaption>Shop</figcaption></figure>
+    <figure class="gx-shot tall"><div class="gx-win"><img src="assets/s_pd_product.jpg" alt="Product information" loading="lazy"></div><figcaption>Product information</figcaption></figure>
+    <figure class="gx-shot tall"><div class="gx-win"><img src="assets/s_pd_about.jpg" alt="About us" loading="lazy"></div><figcaption>About us</figcaption></figure>
+    <figure class="gx-shot tall"><div class="gx-win"><img src="assets/s_pd_distributors.jpg" alt="Distributors" loading="lazy"></div><figcaption>Distributors</figcaption></figure>
+    <figure class="gx-shot tall"><div class="gx-win"><img src="assets/s_pd_blog.jpg" alt="Blog" loading="lazy"></div><figcaption>Blog</figcaption></figure>
+    <figure class="gx-shot tall"><div class="gx-win"><img src="assets/s_pd_faq.jpg" alt="FAQ" loading="lazy"></div><figcaption>FAQ</figcaption></figure>
+    <figure class="gx-shot tall"><div class="gx-win"><img src="assets/s_pd_shipping.jpg" alt="Shipping policy" loading="lazy"></div><figcaption>Shipping policy</figcaption></figure>
+    <figure class="gx-shot tall"><div class="gx-win"><img src="assets/s_pd_returns.jpg" alt="Returns and refunds" loading="lazy"></div><figcaption>Returns and refunds</figcaption></figure>
+    <figure class="gx-shot "><div class="gx-win"><img src="assets/s_pd_contact.jpg" alt="Contact us" loading="lazy"></div><figcaption>Contact us</figcaption></figure>
     </div>
 
   </div>
 </section>
 
-<!-- ================= 05 INTERACTIVE CALCULATOR ================= -->
-<section class="bg-alt">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-8">
-      <span class="font-serif num-watermark text-[80px] leading-none">05</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
-        <h2 class="font-serif font-bold text-[30px] sm:text-[36px] md:text-[42px] leading-none">The Interactive Piece — Calculate Your Savings</h2>
+<!-- 06 CALCULATOR -->
+<section id="calculator">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">06</span><span class="mono">Interactive Piece: Calculate Your Savings</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body">
+        <h2>What could water savings mean for your garden?</h2>
+        <p class="lede">A static percentage communicates a general claim. An interactive calculator gives visitors a way to explore potential savings using their own inputs.</p>
+        <p class="lede">The calculator was designed to make the product's value feel more relevant to an individual's gardening context.</p>
       </div>
     </div>
-    <p class="text-gray-600 text-[17px] leading-relaxed max-w-[780px] mb-12">
-      Enter your plant count, type, and watering frequency. It estimates annual water saved and the
-      trees-equivalent, running on real per-plant data across 12 plant types.
-    </p>
-
-    <div class="grid md:grid-cols-3 gap-6 mb-4">
-      <div class="bg-cream p-6">
-        <p class="font-mono text-[11px] tracking-widest text-gray-400 mb-3">HOW MANY PLANTS?</p>
-        <p class="font-serif text-[40px] leading-none mb-4"><span id="plantCountVal">37</span> <span class="font-sans text-[18px] text-gray-400 font-normal">plants</span></p>
-        <input type="range" id="plantCount" min="1" max="100" value="37" class="w-full" />
-        <div class="flex justify-between font-mono text-[11px] text-gray-400 mt-1"><span>1</span><span>100+</span></div>
-      </div>
-
-      <div class="bg-cream p-6">
-        <p class="font-mono text-[11px] tracking-widest text-gray-400 mb-3">WHAT PLANT DO YOU HAVE?</p>
-        <select id="plantType" class="w-full border border-black/15 px-4 py-3 mb-4 bg-white font-medium text-[17px] focus:outline-none focus:border-forest">
-          <option value="0.5">Succulents / Cacti</option>
-          <option value="0.4">Herbs (Basil, Mint)</option>
-          <option value="0.75">Lettuce / Greens</option>
-          <option value="0.75">Carrots / Radishes</option>
-          <option value="1.5" selected>Indoor Plants</option>
-          <option value="1.5">Peppers</option>
-          <option value="1.5">Beans</option>
-          <option value="2">Flowering Plants</option>
-          <option value="2.5">Cucumbers</option>
-          <option value="3">Shrubs / Outdoor</option>
-          <option value="3">Tomatoes</option>
-          <option value="4">Zucchini / Squash</option>
-        </select>
-        <p class="font-mono text-[11px] tracking-widest text-gray-400 mb-1">WATER PER PLANT</p>
-        <p class="font-serif text-[28px]"><span id="waterPerPlantVal">1.5</span>L</p>
-      </div>
-
-      <div class="bg-cream p-6">
-        <p class="font-mono text-[11px] tracking-widest text-gray-400 mb-3">HOW MANY TIMES A WEEK DO YOU WATER?</p>
-        <p class="font-serif text-[40px] leading-none mb-4"><span id="freqVal">3</span> <span class="font-sans text-[18px] text-gray-400 font-normal">times</span></p>
-        <input type="range" id="freq" min="1" max="10" value="3" class="w-full" />
-        <div class="flex justify-between font-mono text-[11px] text-gray-400 mt-1"><span>1</span><span>10</span></div>
-      </div>
-    </div>
-
-    <div class="bg-forest text-white p-8 md:p-10 rounded-sm">
-      <div class="grid md:grid-cols-2 gap-8 md:gap-0">
-        <div class="md:border-r md:border-white/15 md:pr-10">
-          <p class="font-mono text-[11px] tracking-widest text-white/50 mb-6">YOUR ANNUAL SAVINGS</p>
-          <div class="flex items-start gap-3 mb-6">
-            <span class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0">💧</span>
-            <div>
-              <p class="text-white/60 text-[14px] mb-1">Water Saved</p>
-              <p class="font-serif text-[36px] leading-none"><span id="waterSavedVal">4.3</span> <span class="font-sans text-[16px] text-white/60 font-normal">thousand liters</span></p>
+    <div class="calc">
+      <div class="main">
+        <div class="browser">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>plant-diaper / calculate-your-savings</span></div>
+          <div class="pdc" id="pdc">
+            <h3>Calculate Your Savings</h3>
+            <p class="sub">Discover how much water you can save annually with Plant Diaper</p>
+            <div class="grid">
+              <div class="card">
+                <label for="pdc-plants">How many plants?</label>
+                <div class="big"><span id="pdc-plants-v">37</span><small>plants</small></div>
+                <input type="range" id="pdc-plants" min="1" max="100" value="37">
+                <div class="rng"><span>1</span><span>100+</span></div>
+              </div>
+              <div class="card">
+                <label for="pdc-type">What plant do you have?</label>
+                <select id="pdc-type">
+                  <option value="0.5">Succulents / Cacti</option>
+                  <option value="0.4">Herbs (Basil, Mint)</option>
+                  <option value="0.75">Lettuce / Greens</option>
+                  <option value="0.75">Carrots / Radishes</option>
+                  <option value="1.5" selected>Indoor Plants</option>
+                  <option value="1.5">Peppers</option>
+                  <option value="1.5">Beans</option>
+                  <option value="2">Flowering Plants</option>
+                  <option value="2.5">Cucumbers</option>
+                  <option value="3">Shrubs / Outdoor</option>
+                  <option value="3">Tomatoes</option>
+                  <option value="4">Zucchini / Squash</option>
+                </select>
+                <div class="wpp"><span>Water per plant</span><b><span id="pdc-wpp">1.5</span>L</b></div>
+              </div>
+              <div class="card">
+                <label for="pdc-freq">How many times a week do you water?</label>
+                <div class="big"><span id="pdc-freq-v">3</span><small>times</small></div>
+                <input type="range" id="pdc-freq" min="1" max="10" value="3">
+                <div class="rng"><span>1</span><span>10</span></div>
+              </div>
+            </div>
+            <div class="res" aria-live="polite">
+              <div>
+                <div class="k">Your annual savings</div>
+                <div class="row"><span class="ic" aria-hidden="true">💧</span><div><small>Water saved</small><b><span id="pdc-water">4.3</span><i id="pdc-unit">thousand liters</i></b></div></div>
+                <div class="row"><span class="ic" aria-hidden="true">🍃</span><div><small>Environmental impact</small><b>40%<i>less fertilizer loss</i></b></div></div>
+              </div>
+              <div class="eq">
+                <span class="ic2" aria-hidden="true">🌱</span>
+                <small>That’s equivalent to</small>
+                <b id="pdc-trees">86</b>
+                <small>trees planted</small>
+                <a class="cta" href="#calculator">Start saving today</a>
+              </div>
             </div>
           </div>
-          <div class="flex items-start gap-3">
-            <span class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center shrink-0">🌱</span>
-            <div>
-              <p class="text-white/60 text-[14px] mb-1">Environmental Impact</p>
-              <p class="font-serif text-[36px] leading-none">40% <span class="font-sans text-[16px] text-white/60 font-normal">less fertilizer loss</span></p>
-            </div>
-          </div>
-        </div>
-        <div class="md:pl-10 flex flex-col items-center justify-center text-center">
-          <p class="font-mono text-[11px] tracking-widest text-white/50 mb-3">THAT'S EQUIVALENT TO</p>
-          <p class="font-serif text-[64px] leading-none mb-2"><span id="treesVal">86</span></p>
-          <p class="text-white/70 mb-6">trees planted</p>
-          <a href="#" class="border border-white/40 text-white font-mono text-[12px] tracking-widest px-6 py-3 rounded-full hover:bg-white/10 transition-colors">START SAVING TODAY</a>
+
         </div>
       </div>
+      <div class="side">
+        <div class="sticky"><span class="pin" aria-hidden="true">!</span><b>IMPORTANT</b>The output represents an estimate based on the calculator's assumptions, not a guarantee of actual water savings.</div>
+        <span class="cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 2l7 19 2.5-7.5L20 11z" style="fill:var(--select)" stroke="#fff" stroke-width="1.2"/></svg><b>Try it</b></span>
+      </div>
+    </div>
+    <p class="mono" style="margin-top:clamp(48px,6vw,72px)">The interaction</p>
+    <ol class="iflow" style="margin-top:16px" aria-label="Calculator interaction in three stages">
+      <li class="istage">
+        <svg class="ill" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="12" width="44" height="12"/><rect x="6" y="32" width="44" height="12"/><path d="M12 18h2M12 38h2"/></svg>
+        <h3>ENTER INPUTS</h3><p>1. Enter the relevant gardening inputs.</p>
+      </li>
+      <li class="con" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></li>
+      <li class="istage">
+        <svg class="ill" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="6" width="36" height="44"/><rect x="16" y="12" width="24" height="10"/><path d="M18 30h2M28 30h2M38 30h-2M18 38h2M28 38h2M18 44h2M28 44h2"/></svg>
+        <h3>CALCULATE</h3><p>2. Explore the estimated results.</p>
+      </li>
+      <li class="con g" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></li>
+      <li class="istage g">
+        <svg class="ill" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M28 6c8 12 14 20 14 28a14 14 0 0 1-28 0c0-8 6-16 14-28z"/><path d="M22 36l4 4 8-8"/></svg>
+        <h3>VIEW ESTIMATED SAVINGS</h3><p>3. Understand what the numbers mean for the user's situation.</p>
+      </li>
+    </ol>
+    <p class="lede closing-line">The calculator translates an abstract benefit into a more tangible experience.</p>
+  </div>
+</section>
+
+<!-- 07 LEARNED -->
+<section id="learned">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-meta"><span class="sec-num">07</span><span class="mono">Things I Learned</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"></div>
+    </div>
+    <div class="learn">
+      <div class="lrow"><span class="n">01</span><h3>UX begins before the interface.</h3><p>When a product's positioning, sizing, or offering is still being defined, design needs to consider those upstream business decisions. The experience cannot be separated from what the business promises.</p></div>
+      <div class="lrow"><span class="n">02</span><h3>Information order shapes persuasion.</h3><p>A website is not just a collection of screens. Introducing the problem, explaining the product, establishing credibility, and then presenting a call to action creates a more considered journey.</p></div>
+      <div class="lrow"><span class="n">03</span><h3>Visual design shapes expectations.</h3><p>Colour, spacing, imagery, and interaction cues influence how people perceive a product before they have fully understood it. Design must make the product feel approachable without relying on aesthetics alone to establish trust.</p></div>
+      <div class="lrow"><span class="n">04</span><h3>Claims need context.</h3><p>A benefit becomes more meaningful when people understand how it works, what supports it, and how it relates to their own needs. Product education is part of the experience, not an afterthought.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ================= HIGHLIGHT (forest band) ================= -->
-<section class="relative bg-forest overflow-hidden">
-  <span class="absolute -top-4 right-6 md:right-10 font-serif text-white/10 text-[180px] md:text-[220px] leading-none select-none">05</span>
-  <div class="relative max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-center gap-3 mb-8">
-      <span class="w-6 h-px bg-white/40"></span>
-      <span class="font-mono text-[13px] tracking-widest text-white/50">HIGHLIGHT OF THE PROJECT</span>
-    </div>
-    <h2 class="font-serif font-bold text-white text-[30px] sm:text-[40px] md:text-[46px] leading-tight max-w-[900px] mb-8">"From a static stat block to something the user can actually verify for their own plants."</h2>
-    <p class="text-white/70 text-[17px] leading-relaxed max-w-[780px]">
-      The calculator went through four iterations. The first was a fixed infographic — impressive-looking, but
-      passive. The brief kept asking: what if someone could input their actual plant count and type? By iteration
-      four it ran on per-plant water data across 12 plant types, from 0.5L for succulents to 4L for zucchini. The
-      number changes with what you actually grow. That shift from brand claim to personal proof is what made it
-      worth showing in a portfolio.
-    </p>
+<!-- FINAL TAKEAWAY -->
+<section class="final">
+  <div class="wrap">
+    <div class="rule"><span class="mono">Final takeaway</span><a class="mono" href="#top" style="text-decoration:none">&uarr; Back to top</a></div>
+    <blockquote>Good product experiences don't simply ask people to buy. <span>They help people understand why the product matters.</span></blockquote>
+    <div class="support"><p>Plant Diaper challenged me to think beyond individual screens and consider how product positioning, research, content, and interaction work together to support a purchase decision.</p></div>
   </div>
 </section>
+</main>
 
-<!-- ================= 06 THE DESIGNS (prototype link) ================= -->
-<section class="bg-cream">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-14">
-      <span class="font-serif num-watermark text-[80px] leading-none">06</span>
-      <div>
-        <span class="block w-8 h-[3px] bg-forest mb-3"></span>
-        <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">The Designs</h2>
-      </div>
-    </div>
-
-    <div class="max-w-[900px] mx-auto">
-      <a href="https://www.figma.com/proto/XdLTZmgURIts88kM13OEgJ/Plant-diaper-design?node-id=1-3&amp;viewport=1166%2C402%2C0.1&amp;scaling=min-zoom&amp;starting-point-node-id=1%3A2419&amp;page-id=0%3A1"
-         target="_blank" rel="noopener" class="relative block group">
-        <img src="assets/plantdiaper_laptop_frame.jpg" alt="Laptop mockup framing the interactive prototype" class="w-full select-none" draggable="false" />
-        <div class="absolute flex items-center justify-center bg-forest/5 group-hover:bg-forest/10 transition-colors" style="left:24.3%; right:24%; top:28.4%; bottom:22.2%;">
-          <span class="flex items-center gap-2 bg-forest text-white font-mono text-[12px] sm:text-[13px] tracking-widest px-4 py-2.5 sm:px-5 sm:py-3 shadow-lg group-hover:bg-forest/90 transition-colors">
-            ▶ &nbsp;LAUNCH PROTOTYPE
-          </span>
-        </div>
-      </a>
-      <p class="text-center font-mono text-[12px] text-gray-400 mt-4">Interactive Figma prototype — opens in a new tab.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 07 WHAT I LEARNED ================= -->
-<section class="bg-alt">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-20">
-    <div class="flex items-baseline gap-6 mb-10">
-      <span class="font-serif num-watermark text-[80px] leading-none">07</span>
-      <h2 class="font-serif font-bold text-[36px] md:text-[42px] leading-none">What I Learned</h2>
-    </div>
-
-    <div class="flex flex-col">
-      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">01</span>
-        <h3 class="font-serif font-bold text-[22px] leading-snug">Business and UX are not separate disciplines</h3>
-        <p class="text-gray-600 leading-relaxed">Plant Diaper came to us with almost nothing decided — not even product sizing or combos. Before I could design a single screen, we had to help position the business itself. UX starts upstream of the interface: pricing, product lineup, and brand voice all shape what "good design" even means.</p>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">02</span>
-        <h3 class="font-serif font-bold text-[22px] leading-snug">Flow and content order do the persuading</h3>
-        <p class="text-gray-600 leading-relaxed">The site isn't just a set of screens — it's a sequence. A hero carousel that sells the feeling of gardening, then the product intro, then how it works, then credibility metrics, then comparison videos, then the CTA. Each step earns the next. Skip one and the CTA feels premature.</p>
-      </div>
-      <div class="grid md:grid-cols-[100px_1fr_2fr] gap-6 py-10 border-t border-b border-black/10">
-        <span class="font-serif num-watermark text-[36px] leading-none">03</span>
-        <h3 class="font-serif font-bold text-[22px] leading-snug">Every visual choice is an emotional lever</h3>
-        <p class="text-gray-600 leading-relaxed">Colour, button shape, even spacing all provoke a feeling before the user reads a word. My job wasn't just to make it usable. It was to make the user feel like Plant Diaper is the answer to their garden problem before they've consciously decided to buy.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FINAL STATS BAR ================= -->
-<section class="bg-alt border-t border-black/10">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-16">
-    <div class="flex flex-wrap justify-around gap-10 text-center">
-      <div>
-        <p class="font-serif text-forest text-[48px] leading-none mb-2">50%</p>
-        <p class="font-mono text-[12px] tracking-widest text-gray-400">WATER REDUCTION</p>
-      </div>
-      <div>
-        <p class="font-serif text-forest text-[48px] leading-none mb-2">8</p>
-        <p class="font-mono text-[12px] tracking-widest text-gray-400">PAGES DESIGNED END-TO-END</p>
-      </div>
-      <div>
-        <p class="font-serif text-forest text-[48px] leading-none mb-2">4</p>
-        <p class="font-mono text-[12px] tracking-widest text-gray-400">CALCULATOR ITERATIONS</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8">
-  <a href="index.html#work" class="inline-flex items-center gap-2 font-mono text-[13px] tracking-widest text-gray-500 hover:text-ink transition-colors">
-    <span>←</span> PREVIOUS
-  </a>
-</div>
-
-<!-- ================= FOOTER ================= -->
-<footer class="border-t border-black/10">
-  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-8 flex items-center justify-between flex-wrap gap-4">
-    <p class="font-mono text-[12px] text-gray-400">Jagruti Ghuge · Pune, India · 2026</p>
-    <span class="font-mono italic text-[12px] text-gray-400">designed with curiosity</span>
-  </div>
-</footer>
+<footer><div class="wrap"><span>Jagruti Ghuge · Pune, India · 2026</span><span>designed + built with curiosity</span></div></footer>
 
 <script>
-  const TREE_L = 50; // liters saved per tree-equivalent (4,329 L saved = 86 trees in the design reference)
-
-  const plantCountEl = document.getElementById('plantCount');
-  const plantTypeEl = document.getElementById('plantType');
-  const freqEl = document.getElementById('freq');
-
-  function updateSliderFill(el) {
-    const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
-    el.style.setProperty('--fill', pct + '%');
-  }
-
-  function calculate() {
-    const plants = parseFloat(plantCountEl.value);
-    const litersPerPlant = parseFloat(plantTypeEl.value);
-    const freq = parseFloat(freqEl.value);
-
-    document.getElementById('plantCountVal').textContent = plants;
-    document.getElementById('freqVal').textContent = freq;
-    document.getElementById('waterPerPlantVal').textContent = +litersPerPlant.toFixed(2);
-
-    const weeklyLiters = plants * litersPerPlant * freq;
-    const annualLiters = weeklyLiters * 52;
-    const savedLiters = annualLiters * 0.5;
-    const savedThousandLiters = savedLiters / 1000;
-    const trees = Math.floor(savedLiters / TREE_L);
-
-    document.getElementById('waterSavedVal').textContent = savedThousandLiters.toFixed(1);
-    document.getElementById('treesVal').textContent = trees;
-  }
-
-  [plantCountEl, freqEl].forEach(el => {
-    updateSliderFill(el);
-    el.addEventListener('input', () => { updateSliderFill(el); calculate(); });
-  });
-  plantTypeEl.addEventListener('change', calculate);
-  calculate();
+(function(){
+  var r=document.getElementById('ruler');
+  if(r){var h='';for(var x=0;x<=2400;x+=100){h+='<span style="left:'+x+'px">'+x+'</span>';}r.innerHTML=h;}
+  function coords(){document.querySelectorAll('[data-coord]').forEach(function(el){var s=el.closest('section');if(!s)return;el.textContent='X 0 · Y '+Math.round(s.getBoundingClientRect().top+window.scrollY);});}
+  coords(); window.addEventListener('resize',coords); window.addEventListener('load',coords);
+})();
 </script>
 
-
-
-<script src="assets/gallery.js"></script>
-</body>
-</html>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var plants=$('pdc-plants'),type=$('pdc-type'),freq=$('pdc-freq');
+  if(!plants)return;
+  function fill(el){el.style.setProperty('--f',((el.value-el.min)/(el.max-el.min))*100+'%')}
+  function calc(){
+    var n=+plants.value,l=+type.value,f=+freq.value;
+    $('pdc-plants-v').textContent=n;$('pdc-freq-v').textContent=f;$('pdc-wpp').textContent=+l.toFixed(2);
+    var saved=n*l*f*52*0.5;           // litres saved per year: half of the water used
+    if(saved>=1000){$('pdc-water').textContent=(saved/1000).toFixed(1);$('pdc-unit').textContent='thousand liters'}
+    else{$('pdc-water').textContent=Math.round(saved);$('pdc-unit').textContent='liters'}
+    $('pdc-trees').textContent=Math.floor(saved/50);   // 1 tree per 50 litres saved
+  }
+  [plants,freq].forEach(function(el){fill(el);el.addEventListener('input',function(){fill(el);calc()})});
+  type.addEventListener('change',calc);calc();
+})();
+</script>
+<script src="assets/gx.js"></script>
+</body></html>
