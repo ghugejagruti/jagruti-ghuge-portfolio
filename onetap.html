@@ -70,6 +70,11 @@ a:focus-visible{outline:2px solid var(--select); outline-offset:3px}
 .ruler{position:relative; height:26px; overflow:hidden; border-top:1px solid var(--rule);
   background:repeating-linear-gradient(to right, var(--muted) 0 1px, transparent 1px 100px) 0 0/100% 10px no-repeat, repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 10px) 0 0/100% 5px no-repeat}
 .ruler span{position:absolute; top:9px; font-family:var(--f-mono); font-size:14px; line-height:1; color:var(--muted); transform:translateX(4px)}
+.nav{display:flex; gap:0; flex-wrap:wrap}
+.nav a{font-family:var(--f-mono); font-size:14px; text-decoration:none; color:var(--muted); padding:6px 10px; border-bottom:2px solid transparent; transition:color .2s,border-color .2s,background .2s}
+.nav a:hover{color:var(--ink); background:var(--paper-2)}
+.nav a.on{color:var(--ink); border-color:var(--acc)}
+@media (max-width:1180px){.nav{display:none}}
 @media (max-width:700px){.crumb{display:none}}
 
 /* sections */
@@ -97,6 +102,7 @@ section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule)
 .hero{border-top:0; padding-block:clamp(48px, 7vw, 96px) clamp(64px, 8vw, 104px)}
 .hero-grid{display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); column-gap:24px; row-gap:48px; align-items:start}
 .hero-copy{grid-column:1 / span 8; display:flex; flex-direction:column; gap:28px; min-width:0}
+.hero-copy .selbox{margin-bottom:14px}
 .tags{display:flex; flex-wrap:wrap; gap:8px}
 .tags span{font-family:var(--f-mono); font-size:14px; color:var(--ink); border:1px solid var(--ink); padding:3px 10px; background:var(--note)}
 .tags span:first-child{background:var(--acc); color:var(--paper); border-color:var(--acc)}
@@ -108,6 +114,7 @@ section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule)
 .stat{padding:24px 24px 24px 0; display:flex; flex-direction:column; gap:8px}
 .stat + .stat{border-left:1px solid var(--rule); padding-left:24px}
 .stat b{font-family:var(--f-display); font-size:clamp(56px, 7vw, 104px); line-height:.9; font-weight:600; letter-spacing:-.05em; color:var(--acc)}
+.stat b.sm{font-size:clamp(40px, 5vw, 72px); line-height:1.15}
 .stat span{font-family:var(--f-mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink)}
 .meta{grid-column:1 / -1; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); margin:0}
 .meta div{padding:4px 20px 4px 0; min-width:0}
@@ -153,6 +160,8 @@ section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule)
 .persona .n{font-family:var(--f-display); font-size:44px; line-height:1; font-weight:600; color:var(--acc); letter-spacing:-.03em}
 .persona h3{font-size:24px; font-weight:600}
 .persona p{font-size:16px}
+.persona ul{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:10px; font-size:16px}
+.persona li::marker{color:var(--acc)}
 .persona .glyph{display:flex; gap:8px; align-items:center}
 .persona .glyph svg{width:40px; height:40px; color:var(--ink)}
 .mid{display:flex; flex-direction:column; align-items:center; gap:10px; padding:0 8px; position:relative}
@@ -226,6 +235,7 @@ section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule)
 .drow .txt h3{font-size:20px; line-height:1.4; font-weight:600}
 .drow .txt .ev{font-size:15px; color:var(--muted); border-top:1px dashed var(--rule); padding-top:12px}
 @media (max-width:900px){.drow .canvas,.drow .txt{grid-column:1 / -1}}
+.wimg{display:block; width:auto; max-width:100%; max-height:520px; height:auto; margin:0 auto; border:1px solid var(--rule)}
 /* widget sketches */
 .wcard{background:var(--note); border:1px solid var(--ink); padding:16px; display:flex; flex-direction:column; gap:10px; min-width:0}
 .wcard .wh{display:flex; justify-content:space-between; align-items:center; gap:10px}
@@ -262,6 +272,13 @@ section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule)
 .fmt span{font-size:14px; color:var(--muted)}
 @media (max-width:560px){.pair,.formats{grid-template-columns:1fr}}
 
+/* what I learned */
+.learn{border-top:1px solid var(--ink)}
+.lrow{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:clamp(24px,4vw,72px); padding:clamp(32px,4vw,56px) 0; border-bottom:1px solid var(--rule); align-items:center}
+.lrow .n{display:block; font-family:var(--f-display); font-size:clamp(56px,6vw,88px); line-height:.9; font-weight:600; letter-spacing:-.04em; color:var(--acc); opacity:.4; margin-bottom:14px}
+.lrow h3{font-size:clamp(22px,2.3vw,30px); line-height:1.25; font-weight:600}
+.lrow p{font-size:18px; color:var(--muted); line-height:1.7}
+@media (max-width:820px){.lrow{grid-template-columns:1fr; gap:14px}}
 /* 06 validate */
 .vstats{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); border-top:1px solid var(--ink); border-bottom:1px solid var(--rule)}
 .vstats .stat b{font-size:clamp(48px, 5vw, 72px)}
@@ -287,14 +304,84 @@ section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule)
 .endnav a:hover{color:var(--acc); border-color:var(--acc)}
 footer{border-top:1px solid var(--rule); padding-block:28px}
 footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+
+/* mini animations: gentle, one-time, and switched off for reduced-motion users */
+@media (prefers-reduced-motion: no-preference){
+  .rv{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); transition-delay:var(--d,0s)}
+  .rv.in{opacity:1; transform:none}
+  .statement em{background:linear-gradient(var(--yellow),var(--yellow)) left bottom / 0% 40% no-repeat; transition:background-size 1s .35s ease; -webkit-box-decoration-break:clone; box-decoration-break:clone}
+  .statement.in em{background-size:100% 40%}
+  .persona,.find,.pr,.rnote,.lrow,.wimg,.stat{transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease}
+  .persona:hover,.pr:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(0,0,0,.14)}
+  .find:hover .n,.lrow:hover .n{opacity:1; transition:opacity .3s}
+  .drow .canvas{transition:box-shadow .3s ease}
+  .drow:hover .canvas{box-shadow:0 12px 28px rgba(0,0,0,.14)}
+  .mini{animation:floaty 7s ease-in-out infinite}
+  .hero-art .note{animation:sway 8s ease-in-out infinite}
+  .hero-art .cur{animation:drift 6s ease-in-out infinite}
+  .selbox i{animation:pulse 3.2s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:rotate(1.5deg) translateY(0)}50%{transform:rotate(1.5deg) translateY(-5px)}}
+  @keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(-2deg) translateY(-3px)}}
+  @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(-6px,6px)}}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+  .arrow svg,.mid svg.conn{transition:transform .3s}
+  .reframe:hover .arrow svg{transform:translateX(4px)}
+}
 </style>
 
 <link rel="stylesheet" href="assets/gx.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* site navigation (same as the landing page) */
+html{scroll-padding-top:128px}
+.sitenav{--n-bg:#f4f3ee;--n-ink:#1a1a1a;--n-line:rgba(0,0,0,.10);--n-blue:#62c4ee;position:sticky;top:0;z-index:40;height:56px;background:var(--n-bg);color:var(--n-ink);display:flex;align-items:stretch;justify-content:space-between;border-bottom:1px solid var(--n-line);font-family:'JetBrains Mono',monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sitenav{--n-bg:#1b1b1a;--n-ink:#f3f1ea;--n-line:rgba(255,255,255,.13)}}
+:root[data-theme="dark"] .sitenav{--n-bg:#1b1b1a;--n-ink:#f3f1ea;--n-line:rgba(255,255,255,.13)}
+.topbar{top:56px!important}
+.sitenav .sn-brand{font:700 22px/56px 'JetBrains Mono',monospace;letter-spacing:-.02em;padding-left:20px;white-space:nowrap;color:var(--n-ink);text-decoration:none}
+.sitenav .sn-tabs{position:absolute;left:50%;transform:translateX(-50%);display:flex;border-left:1px solid var(--n-line)}
+.sitenav .sn-tab{display:flex;align-items:center;justify-content:center;height:56px;padding:0 21px;border-right:1px solid var(--n-line);color:var(--n-ink);text-decoration:none;transition:background .25s}
+.sitenav .sn-tab svg{width:22px;height:22px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sitenav .sn-tab span{max-width:0;opacity:0;overflow:hidden;white-space:nowrap;font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;margin-left:0;transition:max-width .35s cubic-bezier(.3,.8,.3,1),opacity .25s,margin .35s}
+.sitenav .sn-tab:hover,.sitenav .sn-tab:focus-visible{background:rgba(98,196,238,.22)}
+.sitenav .sn-tab:hover span,.sitenav .sn-tab:focus-visible span,.sitenav .sn-tab.on span{max-width:90px;opacity:1;margin-left:8px}
+.sitenav .sn-tab.on{background:var(--n-blue);color:#111}
+.sitenav .sn-r{display:flex;align-items:center;gap:14px;padding-right:20px}
+.sitenav .sn-theme{width:34px;height:34px;border-radius:50%;border:0;background:rgba(128,128,128,.18);color:var(--n-ink);display:grid;place-items:center;cursor:pointer;transition:transform .3s}
+.sitenav .sn-theme:hover{transform:rotate(25deg) scale(1.08)}
+.sitenav .sn-theme svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sitenav .sn-theme .sun{display:none}
+:root[data-theme="dark"] .sitenav .sn-theme .sun{display:block}
+:root[data-theme="dark"] .sitenav .sn-theme .moon{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sitenav .sn-theme .sun{display:block}:root:not([data-theme="light"]) .sitenav .sn-theme .moon{display:none}}
+.sitenav .sn-dl{display:flex;align-items:center;gap:10px;border:1.5px solid var(--n-ink);padding:0 14px;height:38px;font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--n-ink);text-decoration:none;transition:background .25s,color .25s}
+.sitenav .sn-dl svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sitenav .sn-dl:hover{background:var(--n-ink);color:var(--n-bg)}
+@media (max-width:1000px){.sitenav .sn-tabs{position:static;transform:none;margin:0 auto}}
+@media (max-width:760px){.sitenav .sn-brand{display:none}.sitenav .sn-tabs{margin:0;border-left:0}.sitenav .sn-tab{padding:0 15px}.sitenav .sn-tab span{display:none!important}.sitenav .sn-dl span{display:none}.sitenav .sn-dl{padding:0 10px}.sitenav .sn-r{padding-right:10px;gap:8px;margin-left:auto}}
+</style>
+<script>try{var t=localStorage.getItem('jg-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<header class="sitenav">
+  <a href="index.html" class="sn-brand">Jagruti Ghuge</a>
+  <nav class="sn-tabs" aria-label="Site">
+    <a class="sn-tab" href="index.html" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>HOME</span></a>
+    <a class="sn-tab on" href="index.html#work" aria-label="Work" aria-current="page"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M2.5 19h19"/></svg><span>WORK</span></a>
+    <a class="sn-tab" href="index.html#about" aria-label="About me"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.2 18.2c1.3-2.2 3.2-3.2 5.8-3.2s4.5 1 5.8 3.2"/></svg><span>ABOUT ME</span></a>
+    <a class="sn-tab" href="index.html#contact" aria-label="Contact"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>CONTACT</span></a>
+  </nav>
+  <div class="sn-r">
+    <button class="sn-theme" id="snTheme" aria-label="Toggle dark mode">
+      <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    <a class="sn-dl" href="assets/Jagruti_Ghuge_Resume_2026.pdf" download><svg viewBox="0 0 24 24"><path d="M12 4v14M6 12l6 6 6-6"/></svg><span>Download resume</span></a>
+  </div>
+</header>
+<script>document.getElementById('snTheme').addEventListener('click',function(){var d=document.documentElement,cur=d.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('jg-theme',n)}catch(e){}});</script>
 <header class="topbar">
   <div class="wrap">
-    <a class="back" href="index.html#work">&larr; All projects</a>
-    <span class="crumb">OneTap · case study</span>
-    <a class="brand" href="index.html">Jagruti Ghuge</a>
+    <nav class="nav" aria-label="Case study sections"><a href="#understand">01 Understand</a><a href="#discover">02 Problems</a><a href="#reframe">03 Reframe</a><a href="#design">04 Design</a><a href="#learned">05 Learned</a></nav>
+    <a class="back" href="index.html#work">&larr; All work</a>
   </div>
   <div class="ruler" id="ruler" aria-hidden="true"></div>
 </header>
@@ -304,9 +391,10 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="tags"><span>OneTap</span><span>Product Design</span><span>UX Systems</span><span>Widget Design</span><span>Interaction Design</span><span>Figma</span></div>
+      <span class="mono">Product design · Widget design · Interaction design · Figma</span>
+      <span class="selbox" style="color:var(--acc);font-family:var(--f-display);font-weight:600;font-size:clamp(22px,2.4vw,30px);padding:8px 22px;align-self:flex-start">OneTap<i></i><i></i><i></i><i></i><span class="dims" aria-hidden="true" style="font-size:14px;padding:5px 10px">Case study 04</span></span>
       <h1>Designing profiles that are <span class="hl">easier to fill</span> and faster to understand.</h1>
-      <p class="lede">Designed a customizable profile for professionals solving the blank-page problem for the person filling out the profile for networking</p>
+      <p class="lede">Designed a customizable profile for professionals — solving the blank-page problem for the person filling out the profile for networking</p>
     </div>
     <div class="hero-art" aria-hidden="true">
       <div class="mini">
@@ -321,29 +409,16 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
     <div class="stats">
       <div class="stat"><b>6+</b><span>Widget types designed</span></div>
       <div class="stat"><b>3</b><span>Density variants per widget</span></div>
-      <div class="stat"><b>4+</b><span>Portfolio format previews</span></div>
+      <div class="stat"><b class="sm">100–150</b><span>Active users</span></div>
     </div>
     <dl class="meta">
       <div><dt>Role</dt><dd>Product Designer</dd></div>
       <div><dt>Year</dt><dd>2024</dd></div>
-      <div><dt>Team / context</dt><dd>Product design project · team details not documented</dd></div>
+      <div><dt>Team / context</dt><dd>Mentored by a senior designer</dd></div>
       <div><dt>My contribution</dt><dd>Dual-perspective mapping · archetype analysis · widget system · prototyping</dd></div>
     </dl>
   </div>
 </section>
-
-<nav class="process" aria-label="Case study process">
-  <div class="wrap">
-    <ol>
-      <li><a href="#understand"><b>01</b><span>Understand</span></a></li>
-      <li><a href="#investigate"><b>02</b><span>Investigate</span></a></li>
-      <li><a href="#discover"><b>03</b><span>Discover</span></a></li>
-      <li><a href="#reframe"><b>04</b><span>Reframe</span></a></li>
-      <li><a href="#design"><b>05</b><span>Design</span></a></li>
-      <li><a href="#validate"><b>06</b><span>Validate</span></a></li>
-    </ol>
-  </div>
-</nav>
 
 <!-- 01 UNDERSTAND -->
 <section id="understand">
@@ -351,15 +426,14 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
     <div class="sec-head">
       <div class="sec-meta"><span class="sec-num">01</span><span class="mono">Understand</span><span class="coord" data-coord aria-hidden="true"></span></div>
       <div class="sec-body">
-        <p class="statement">A professional profile is only useful if people actually fill it out — and most people <em>freeze in front of a blank 'tell us about yourself' field.</em> Beyond that, OneTap needed profiles to work for completely different kinds of professionals: a COO, a freelance photographer, a startup mentor. The page itself had to be customizable, not just the copy.</p>
-        <div class="archetypes" aria-hidden="true"><span>COO</span><span>Freelance photographer</span><span>Startup mentor</span></div>
-      </div>
+        <p class="statement">A professional profile is only useful if people actually fill it out — and most people <em>freeze in front of a blank 'tell us about yourself' field.</em></p>
+        </div>
     </div>
     <div class="duo" aria-label="The profile filler and the profile viewer, on either side of the same profile">
       <article class="persona">
         <div class="glyph"><span class="n">01</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 32l4-1 17-17-3-3-17 17z"/><path d="M24 9l3 3"/><path d="M6 36h28"/></svg></div>
         <h3>The Profile Filler</h3>
-        <p>Wants the profile to be effortless and to look impressive without overselling. Freezes at blank fields. Needs structure that prompts without constraining — something that meets them where they are, not where the product assumes they should be.</p>
+        <ul><li>Wants the profile to be effortless and to look impressive without overselling</li><li>Freezes at blank fields</li><li>Needs structure that prompts without constraining, meeting them where they are, not where the product assumes they should be</li></ul>
       </article>
       <div class="mid" aria-hidden="true">
         <span class="mono">fills</span>
@@ -370,36 +444,8 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
       <article class="persona">
         <div class="glyph"><span class="n">02</span><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20s6-11 17-11 17 11 17 11-6 11-17 11S3 20 3 20z"/><circle cx="20" cy="20" r="5"/></svg></div>
         <h3>The Profile Viewer</h3>
-        <p>Wants to quickly judge credibility and decide if this person is worth their time. Doesn't want to read a wall of text to find the actual achievement. Needs the headline before the depth, every time.</p>
+        <ul><li>Wants to quickly judge credibility and decide if this person is worth their time</li><li>Doesn't want to read a wall of text to find the actual achievement</li><li>Needs the headline before the depth, every time</li></ul>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- 02 INVESTIGATE -->
-<section id="investigate">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">02</span><span class="mono">Investigate</span><span class="coord" data-coord aria-hidden="true"></span></div>
-      <div class="sec-body"><h2>The methods that made the problem visible.</h2></div>
-    </div>
-    <div class="inv">
-      <div class="methods">
-        <article class="method"><span class="n">01</span><h3>Dual-perspective mapping (filler vs. viewer)</h3><p>Used to examine the filler and the viewer have opposite needs.</p><span class="to"><span>Finding 01</span></span></article>
-        <article class="method active"><span class="n">02 · Active method</span><h3>Professional archetype analysis</h3><p>Used to examine blank page paralysis is the core ux barrier.</p><span class="to"><span>Finding 02</span></span></article>
-        <article class="method"><span class="n">03</span><h3>Content audit of existing profile products</h3><p>Used to examine the viewer needs density control the user never thought to ask for.</p><span class="to"><span>Finding 03</span></span></article>
-        <article class="method"><span class="n">04</span><h3>Iterative widget prototyping</h3><p>Used to examine 'portfolio' means something different to every profession.</p><span class="to"><span>Finding 04</span></span></article>
-      </div>
-      <aside>
-        <span class="mono">Active method</span>
-        <h3>Professional archetype analysis</h3>
-        <div class="arch" aria-label="Professions and the portfolio format that suits each, from finding 04">
-          <div><span class="p">Designer</span><span class="arrow a" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span><span class="f">Behance grid</span></div>
-          <div><span class="p">Educator</span><span class="arrow a" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span><span class="f">YouTube thumbnail strip</span></div>
-          <div><span class="p">Strategist</span><span class="arrow a" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span><span class="f">Case study link list</span></div>
-        </div>
-        <span class="sketch-note">Pairs taken from finding 04</span>
-      </aside>
     </div>
   </div>
 </section>
@@ -408,8 +454,8 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
 <section id="discover">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">03</span><span class="mono">Discover</span><span class="coord" data-coord aria-hidden="true"></span></div>
-      <div class="sec-body"><h2>What the evidence changed.</h2></div>
+      <div class="sec-meta"><span class="sec-num">02</span><span class="mono">Problems faced</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>The problems that shaped the design.</h2></div>
     </div>
     <div class="finds">
       <div class="find"><span class="n">01</span><h3>The filler and the viewer have opposite needs</h3><p>The layout that makes the user's life easy — long free-text fields, space to say everything — is often the layout that fails the viewer. Nobody wants to read a wall of text to figure out if someone is credible. Every widget decision came back to this tension.</p></div>
@@ -425,7 +471,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
 <section id="reframe">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">04</span><span class="mono">Reframe</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-meta"><span class="sec-num">03</span><span class="mono">Reframe</span><span class="coord" data-coord aria-hidden="true"></span></div>
       <div class="sec-body"><h2>The filler and the viewer had opposite needs—and the viewer’s ease became the binding constraint.</h2></div>
     </div>
     <div class="reframe">
@@ -451,105 +497,61 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
 <section id="design">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">05</span><span class="mono">Design</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-meta"><span class="sec-num">04</span><span class="mono">Design</span><span class="coord" data-coord aria-hidden="true"></span></div>
       <div class="sec-body"><h2>The output, shown as decisions rather than a screen dump.</h2></div>
     </div>
 
     <div class="drow">
-      <div class="canvas" aria-label="Concept sketch of an Impact Card with a sentence template and a shuffle button">
-        <div class="fl"><span class="mono">Impact card</span><span class="sketch-note">Concept sketch</span></div>
-        <div class="wcard">
-          <div class="wh"><span class="mono">Impact</span><span class="shuffle"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h3l8 8h3M1 12h3l8-8h3M13 2l2 2-2 2M13 10l2 2-2 2"/></svg>Shuffle</span></div>
-          <p class="tmpl">Increased <span class="blank">___</span> by <span class="blank">___</span> at <span class="blank">___</span></p>
-        </div>
-        <div class="alts" aria-hidden="true"><span>Other phrasing appears on shuffle</span></div>
+      <div class="canvas" aria-label="Impact cards: a sentence template with a shuffle button, shown in two sizes">
+        <div class="fl"><span class="mono">Impact card</span><span class="sketch-note">Real widget</span></div>
+        <img class="wimg" src="assets/ot_w_impact.jpg" alt="Impact cards: a sentence template with a shuffle button, shown in two sizes" loading="lazy">
       </div>
       <div class="txt"><span class="n">01</span><span class="mono">Design decision</span><h3>Impact Cards: sentence templates ('Increased ___ by ___ at ___') + shuffle for different phrasing — number-first format, user never writes from scratch</h3><p class="ev">Evidence base: documented research findings and solution rationale shown above.</p></div>
     </div>
 
     <div class="drow">
-      <div class="canvas" aria-label="Concept sketch of the same widget in compact and expanded density">
-        <div class="fl"><span class="mono">Bio · Prizes · Impact</span><span class="sketch-note">Concept sketch</span></div>
-        <div class="pair">
-          <div class="wcard"><div class="wh"><span class="mono">Bio</span><span class="seg"><span class="on">Compact</span><span>Expanded</span></span></div><span class="ln d" style="width:85%"></span></div>
-          <div class="wcard"><div class="wh"><span class="mono">Bio</span><span class="seg"><span>Compact</span><span class="on">Expanded</span></span></div><span class="ln d" style="width:85%"></span><span class="ln" style="width:100%"></span><span class="ln" style="width:92%"></span><span class="ln" style="width:70%"></span></div>
-        </div>
+      <div class="canvas" aria-label="Bio widget in compact and expanded sizes">
+        <div class="fl"><span class="mono">Bio · Prizes · Impact</span><span class="sketch-note">Real widget</span></div>
+        <img class="wimg" src="assets/ot_w_bio.jpg" alt="Bio widget in compact and expanded sizes" loading="lazy">
       </div>
       <div class="txt"><span class="n">02</span><span class="mono">Design decision</span><h3>Compact / expanded variants for Bio, Prizes, Impact — user chooses density, viewer gets the right level of detail at first glance</h3><p class="ev">Evidence base: documented research findings and solution rationale shown above.</p></div>
     </div>
 
     <div class="drow">
-      <div class="canvas" aria-label="Concept sketch comparing a flat list of titles with a timeline that shows overlapping roles">
-        <div class="fl"><span class="mono">Experience</span><span class="sketch-note">Concept sketch</span></div>
-        <div class="pair">
-          <div class="wcard"><span class="mono">Flat list</span><div class="flat"><span>Role title</span><span>Role title</span><span>Role title</span></div></div>
-          <div class="wcard"><span class="mono">Timeline</span>
-            <div class="tlx">
-              <div class="bar"><span style="left:0;width:55%">Role A</span></div>
-              <div class="bar"><span style="left:40%;width:45%">Role B</span></div>
-              <div class="bar"><span style="left:70%;width:30%">Role C</span></div>
-              <div class="axis"><span>earlier</span><span>now</span></div>
-            </div>
-          </div>
-        </div>
+      <div class="canvas" aria-label="Experience widget as a compact card and as a timeline">
+        <div class="fl"><span class="mono">Experience</span><span class="sketch-note">Real widget</span></div>
+        <img class="wimg" src="assets/ot_w_experience.jpg" alt="Experience widget as a compact card and as a timeline" loading="lazy">
       </div>
       <div class="txt"><span class="n">03</span><span class="mono">Design decision</span><h3>Experience as a timeline — shows progression and overlap, not just a flat list of titles</h3><p class="ev">Evidence base: documented research findings and solution rationale shown above.</p></div>
     </div>
 
     <div class="drow">
-      <div class="canvas" aria-label="Concept sketch of three featured portfolio formats">
-        <div class="fl"><span class="mono">Featured portfolio</span><span class="sketch-note">Concept sketch</span></div>
-        <div class="formats">
-          <div class="fmt"><div class="g"><i></i><i></i><i></i><i></i><i></i><i></i></div><b>Behance-style</b><span>Designer</span></div>
-          <div class="fmt"><div class="yt"><i></i><i></i></div><b>YouTube-style</b><span>Educator</span></div>
-          <div class="fmt"><div class="rl"><i></i><i></i><i></i><i></i></div><b>Running list</b><span>Strategist</span></div>
-        </div>
+      <div class="canvas" aria-label="Featured portfolio widget showing a project preview with a brief">
+        <div class="fl"><span class="mono">Featured portfolio</span><span class="sketch-note">Real widget</span></div>
+        <img class="wimg" src="assets/ot_w_featured.jpg" alt="Featured portfolio widget showing a project preview with a brief" loading="lazy">
       </div>
       <div class="txt"><span class="n">04</span><span class="mono">Design decision</span><h3>Featured portfolio: Behance-style, YouTube-style, or a running list — format matched to profession, not forced into one mould</h3><p class="ev">Evidence base: documented research findings and solution rationale shown above.</p></div>
     </div>
     <div class="gx-head"><span class="gx-label">The screens</span><a class="gx-btn" href="https://www.figma.com/proto/mGZ63hp9jSzVhXSD45KFtq/One-Tap-shop-page?node-id=7-45&amp;viewport=-164%2C-748%2C0.12&amp;scaling=min-zoom&amp;page-id=0%3A1" target="_blank" rel="noopener">View Figma prototype <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
-    <div class="gx phones" style="--c:3">
-    <figure class="gx-shot phone tall"><div class="gx-win"><img src="assets/s_ot_edit.jpg" alt="Edit profile" loading="lazy"></div><figcaption>Edit profile</figcaption></figure>
+    <div class="gx phones" style="--c:2">
     <figure class="gx-shot phone tall"><div class="gx-win"><img src="assets/s_ot_profile.jpg" alt="Profile" loading="lazy"></div><figcaption>Profile</figcaption></figure>
     <figure class="gx-shot phone tall"><div class="gx-win"><img src="assets/s_ot_connected.jpg" alt="You’ve connected with" loading="lazy"></div><figcaption>You’ve connected with</figcaption></figure>
-    <figure class="gx-shot phone dark tall"><div class="gx-win"><img src="assets/s_ot_bio.jpg" alt="Bio widget" loading="lazy"></div><figcaption>Bio widget</figcaption></figure>
-    <figure class="gx-shot phone dark tall"><div class="gx-win"><img src="assets/s_ot_learning.jpg" alt="“Things I am currently learning” widget" loading="lazy"></div><figcaption>“Things I am currently learning” widget</figcaption></figure>
-    <figure class="gx-shot phone dark tall"><div class="gx-win"><img src="assets/s_ot_themes.jpg" alt="Themes" loading="lazy"></div><figcaption>Themes</figcaption></figure>
-    <figure class="gx-shot wide"><div class="gx-win"><img src="assets/s_ot_widgets.jpg" alt="Widget sizes" loading="lazy"></div><figcaption>Widget sizes</figcaption></figure>
     </div>
 
   </div>
 </section>
 
-<!-- 06 VALIDATE -->
-<section id="validate">
+<!-- 05 WHAT I LEARNED -->
+<section id="learned">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">06</span><span class="mono">Validate</span><span class="coord" data-coord aria-hidden="true"></span></div>
-      <div class="sec-body"><h2>What the evidence supports—and what remains open.</h2></div>
+      <div class="sec-meta"><span class="sec-num">05</span><span class="mono">What I learned</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>What I learned.</h2></div>
     </div>
-    <div class="vstats">
-      <div class="stat"><b>6+</b><span>Widget types designed</span></div>
-      <div class="stat"><b>3</b><span>Density variants per widget</span></div>
-      <div class="stat"><b>4+</b><span>Portfolio format previews</span></div>
-    </div>
-    <p class="honest"><span class="badge">NOTE</span><span>The repository documents the design reasoning, six-plus widget types, three density variants, and four portfolio formats. No participant-based usability study is documented.</span></p>
-    <div class="vgrid">
-      <div class="next">
-        <h3>What I would validate next</h3>
-        <ol class="qs">
-          <li><span class="n">01</span><p>Do sentence templates reduce blank-page hesitation?</p><span class="st">Not yet tested</span></li>
-          <li><span class="n">02</span><p>Can viewers identify credibility from compact widgets within seconds?</p><span class="st">Not yet tested</span></li>
-          <li><span class="n">03</span><p>Do density controls work across different professional archetypes?</p><span class="st">Not yet tested</span></li>
-          <li><span class="n">04</span><p>Does the shuffle mechanic help without creating new uncertainty?</p><span class="st">Not yet tested</span></li>
-        </ol>
-      </div>
-      <div class="refl">
-        <h3 class="t">Reflection</h3>
-        <article><h4>Customization isn't 'give users more options'</h4><p>Every extra option is a decision the user has to make, and each one is a chance to lose them. The templates and shuffle mechanic worked because they removed the decision rather than adding one. The best customization systems make one good choice easy — not every possible choice available.</p></article>
-        <article><h4>The viewer's ease is the binding constraint</h4><p>It's easy to design for the person filling out a form — they're present, they have opinions, they give feedback. The viewer is invisible. Every widget I built needed to answer the viewer's question ('is this person worth my time?') in under three seconds, or the whole profile failed regardless of how good the content was.</p></article>
-        <article><h4>The best variants weren't the most flexible</h4><p>The widget variants that worked weren't the ones that gave users the most control. They were the ones that made the viewer's judgment easier while asking the user to do less thinking. Constraint, applied in the right place, is what made the system feel effortless rather than limited.</p></article>
-      </div>
+    <div class="learn">
+      <div class="lrow"><div class="lh"><span class="n">01</span><h3>Customization isn't 'give users more options'</h3></div><p>Every extra option is a decision the user has to make, and each one is a chance to lose them. The templates and shuffle mechanic worked because they removed the decision rather than adding one. The best customization systems make one good choice easy — not every possible choice available.</p></div>
+      <div class="lrow"><div class="lh"><span class="n">02</span><h3>The viewer's ease is the binding constraint</h3></div><p>It's easy to design for the person filling out a form — they're present, they have opinions, they give feedback. The viewer is invisible. Every widget I built needed to answer the viewer's question ('is this person worth my time?') in under three seconds, or the whole profile failed regardless of how good the content was.</p></div>
+      <div class="lrow"><div class="lh"><span class="n">03</span><h3>The best variants weren't the most flexible</h3></div><p>The widget variants that worked weren't the ones that gave users the most control. They were the ones that made the viewer's judgment easier while asking the user to do less thinking. Constraint, applied in the right place, is what made the system feel effortless rather than limited.</p></div>
     </div>
   </div>
 </section>
@@ -567,5 +569,19 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
 })();
 </script>
 
+<script>
+(function(){
+  /* scroll reveal (once) + section spy for the section strip */
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+    var targets=document.querySelectorAll('.sec-head, .statement, .persona, .find, .pull, .rnote, .pr, .drow, .gx-shot, .lrow, .stat, .meta div');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    targets.forEach(function(t,i){t.classList.add('rv'); var sib=Array.prototype.indexOf.call(t.parentNode.children,t); t.style.setProperty('--d',Math.min(sib,5)*0.07+'s'); io.observe(t)});
+    var st=document.querySelector('.statement'); if(st){st.classList.add('rv')}
+  }
+  var links=document.querySelectorAll('.nav a'), secs=[].map.call(links,function(a){return document.querySelector(a.getAttribute('href'))});
+  function spy(){var y=window.scrollY+300,cur=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top+window.scrollY<=y)cur=i});links.forEach(function(a,i){a.classList.toggle('on',i===cur)})}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+</script>
 <script src="assets/gx.js"></script>
 </body></html>
