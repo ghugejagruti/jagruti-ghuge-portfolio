@@ -1,0 +1,25 @@
+/* gallery + figma button for the case study pages (uses each page's own colour variables) */
+.gx-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:clamp(48px,6vw,80px) 0 28px;padding-top:24px;border-top:1px solid var(--ink,#191919)}
+.gx-label{font-family:var(--f-mono,'JetBrains Mono',ui-monospace,monospace);font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#6b6b6b)}
+.gx-btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink,#191919);color:var(--paper,#fff);font-family:var(--f-mono,'JetBrains Mono',ui-monospace,monospace);font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:13px 20px;text-decoration:none;border:1px solid var(--ink,#191919);transition:transform .25s,box-shadow .25s}
+.gx-btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.18)}
+.gx-btn:focus-visible{outline:2px solid var(--select,#3F82F2);outline-offset:3px}
+.gx-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gx{display:grid;gap:24px;grid-template-columns:repeat(var(--c,3),minmax(0,1fr));align-items:start}
+.gx-shot{margin:0;cursor:zoom-in;min-width:0}
+.gx-win{background:#fff;border:1px solid var(--ink,#191919);overflow:hidden;transition:box-shadow .35s,transform .35s}
+.gx-shot:hover .gx-win{box-shadow:0 18px 36px rgba(0,0,0,.18);transform:translateY(-4px)}
+.gx-shot.tall .gx-win{max-height:520px;overflow-y:auto;scrollbar-width:thin}
+.gx-shot.dark .gx-win{background:#0b0b0b}
+.gx-shot.phone .gx-win{border-radius:20px}
+.gx.phones .gx-shot.tall .gx-win{max-height:640px}
+.gx-shot.wide{grid-column:1/-1}
+.gx-shot img{display:block;width:100%;height:auto}
+.gx-shot figcaption{font-family:var(--f-mono,'JetBrains Mono',ui-monospace,monospace);font-size:14px;color:var(--muted,#6b6b6b);margin-top:10px}
+@media(max-width:900px){.gx{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.gx{grid-template-columns:minmax(0,1fr)}.gx.phones{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.gx-lb{position:fixed;inset:0;z-index:1000;background:rgba(10,10,10,.9);display:none;overflow:auto;padding:40px 16px;cursor:zoom-out}
+.gx-lb.on{display:block}
+.gx-lb img{display:block;margin:0 auto;width:min(1200px,100%);max-width:none;height:auto;background:#fff}
+.gx-lb.phone img{width:min(460px,100%)}
+.gx-lb button{position:fixed;top:14px;right:18px;background:#fff;color:#111;border:0;width:40px;height:40px;border-radius:50%;font-size:22px;cursor:pointer}
