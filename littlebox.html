@@ -331,10 +331,57 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
 </style>
 
 <link rel="stylesheet" href="assets/gx.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* site navigation (same as the landing page) */
+html{scroll-padding-top:128px}
+.sitenav{--n-bg:#f4f3ee;--n-ink:#1a1a1a;--n-line:rgba(0,0,0,.10);--n-blue:#62c4ee;position:sticky;top:0;z-index:40;height:56px;background:var(--n-bg);color:var(--n-ink);display:flex;align-items:stretch;justify-content:space-between;border-bottom:1px solid var(--n-line);font-family:'JetBrains Mono',monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sitenav{--n-bg:#1b1b1a;--n-ink:#f3f1ea;--n-line:rgba(255,255,255,.13)}}
+:root[data-theme="dark"] .sitenav{--n-bg:#1b1b1a;--n-ink:#f3f1ea;--n-line:rgba(255,255,255,.13)}
+.topbar{top:56px!important}
+.sitenav .sn-brand{font:700 22px/56px 'JetBrains Mono',monospace;letter-spacing:-.02em;padding-left:20px;white-space:nowrap;color:var(--n-ink);text-decoration:none}
+.sitenav .sn-tabs{position:absolute;left:50%;transform:translateX(-50%);display:flex;border-left:1px solid var(--n-line)}
+.sitenav .sn-tab{display:flex;align-items:center;justify-content:center;height:56px;padding:0 21px;border-right:1px solid var(--n-line);color:var(--n-ink);text-decoration:none;transition:background .25s}
+.sitenav .sn-tab svg{width:22px;height:22px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sitenav .sn-tab span{max-width:0;opacity:0;overflow:hidden;white-space:nowrap;font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.12em;margin-left:0;transition:max-width .35s cubic-bezier(.3,.8,.3,1),opacity .25s,margin .35s}
+.sitenav .sn-tab:hover,.sitenav .sn-tab:focus-visible{background:rgba(98,196,238,.22)}
+.sitenav .sn-tab:hover span,.sitenav .sn-tab:focus-visible span,.sitenav .sn-tab.on span{max-width:90px;opacity:1;margin-left:8px}
+.sitenav .sn-tab.on{background:var(--n-blue);color:#111}
+.sitenav .sn-r{display:flex;align-items:center;gap:14px;padding-right:20px}
+.sitenav .sn-theme{width:34px;height:34px;border-radius:50%;border:0;background:rgba(128,128,128,.18);color:var(--n-ink);display:grid;place-items:center;cursor:pointer;transition:transform .3s}
+.sitenav .sn-theme:hover{transform:rotate(25deg) scale(1.08)}
+.sitenav .sn-theme svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sitenav .sn-theme .sun{display:none}
+:root[data-theme="dark"] .sitenav .sn-theme .sun{display:block}
+:root[data-theme="dark"] .sitenav .sn-theme .moon{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sitenav .sn-theme .sun{display:block}:root:not([data-theme="light"]) .sitenav .sn-theme .moon{display:none}}
+.sitenav .sn-dl{display:flex;align-items:center;gap:10px;border:1.5px solid var(--n-ink);padding:0 14px;height:38px;font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--n-ink);text-decoration:none;transition:background .25s,color .25s}
+.sitenav .sn-dl svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sitenav .sn-dl:hover{background:var(--n-ink);color:var(--n-bg)}
+@media (max-width:1000px){.sitenav .sn-tabs{position:static;transform:none;margin:0 auto}}
+@media (max-width:760px){.sitenav .sn-brand{display:none}.sitenav .sn-tabs{margin:0;border-left:0}.sitenav .sn-tab{padding:0 15px}.sitenav .sn-tab span{display:none!important}.sitenav .sn-dl span{display:none}.sitenav .sn-dl{padding:0 10px}.sitenav .sn-r{padding-right:10px;gap:8px;margin-left:auto}}
+</style>
+<script>try{var t=localStorage.getItem('jg-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<header class="sitenav">
+  <a href="index.html" class="sn-brand">Jagruti Ghuge</a>
+  <nav class="sn-tabs" aria-label="Site">
+    <a class="sn-tab" href="index.html" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>HOME</span></a>
+    <a class="sn-tab on" href="index.html#work" aria-label="Work" aria-current="page"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M2.5 19h19"/></svg><span>WORK</span></a>
+    <a class="sn-tab" href="index.html#about" aria-label="About me"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.2 18.2c1.3-2.2 3.2-3.2 5.8-3.2s4.5 1 5.8 3.2"/></svg><span>ABOUT ME</span></a>
+    <a class="sn-tab" href="index.html#contact" aria-label="Contact"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>CONTACT</span></a>
+  </nav>
+  <div class="sn-r">
+    <button class="sn-theme" id="snTheme" aria-label="Toggle dark mode">
+      <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    <a class="sn-dl" href="assets/Jagruti_Ghuge_Resume_2026.pdf" download><svg viewBox="0 0 24 24"><path d="M12 4v14M6 12l6 6 6-6"/></svg><span>Download resume</span></a>
+  </div>
+</header>
+<script>document.getElementById('snTheme').addEventListener('click',function(){var d=document.documentElement,cur=d.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('jg-theme',n)}catch(e){}});</script>
 <header class="topbar">
   <div class="wrap">
-    <a class="brand" href="index.html">Jagruti Ghuge</a>
-    <nav class="nav" aria-label="Case study sections"><a href="#challenge">01</a><a href="#methods">02</a><a href="#numbers">03</a><a href="#evidence">04</a><a href="#sus">05</a><a href="#effort">06</a><a href="#decisions">07</a><a href="#redesign">08</a><a href="#contribution">09</a><a href="#supports">10</a><a href="#learned">11</a></nav>
+    <nav class="nav" aria-label="Case study sections"><a href="#challenge">01 Challenge</a><a href="#methods">02 Methods</a><a href="#numbers">03 Numbers</a><a href="#sus">04 Usability</a><a href="#effort">05 Effort</a><a href="#evidence">06 Evidence</a><a href="#redesign">07 Redesign</a><a href="#learned">08 Learned</a></nav>
     <a class="back" href="index.html#work">&larr; All work</a>
   </div>
   <div class="ruler" id="ruler" aria-hidden="true"></div>
@@ -352,8 +399,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
       <dl class="meta">
         <div><dt>Duration</dt><dd>1 month</dd></div>
         <div><dt>Team</dt><dd>4 members</dd></div>
-        <div><dt>My contribution</dt><dd>Independently conducted 4 user tests and redesigned the homepage based on evaluation findings</dd></div>
-        <div><dt>Methods</dt><dd>Heuristic evaluation, usability testing, SUS, NASA-TLX, eye tracking, Hick’s Law and Fitts’ Law</dd></div>
+                <div><dt>Methods</dt><dd>Heuristic evaluation, usability testing, SUS, NASA-TLX, eye tracking, Hick’s Law and Fitts’ Law</dd></div>
       </dl>
     </div>
     <div class="hero-art">
@@ -382,29 +428,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
       </div>
     </div>
     <div class="question"><p><b>Our question:</b> Where does the interface create unnecessary effort, confusion, or hesitation?</p></div>
-    <div class="annot">
-      <div class="shot">
-        <div class="browser">
-          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>littlebox / original</span></div>
-          <figure class="slot" style="--ar:16 / 9" data-asset="original-annotated"><img src="assets/lb_before_home.jpg" alt="Original LittleBox homepage with numbered usability concerns" style="object-position:top;">
-            
-            
-            <span class="pin onslot" style="left:14%;top:15%" aria-hidden="true">1</span>
-            <span class="pin onslot" style="right:6%;top:26%" aria-hidden="true">2</span>
-            <span class="pin onslot" style="right:6%;top:6%" aria-hidden="true">3</span>
-            <span class="pin onslot" style="right:5%;top:15%" aria-hidden="true">4</span>
-          </figure>
-        </div>
-      </div>
-      <ol aria-label="Documented usability concerns">
-        <li><span class="pin">1</span><div><b>Discovery required too much effort</b><span>Filtering and navigation</span></div></li>
-        <li><span class="pin">2</span><div><b>Visual elements created ambiguity</b><span>Some elements looked interactive</span></div></li>
-        <li><span class="pin">3</span><div><b>Important actions were difficult to find</b><span>The next step</span></div></li>
-        <li><span class="pin">4</span><div><b>Language added friction</b><span>“Raise a Ticket”</span></div></li>
-      </ol>
-      <span class="hint" style="grid-column:9 / span 4">Concerns taken from section 04</span>
     </div>
-  </div>
 </section>
 
 <!-- 02 METHODS -->
@@ -454,22 +478,18 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
       <article class="task">
         <div class="th"><span class="mono">TASK 01</span><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h20l-7 9v7l-6 2v-9z"/></svg></div>
         <div class="tb"><p>Find a pink, full-sleeve top under ₹500 in size M.</p></div>
-        <figure class="slot" style="--ar:4 / 3" data-asset="task-01"><img src="assets/lb_task1.jpg" alt="Task 1: filtering products on the original site" style="object-position:top;"></figure>
       </article>
       <article class="task">
         <div class="th"><span class="mono">TASK 02</span><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="8" height="8"/><rect x="16" y="4" width="8" height="8"/><rect x="4" y="16" width="8" height="8"/><rect x="16" y="16" width="8" height="8"/></svg></div>
         <div class="tb"><p>Browse products through “Feeling Minimalist.”</p></div>
-        <figure class="slot" style="--ar:4 / 3" data-asset="task-02"><img src="assets/lb_task2.jpg" alt="Task 2: the “Feeling Minimalist” listing page" style="object-position:top;"></figure>
       </article>
       <article class="task">
         <div class="th"><span class="mono">TASK 03</span><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h18v15H5z"/><path d="M9 9V6h10v3"/><path d="M11 14l6 6M17 14l-6 6"/></svg></div>
         <div class="tb"><p>Cancel an order.</p></div>
-        <figure class="slot" style="--ar:4 / 3" data-asset="task-03"><img src="assets/lb_task3.jpg" alt="Task 3: the My Account page, where orders are managed" style="object-position:top;"></figure>
       </article>
       <article class="task">
         <div class="th"><span class="mono">TASK 04</span><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h14v11H2zM16 12h5l4 4v3h-9z"/><circle cx="7" cy="21" r="2"/><circle cx="20" cy="21" r="2"/></svg></div>
         <div class="tb"><p>Find a next-day delivery option.</p></div>
-        <figure class="slot" style="--ar:4 / 3" data-asset="task-04"><img src="assets/lb_task4.jpg" alt="Task 4: the navigation bar, including Next Day Dispatch" style="object-position:top;"></figure>
       </article>
     </div>
     <p class="lede tasknote">These tasks helped examine product discovery, category navigation, order management, and delivery-related interactions.</p>
@@ -484,39 +504,11 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
   </div>
 </section>
 
-<!-- 04 EVIDENCE -->
-<section id="evidence">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">04</span><span class="mono">What the Evidence Revealed</span><span class="coord" data-coord aria-hidden="true"></span></div>
-      <div class="sec-body"><h2>The problem wasn't just what shoppers saw. It was what they could understand and do.</h2></div>
-    </div>
-    <div class="erows">
-      <div class="erow">
-        <div class="txt"><span class="n">01</span><h3>Discovery required too much effort</h3><p>Filtering and navigation made it harder to narrow down product choices.</p><span class="lbl"><span class="pin">1</span></span></div>
-        <div class="vis"><figure class="slot" style="--ar:16 / 10" data-asset="finding-01"><img src="assets/lb_before_filters.jpg" alt="Original listing page with limited filters" style="object-position:top;"><span class="pin onslot" style="left:8%;top:20%" aria-hidden="true">1</span></figure></div>
-      </div>
-      <div class="erow flip">
-        <div class="txt"><span class="n">02</span><h3>Visual elements created ambiguity</h3><p>Some elements looked interactive without clearly communicating their function.</p><span class="lbl"><span class="pin">2</span></span></div>
-        <div class="vis"><figure class="slot" style="--ar:16 / 10" data-asset="finding-02"><img src="assets/lb_before_home.jpg" alt="Original homepage with elements that look interactive" style="object-position:top;"><span class="pin onslot" style="right:10%;top:30%" aria-hidden="true">2</span></figure></div>
-      </div>
-      <div class="erow">
-        <div class="txt"><span class="n">03</span><h3>Important actions were difficult to find</h3><p>The interface did not consistently make the next step obvious.</p><span class="lbl"><span class="pin">3</span></span></div>
-        <div class="vis"><figure class="slot" style="--ar:16 / 10" data-asset="finding-03"><img src="assets/lb_before_menu.jpg" alt="Original navigation with a crowded dropdown and a small Account link" style="object-position:top;"><span class="pin onslot" style="right:6%;top:8%" aria-hidden="true">3</span></figure></div>
-      </div>
-      <div class="erow flip">
-        <div class="txt"><span class="n">04</span><h3>Language added friction</h3><p>Labels such as “Raise a Ticket” were less direct than the action shoppers were trying to complete: “Cancel Order.”</p><span class="lbl"><span class="pin">4</span></span></div>
-        <div class="vis"><figure class="slot" style="--ar:16 / 10" data-asset="finding-04"><img src="assets/lb_before_account.jpg" alt="Original My Account page showing the Raise a Ticket button" style="object-position:top;"><span class="pin onslot" style="left:13%;top:36%" aria-hidden="true">4</span></figure></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 05 SUS -->
+<!-- 04 SUS -->
 <section id="sus">
   <div class="wrap">
     <div class="sec-head sus-head">
-      <div class="sec-meta"><span class="sec-num">05</span><span class="mono">The Usability Score</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-meta"><span class="sec-num">04</span><span class="mono">The Usability Score</span><span class="coord" data-coord aria-hidden="true"></span></div>
       <div class="sec-body">
         <h2><span class="big">36.79 <small>/ 100</small></span><br>a clear signal to investigate further.</h2>
         <p class="lede">The overall System Usability Scale (SUS) score was 36.79, indicating substantial room for usability improvement.</p>
@@ -534,10 +526,6 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
         </div>
       </figure>
       <div class="sus-side">
-        <table class="st">
-          <thead><tr><th>Group</th><th>SUS score</th></tr></thead>
-          <tbody><tr class="o"><td>Overall</td><td>36.79</td></tr><tr><td>Expert participants</td><td>38.75</td></tr><tr><td>Novice participants</td><td>35.63</td></tr></tbody>
-        </table>
         <p>The low scores suggested that usability difficulties were not limited to one experience group.</p>
         <p class="sticky"><b>What this meant for the redesign:</b> We needed to reduce friction across the experience rather than focus on cosmetic changes alone.</p>
       </div>
@@ -545,11 +533,11 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
   </div>
 </section>
 
-<!-- 06 EFFORT -->
+<!-- 05 EFFORT -->
 <section id="effort">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">06</span><span class="mono">Understanding User Effort</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-meta"><span class="sec-num">05</span><span class="mono">Understanding User Effort</span><span class="coord" data-coord aria-hidden="true"></span></div>
       <div class="sec-body"><h2>A task can be possible and still feel difficult.</h2></div>
     </div>
     <div class="effort">
@@ -573,7 +561,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
       <div class="panel">
         <span class="mono">Eye tracking · Visual attention</span>
         <h3>Original evidence</h3>
-        <figure class="slot" style="--ar:16 / 10" data-asset="eye-tracking"><svg class="x" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0L100 100M100 0L0 100" vector-effect="non-scaling-stroke"/></svg><figcaption><span class="mono">Original evidence needed</span><b>Eye-tracking screenshot, gaze path or heatmap</b><span>Shown as captured, not recreated</span></figcaption></figure>
+        <figure class="slot" style="--ar:732 / 412" data-asset="eye-tracking"><img src="assets/lb_eyetracking.jpg" alt="Eye-tracking gaze path over the LittleBox Next Day Dispatch listing page" style="object-fit:contain;object-position:center"></figure>
         <p>Eye-tracking observations also helped examine how people scanned the interface and whether visual elements attracted attention as intended.</p>
       </div>
     </div>
@@ -581,49 +569,39 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
   </div>
 </section>
 
-<!-- 07 DECISIONS -->
-<section id="decisions">
+<!-- 06 EVIDENCE -->
+<section id="evidence">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">07</span><span class="mono">From Evidence to Design Decisions</span><span class="coord" data-coord aria-hidden="true"></span></div>
-      <div class="sec-body"><h2>Every change had a reason.</h2></div>
+      <div class="sec-meta"><span class="sec-num">06</span><span class="mono">What the Evidence Revealed</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-body"><h2>The problem wasn't just what shoppers saw. It was what they could understand and do.</h2></div>
     </div>
-    <div class="emap" aria-label="Evidence-to-design map">
-      <div class="colh f">FINDING</div><div class="arrow" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></div><div class="colh d">DESIGN RESPONSE</div>
-
-      <div class="fcol"><div class="fbox"><span class="mono">Finding 01</span><b>Discovery required too much effort</b><p>Filtering and navigation made it harder to narrow down product choices.</p></div></div>
-      <div class="link" aria-hidden="true"><svg viewBox="0 0 80 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 50H74" vector-effect="non-scaling-stroke"/><path d="M68 44l6 6-6 6" vector-effect="non-scaling-stroke"/></svg></div>
-      <div class="dcol"><div class="dbox"><b>Make discovery easier</b><p>Improve the visibility and organisation of product filters and navigation.</p></div></div>
-
-      <div class="fcol"><div class="fbox"><span class="mono">Finding 02</span><b>Visual elements created ambiguity</b><p>Some elements looked interactive without clearly communicating their function.</p></div></div>
-      <div class="link" aria-hidden="true"><svg viewBox="0 0 80 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 50H74" vector-effect="non-scaling-stroke"/><path d="M68 44l6 6-6 6" vector-effect="non-scaling-stroke"/></svg></div>
-      <div class="dcol"><div class="dbox"><b>Clarify interactive elements</b><p>Strengthen visual cues so shoppers can recognise what they can click or select.</p></div></div>
-
-      <div class="fcol">
-        <div class="fbox"><span class="mono">Finding 03</span><b>Important actions were difficult to find</b><p>The interface did not consistently make the next step obvious.</p></div>
-        <div class="fbox"><span class="mono">Finding 04</span><b>Language added friction</b><p>Labels such as “Raise a Ticket” were less direct than the action shoppers were trying to complete: “Cancel Order.”</p></div>
+    <div class="erows">
+      <div class="erow">
+        <div class="txt"><span class="n">01</span><h3>Discovery required too much effort</h3><p>Filtering and navigation made it harder to narrow down product choices.</p><span class="lbl"><span class="pin">1</span></span></div>
+        <div class="vis"><figure class="slot" style="--ar:16 / 10" data-asset="finding-01"><img src="assets/lb_before_filters.jpg" alt="Original listing page with limited filters" style="object-position:top;"><span class="pin onslot" style="left:8%;top:20%" aria-hidden="true">1</span></figure></div>
       </div>
-      <div class="link" aria-hidden="true"><svg viewBox="0 0 80 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 25H18V75H0M18 50H56M56 25V75M56 25H74M56 75H74" vector-effect="non-scaling-stroke"/><path d="M68 20l6 5-6 5M68 70l6 5-6 5" vector-effect="non-scaling-stroke"/></svg></div>
-      <div class="dcol">
-        <div class="dbox"><b>Make important actions explicit</b><p>Use direct, familiar labels for order-management actions.</p></div>
-        <div class="dbox"><b>Prioritise common tasks</b><p>Give frequently used features clearer placement and hierarchy.</p></div>
+      <div class="erow flip">
+        <div class="txt"><span class="n">02</span><h3>Visual elements created ambiguity</h3><p>Some elements looked interactive without clearly communicating their function.</p><span class="lbl"><span class="pin">2</span></span></div>
+        <div class="vis"><figure class="slot" style="--ar:16 / 10" data-asset="finding-02"><img src="assets/lb_before_home.jpg" alt="Original homepage with elements that look interactive" style="object-position:top;"><span class="pin onslot" style="right:10%;top:30%" aria-hidden="true">2</span></figure></div>
       </div>
-
-      <div class="span">
-        <div class="all">All four findings</div>
-        <div class="link" aria-hidden="true"><svg viewBox="0 0 80 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 50H74" vector-effect="non-scaling-stroke" stroke-dasharray="4 4"/><path d="M68 44l6 6-6 6" vector-effect="non-scaling-stroke"/></svg></div>
-        <div class="dbox"><b>Reduce unnecessary complexity</b><p>Simplify content and flows before introducing additional features.</p></div>
+      <div class="erow">
+        <div class="txt"><span class="n">03</span><h3>Important actions were difficult to find</h3><p>The interface did not consistently make the next step obvious.</p><span class="lbl"><span class="pin">3</span></span></div>
+        <div class="vis"><figure class="slot" style="--ar:16 / 10" data-asset="finding-03"><img src="assets/lb_before_menu.jpg" alt="Original navigation with a crowded dropdown and a small Account link" style="object-position:top;"><span class="pin onslot" style="right:6%;top:8%" aria-hidden="true">3</span></figure></div>
+      </div>
+      <div class="erow flip">
+        <div class="txt"><span class="n">04</span><h3>Language added friction</h3><p>Labels such as “Raise a Ticket” were less direct than the action shoppers were trying to complete: “Cancel Order.”</p><span class="lbl"><span class="pin">4</span></span></div>
+        <div class="vis"><figure class="slot" style="--ar:16 / 10" data-asset="finding-04"><img src="assets/lb_before_account.jpg" alt="Original My Account page showing the Raise a Ticket button" style="object-position:top;"><span class="pin onslot" style="left:13%;top:36%" aria-hidden="true">4</span></figure></div>
       </div>
     </div>
-    <p class="emap-note">Findings 03 and 04 are grouped, and the last decision spans all findings, where the case study doesn't state a one-to-one link.</p>
   </div>
 </section>
 
-<!-- 08 REDESIGN -->
+<!-- 07 REDESIGN -->
 <section id="redesign">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">08</span><span class="mono">The Redesign</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-meta"><span class="sec-num">07</span><span class="mono">The Redesign</span><span class="coord" data-coord aria-hidden="true"></span></div>
       <div class="sec-body">
         <h2>A more intuitive starting point for shopping.</h2>
         <p class="lede">Based on the evaluation findings, I redesigned the LittleBox homepage to improve clarity, hierarchy, and access to important actions.</p>
@@ -671,73 +649,11 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
   </div>
 </section>
 
-<!-- 09 CONTRIBUTION -->
-<section id="contribution">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">09</span><span class="mono">My Contribution</span><span class="coord" data-coord aria-hidden="true"></span></div>
-      <div class="sec-body">
-        <h2>From observing friction to translating it into design.</h2>
-        <p class="lede">This was a four-member team project completed over one month.</p>
-      </div>
-    </div>
-    <div class="team">
-      <div class="grp"><span class="ppl" aria-label="Four team members, one of them is me"><span class="me"></span><span></span><span></span><span></span></span><span class="mono">Team of 4 · <span style="color:var(--blue)">filled = me</span></span></div>
-      <div class="grp"><span class="tag">16 PARTICIPANTS · WHOLE STUDY</span><span class="tag me">4 USER TESTS · ME</span></div>
-    </div>
-    <p class="mono" style="margin-bottom:24px">My individual contribution included:</p>
-    <ol class="timeline" aria-label="My contribution">
-      <li class="tstep"><span class="no">01</span><span class="rail" aria-hidden="true"><i></i></span><h3>TEST</h3><p>Independently conducting 4 user tests.</p></li>
-      <li class="tstep"><span class="no">02</span><span class="rail" aria-hidden="true"><i></i></span><h3>OBSERVE</h3><p>Observing task completion, confusion, and interaction behaviour.</p></li>
-      <li class="tstep"><span class="no">03</span><span class="rail" aria-hidden="true"><i></i></span><h3>IDENTIFY</h3><p>Using the evaluation findings to identify opportunities for improvement.</p></li>
-      <li class="tstep"><span class="no">04</span><span class="rail" aria-hidden="true"><i></i></span><h3>REDESIGN</h3><p>Redesigning the LittleBox homepage around clearer navigation, hierarchy, and discoverability.</p></li>
-    </ol>
-    <div class="contrib-close"><p>The broader study involved 16 participants and multiple evaluation methods; my four user tests were one part of that collective effort.</p></div>
-  </div>
-</section>
-
-<!-- 10 SUPPORTS -->
-<section id="supports">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">10</span><span class="mono">What the Evidence Supports</span><span class="coord" data-coord aria-hidden="true"></span></div>
-      <div class="sec-body">
-        <h2>What we learned from the evaluation</h2>
-        <p class="lede">The evaluation highlighted opportunities to improve product discovery, clarify interactive elements, simplify navigation, and make important actions easier to understand.</p>
-        <p class="lede">The redesign translated those findings into interface decisions.</p>
-      </div>
-    </div>
-    <div class="smap" aria-label="Evidence summary map">
-      <div class="scol f"><span class="mono">EVALUATION EVIDENCE</span>
-        <div class="sitem">Discovery required too much effort</div>
-        <div class="sitem">Visual elements created ambiguity</div>
-        <div class="sitem">Important actions were difficult to find</div>
-        <div class="sitem">Language added friction</div>
-      </div>
-      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span>
-      <div class="scol"><span class="mono">DESIGN OPPORTUNITIES</span>
-        <div class="sitem">improve product discovery</div>
-        <div class="sitem">clarify interactive elements</div>
-        <div class="sitem">simplify navigation</div>
-        <div class="sitem">make important actions easier to understand</div>
-      </div>
-      <span class="arrow b" aria-hidden="true"><svg viewBox="0 0 64 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h54M52 2l6 5-6 5"/></svg></span>
-      <div class="scol"><span class="mono">REDESIGN</span>
-        <div class="sitem">Giving “Pick-A-Mood” more prominence.</div>
-        <div class="sitem">Improving access to profile and account actions.</div>
-        <div class="sitem">Making wishlist and chatbot entry points easier to recognise.</div>
-        <div class="sitem">Strengthening navigation and reducing visual ambiguity.</div>
-      </div>
-    </div>
-    <div class="limit"><p class="sticky"><span class="pin" aria-hidden="true">!</span><b>The important distinction:</b> The redesign reflects evidence-informed design decisions; it should not be presented as a validated improvement unless a subsequent round of testing confirmed the results.</p></div>
-  </div>
-</section>
-
-<!-- 11 LEARNED -->
+<!-- 08 LEARNED -->
 <section id="learned">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-meta"><span class="sec-num">11</span><span class="mono">Things I Learned</span><span class="coord" data-coord aria-hidden="true"></span></div>
+      <div class="sec-meta"><span class="sec-num">08</span><span class="mono">Things I Learned</span><span class="coord" data-coord aria-hidden="true"></span></div>
       <div class="sec-body"></div>
     </div>
     <div class="learn">
