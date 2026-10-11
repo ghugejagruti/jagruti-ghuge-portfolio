@@ -1,0 +1,25 @@
+.gal-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:72px 0 28px}
+.gal-label{display:flex;align-items:center;gap:12px}
+.gal-label i{display:block;width:24px;height:1px;background:currentColor;opacity:.6}
+.gal-label span{font:500 13px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#9ca3af}
+.figma-btn{display:inline-flex;align-items:center;gap:10px;background:#191919;color:#fff;font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;padding:14px 22px;text-decoration:none;transition:transform .25s,background .25s}
+.figma-btn:hover{background:#000;transform:translateY(-2px)}
+.figma-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gal{display:grid;gap:24px;grid-template-columns:repeat(var(--c,3),minmax(0,1fr));align-items:start}
+.shot{margin:0;cursor:zoom-in}
+.shot-win{background:#fff;border:1px solid rgba(0,0,0,.1);overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.04);transition:box-shadow .35s,transform .35s}
+.shot:hover .shot-win{box-shadow:0 18px 36px rgba(0,0,0,.14);transform:translateY(-4px)}
+.shot.tall .shot-win{max-height:520px;overflow-y:auto;scrollbar-width:thin}
+.shot.dark .shot-win{background:#0b0b0b;border-color:#222}
+.shot.phone .shot-win{border-radius:22px}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{font:400 12px 'JetBrains Mono',monospace;color:#9ca3af;margin-top:10px;letter-spacing:.04em}
+.shot.wide{grid-column:1/-1}
+@media(max-width:900px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.gal{grid-template-columns:minmax(0,1fr)}.gal.phones{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.88);display:none;overflow:auto;padding:40px 16px;cursor:zoom-out}
+.lb.on{display:block}
+.lb img{display:block;margin:0 auto;width:min(1200px,100%);max-width:none;height:auto;background:#fff}
+.lb.phone img{width:min(460px,100%)}
+.lb button{position:fixed;top:14px;right:18px;background:#fff;border:0;width:38px;height:38px;border-radius:50%;font-size:20px;cursor:pointer}
+.gal.phones .shot.tall .shot-win{max-height:640px}
