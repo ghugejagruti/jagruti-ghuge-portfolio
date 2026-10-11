@@ -372,6 +372,14 @@ html{scroll-padding-top:72px}
 .sitenav .sn-dl:hover{background:var(--n-ink);color:var(--n-bg)}
 @media (max-width:1000px){.sitenav .sn-tabs{position:static;transform:none;margin:0 auto}}
 @media (max-width:760px){.sitenav .sn-brand{display:none}.sitenav .sn-tabs{margin:0;border-left:0}.sitenav .sn-tab{padding:0 15px}.sitenav .sn-tab span{display:none!important}.sitenav .sn-dl span{display:none}.sitenav .sn-dl{padding:0 10px}.sitenav .sn-r{padding-right:10px;gap:8px;margin-left:auto}}
+.topbar{top:56px!important}
+.topbar .wrap{justify-content:flex-start}
+.nav{display:flex; gap:0; flex-wrap:wrap}
+.nav a{font-family:var(--f-mono); font-size:14px; text-decoration:none; color:var(--muted); padding:6px 10px; border-bottom:2px solid transparent; border-radius:6px 6px 0 0; transition:color .2s,background .2s,border-color .2s}
+.nav a:hover{color:var(--ink); background:var(--paper-2)}
+.nav a.on{color:var(--ink); border-bottom-color:var(--acc)}
+@media (max-width:1180px){.nav{display:none}.topbar{display:none}}
+html{scroll-padding-top:128px}
 </style>
 <script>try{var t=localStorage.getItem('jg-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <header class="sitenav">
@@ -393,6 +401,11 @@ html{scroll-padding-top:72px}
 <script>document.getElementById('snTheme').addEventListener('click',function(){var d=document.documentElement,cur=d.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('jg-theme',n)}catch(e){}});</script>
 
 
+<header class="topbar">
+  <div class="wrap">
+    <nav class="nav" aria-label="Case study sections"><a href="#challenge">02 Challenge</a><a href="#system">03 System</a><a href="#questions">04 Questions</a><a href="#research">05 Research</a><a href="#decisions">06 Decisions</a><a href="#dashboard">07 Dashboard</a><a href="#final">08 Final</a><a href="#reflection">09 Reflection</a></nav>
+  </div>
+</header>
 <main id="top">
 <!-- HERO -->
 <section class="hero">
@@ -522,7 +535,7 @@ html{scroll-padding-top:72px}
         <div class="mid" aria-hidden="true"><svg viewBox="0 0 48 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h42M38 2l6 5-6 5"/></svg></div>
         <div class="col">
           <div class="top"><b>Property detail</b><span class="cap">detail before commitment</span></div>
-          <div class="browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>property detail</span></div><div class="detailframe sf" style="--ar:4 / 5"><img src="assets/pr_pdp_about.jpg" alt="Property detail, About tab: property details, project plan, timeline and offering details"><img src="assets/pr_pdp_financials.jpg" alt="Property detail, Financials tab: total investment value, projected annual return and projected returns per token"></div></div>
+          <div class="browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>property detail</span></div><div class="detailframe sf" style="--ar:4 / 5"><img src="assets/pr_pdp_about.jpg" alt="Property detail, About tab: property details, project plan, timeline and offering details"></div></div>
         </div>
       </div>
     </div>
@@ -541,8 +554,8 @@ html{scroll-padding-top:72px}
           </ol>
         </div>
         <div class="r">
-          <div class="browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>property detail</span></div><div class="detailframe sf" style="--ar:16 / 13"><img src="assets/pr_pdp_about.jpg" alt="Property detail, About tab: property details, project plan, timeline and offering details"><img src="assets/pr_pdp_financials.jpg" alt="Property detail, Financials tab: total investment value, projected annual return and projected returns per token"></div></div>
-          <span class="cap" style="display:block;margin-top:8px">Property detail screen. The numbered list shows the order of priority.</span>
+          <div class="browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>property detail</span></div><div class="detailframe sf" style="--ar:16 / 13"><img src="assets/pr_pdp_financials.jpg" alt="Property detail, Financials tab: total investment value, projected annual return and projected returns per token"></div></div>
+          <span class="cap" style="display:block;margin-top:8px">Property detail, Financials tab. The numbered list shows the order of priority.</span>
         </div>
       </div>
     </div>
@@ -596,7 +609,7 @@ html{scroll-padding-top:72px}
     </div>
     <ol class="journey">
       <li class="jcol"><div class="hd"><b>01</b><div><h3>Discover</h3><span>Property listing</span></div></div><div class="browser"><div class="shot sf"><img src="assets/pr_plp.jpg" alt="Property listing screen"></div></div></li>
-      <li class="jcol"><div class="hd"><b>02</b><div><h3>Understand</h3><span>Property detail</span></div></div><div class="browser"><div class="detailframe sf"><img src="assets/pr_pdp_about.jpg" alt="Property detail, About tab: property details, project plan, timeline and offering details"><img src="assets/pr_pdp_financials.jpg" alt="Property detail, Financials tab: total investment value, projected annual return and projected returns per token"></div></div></li>
+      <li class="jcol"><div class="hd"><b>02</b><div><h3>Understand</h3><span>Property detail</span></div></div><div class="browser"><div class="detailframe sf"><img src="assets/pr_pdp_about.jpg" alt="Property detail, About tab: property details, project plan, timeline and offering details"></div></div></li>
       <li class="jcol"><div class="hd"><b>03</b><div><h3>Invest</h3><span>Checkout</span></div></div><figure class="slot ck"><img src="assets/pr_checkout_dark.png" alt="Propenize checkout screen"></figure></li>
       <li class="jcol"><div class="hd"><b>04</b><div><h3>Track</h3><span>Dashboard</span></div></div><figure class="slot sf"><img src="assets/s_pr_dash.jpg" alt="Propenize dashboard screen"></figure></li>
     </ol>
@@ -650,6 +663,13 @@ html{scroll-padding-top:72px}
   var targets=document.querySelectorAll('.hero-top .l, .hero-top .r, .hero-shot, .sec-head, .ch .t, .layer, .sys, .stp, .q, .rrow, .dhead, .pair .col, .d2 .l, .d2 .r, .d3 .l, .d3 .r, .overload, .funnelarrow, .dash .slotw, .dash .side, .jcol, .refl .p, .refl .web');
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
   targets.forEach(function(t){t.classList.add('rv'); var sib=Array.prototype.indexOf.call(t.parentNode.children,t); t.style.setProperty('--d',Math.min(sib,5)*0.07+'s'); io.observe(t)});
+})();
+</script>
+<script>
+(function(){
+  var links=document.querySelectorAll('.nav a'), secs=[].map.call(links,function(a){return document.querySelector(a.getAttribute('href'))});
+  function spy(){var y=window.scrollY+300,cur=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top+window.scrollY<=y)cur=i});links.forEach(function(a,i){a.classList.toggle('on',i===cur)})}
+  window.addEventListener('scroll',spy,{passive:true});spy();
 })();
 </script>
 </body></html>
