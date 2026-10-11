@@ -315,6 +315,31 @@ table.matrix{width:100%; border-collapse:collapse; min-width:680px}
 @media (max-width:860px){.final .support p{grid-column:1 / -1}}
 footer{border-top:1px solid var(--rule); padding-block:28px}
 footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+
+/* mini animations: gentle, one-time, and off for reduced-motion users */
+@media (prefers-reduced-motion: no-preference){
+  .rv{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); transition-delay:var(--d,0s)}
+  .rv.in{opacity:1; transform:none}
+  .aud article,.prod,.irow,.jstep,.screen,.lrow,.drow{transition:transform .3s ease, box-shadow .3s ease, background .3s ease}
+  .aud article:hover,.prod:hover,.screen:hover{transform:translateY(-3px)}
+  .aud article:hover{box-shadow:0 10px 24px rgba(0,0,0,.14)}
+  .prod .slot{transition:box-shadow .3s ease}
+  .prod:hover .slot{box-shadow:0 10px 22px rgba(0,0,0,.2)}
+  .aud .ill.photo img,.prod .slot img,.screen .slot img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .aud article:hover .ill.photo img,.screen:hover .slot img{transform:scale(1.04)}
+  .hero-art .note{animation:pdsway 8s ease-in-out infinite}
+  .hero-art .cur{animation:pddrift 6s ease-in-out infinite}
+  .selbox i{animation:pdpulse 3.2s ease-in-out infinite}
+  .slotwrap .pin{animation:pdring 3.4s ease-in-out infinite}
+  .pdc .pop{animation:pdpop .35s ease}
+  .pdc input[type=range]::-webkit-slider-thumb{transition:transform .2s ease}
+  .pdc input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
+  @keyframes pdsway{0%,100%{translate:0 0}50%{translate:0 -4px}}
+  @keyframes pddrift{0%,100%{translate:0 0}50%{translate:-6px 6px}}
+  @keyframes pdpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+  @keyframes pdring{0%,100%{box-shadow:0 0 0 0 rgba(236,100,160,0)}50%{box-shadow:0 0 0 7px rgba(236,100,160,.22)}}
+  @keyframes pdpop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+}
 </style>
 
 <link rel="stylesheet" href="assets/gx.css">
@@ -368,7 +393,9 @@ html{scroll-padding-top:128px}
 <script>document.getElementById('snTheme').addEventListener('click',function(){var d=document.documentElement,cur=d.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=cur==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('jg-theme',n)}catch(e){}});</script>
 <header class="topbar">
   <div class="wrap">
+    <a class="brand" href="index.html">Jagruti Ghuge</a>
     <nav class="nav" aria-label="Case study sections"><a href="#who">01 Who</a><a href="#market">02 Market</a><a href="#research">03 Research</a><a href="#experience">04 Experience</a><a href="#website">05 Website</a><a href="#calculator">06 Calculator</a><a href="#learned">07 Learned</a></nav>
+    <a class="back" href="index.html#work">&larr; All work</a>
   </div>
   <div class="ruler" id="ruler" aria-hidden="true"></div>
 </header>
@@ -759,6 +786,21 @@ html{scroll-padding-top:128px}
   }
   [plants,freq].forEach(function(el){fill(el);el.addEventListener('input',function(){fill(el);calc()})});
   type.addEventListener('change',calc);calc();
+})();
+</script>
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  /* gentle reveal, once */
+  var targets=document.querySelectorAll('.sec-head, .aud article, .after, .after2, .prod, .matrix-wrap, .irow, .jstep, .screen, .dmap .drow, .calc .main, .calc .side, .lrow, .takeaway, .support, .gx-shot, .hero .meta div, .closing-line');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  targets.forEach(function(t){t.classList.add('rv'); var sib=Array.prototype.indexOf.call(t.parentNode.children,t); t.style.setProperty('--d',Math.min(sib,5)*0.07+'s'); io.observe(t)});
+  /* calculator: results give a tiny pop when the numbers change */
+  var outs=['pdc-water','pdc-trees'].map(function(i){return document.getElementById(i)}).filter(Boolean);
+  function pop(){outs.forEach(function(o){o.classList.remove('pop'); void o.offsetWidth; o.classList.add('pop')})}
+  ['pdc-plants','pdc-freq'].forEach(function(id){var e=document.getElementById(id); if(e) e.addEventListener('input',pop)});
+  var t=document.getElementById('pdc-type'); if(t) t.addEventListener('change',pop);
+  outs.forEach(function(o){o.style.display='inline-block'});
 })();
 </script>
 <script src="assets/gx.js"></script>
