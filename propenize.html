@@ -313,6 +313,33 @@ section{padding-block:clamp(72px, 10vw, 136px); border-top:1px solid var(--rule)
 .endnav a.b{font-family:var(--f-mono); font-size:14px; color:var(--paper); background:var(--ink); text-decoration:none; padding:10px 16px}
 footer{border-top:1px solid var(--rule); padding-block:28px}
 footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-family:var(--f-mono); font-size:14px; color:var(--muted)}
+
+/* mini animations: gentle, one-time, and off for reduced-motion users */
+@media (prefers-reduced-motion: no-preference){
+  .rv{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); transition-delay:var(--d,0s)}
+  .rv.in{opacity:1; transform:none}
+  .q,.rrow,.jcol,.layer,.prio li,.dash .side li{transition:transform .3s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease}
+  .q:hover .n,.rrow:hover .n,.jcol:hover .hd b{transform:translateX(3px); transition:transform .3s ease}
+  .rrow .arr svg,.pair .mid svg,.down svg{transition:transform .3s ease}
+  .rrow:hover .arr svg,.pair:hover .mid svg{transform:translateX(4px)}
+  .layer:hover,.dash .side li:hover{transform:translateX(4px)}
+  .jcol:hover{transform:translateY(-3px)}
+  .logos .lg{transition:transform .3s ease, box-shadow .3s ease}
+  .logos .lg:hover{transform:translateY(-2px); box-shadow:0 6px 14px rgba(0,0,0,.2)}
+  .stp .dot{transition:transform .3s ease}
+  .stp:hover .dot{transform:scale(1.25)}
+  .down svg{animation:prbob 2.6s ease-in-out infinite}
+  .funnelarrow svg{animation:prbob 2.6s ease-in-out infinite}
+  .ptag{animation:prsway 7s ease-in-out infinite}
+  .ptag.w{animation-delay:-2s}.ptag.e{animation-delay:-4s}.ptag.tk{animation-delay:-5s}
+  .hero-shot .label{animation:prsway 8s ease-in-out infinite}
+  .hero-shot .cur{animation:prdrift 6s ease-in-out infinite}
+  .selbox i{animation:prpulse 3.2s ease-in-out infinite}
+  @keyframes prbob{0%,100%{translate:0 0}50%{translate:0 3px}}
+  @keyframes prsway{0%,100%{translate:0 0}50%{translate:0 -3px}}
+  @keyframes prdrift{0%,100%{translate:0 0}50%{translate:-6px 6px}}
+  @keyframes prpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+}
 </style>
 
 <link rel="stylesheet" href="assets/gx.css">
@@ -614,4 +641,13 @@ html{scroll-padding-top:72px}
 })();
 </script>
 
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  /* gentle reveal, once */
+  var targets=document.querySelectorAll('.hero-top .l, .hero-top .r, .hero-shot, .sec-head, .ch .t, .layer, .sys, .stp, .q, .rrow, .dhead, .pair .col, .d2 .l, .d2 .r, .d3 .l, .d3 .r, .overload, .funnelarrow, .dash .slotw, .dash .side, .jcol, .refl .p, .refl .web');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  targets.forEach(function(t){t.classList.add('rv'); var sib=Array.prototype.indexOf.call(t.parentNode.children,t); t.style.setProperty('--d',Math.min(sib,5)*0.07+'s'); io.observe(t)});
+})();
+</script>
 </body></html>
